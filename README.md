@@ -1,5 +1,5 @@
 # 22STATIC
 
-Projet Normanzik du Groupe STATIC
-
+Projet <strong>Normanzik</strong> du Groupe STATIC<br>
+Composé de Ouael, Sofiane, Guillaume, Arnaud
 
