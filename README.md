@@ -9,5 +9,7 @@ Composé de Ouael, Sofiane, Guillaume, Arnaud
 - En cours
 
 # Configuration : 
+- JDK 11
 - MariaDB
 - Apache Tomcat
+- Bootstrap
