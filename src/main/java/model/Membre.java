@@ -14,6 +14,8 @@ public class Membre {
     private int id;
     private String nom;
     private String prenom;
+    private String mail;
+    private String MDP;
     private ArrayList<Groupe> lesGroupes ;
     private Statut statut ;
     private Instrument instrument ;
@@ -46,6 +48,22 @@ public class Membre {
         this.prenom = prenom;
     }
 
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public String getMDP() {
+        return MDP;
+    }
+
+    public void setMDP(String mdp) {
+        this.MDP = mdp;
+    }    
+    
     public ArrayList<Groupe> getLesGroupes() {
         return lesGroupes;
     }

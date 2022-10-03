@@ -52,6 +52,10 @@
         <servlet-name>ServletDispositif</servlet-name>
         <url-pattern>/ServletDispositif/consulter</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletMembre</servlet-name>
+        <url-pattern>/ServletMembre/connexion</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

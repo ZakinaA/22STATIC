@@ -110,13 +110,17 @@ public class ServletMembre extends HttpServlet {
         }
         
         if(url.equals("/normanzik/ServletMembre/groupe")){
-
             int idMembre = Integer.parseInt(request.getParameter("idMembre"));
             Groupe leGroupe = DaoGroupe.getLeGroupeduMembre(connection, idMembre);
             request.setAttribute("pGroupe", leGroupe);
             ArrayList<Groupe> lesGroupes = DaoGroupe.getLesGroupesByMembre(connection, idMembre);
             request.setAttribute("pLesGroupes", lesGroupes);
             this.getServletContext().getRequestDispatcher("/view/membre/groupe.jsp" ).forward( request, response );
+        }
+        
+        if(url.equals("/normanzik/ServletMembre/connexion"))
+        {
+            this.getServletContext().getRequestDispatcher("/view/membre/connexion.jsp" ).forward( request, response );
         }
     }
 
