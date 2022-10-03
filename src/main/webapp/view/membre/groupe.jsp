@@ -58,8 +58,11 @@
                     out.println(unGroupe.getGenre().getLibelle());
                     out.println("</td>");
                 }%>
-
+        </tr>
+        </tbody>
+    </table>
 <% if (lesGroupes != null) {%>
+<h1>Mes groupes</h1>
 <div class="container px-4 px-lg-5">
     <table  class="table table-bordered table-striped table-condensed">
         <thead>
