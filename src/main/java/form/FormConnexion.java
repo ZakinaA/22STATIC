@@ -1,5 +1,8 @@
 package form;
 
+import dao.DaoMembre;
+import java.sql.Connection;
+import java.util.ArrayList;
 import model.Genre;
 import model.Groupe;
 
@@ -7,9 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 import model.Dispositif;
-import model.Instrument;
 import model.Membre;
 import model.Statut;
+import java.sql.Connection;
+import test.ConnexionBdd;
 
 public class FormConnexion {
 
@@ -57,43 +61,7 @@ public class FormConnexion {
             return valeur.trim();
         }
     }
-
-    // creation d'un objet groupe (et son genre) à partir des données saisies dans le formulaire
-    public Membre ajouterMembre(HttpServletRequest request ) {
-
-        Membre unMembre  = new Membre();
-
-        //récupération dans des variables des données saisies dans les champs de formulaire
-        String mail = getDataForm( request, "mail" );
-        String mdp = getDataForm( request, "mdp");
-
-        try {
-            validationMail( mail );
-        } catch ( Exception e ) {
-            setErreur( "mail", e.getMessage() );
-        }
-         unMembre.setMail(mail);
-         
-        try {
-            validationMDP( mdp );
-        } catch ( Exception e ) {
-            setErreur( "mdp", e.getMessage() );
-        }
-        unMembre.setMDP(mdp);
-        
-        
-        if ( erreurs.isEmpty() ) {
-            resultat = "Succès de l'ajout.";
-        } else {
-            resultat = "Échec de l'ajout.";
-        }
-        System.out.println("resultat erreurs="+resultat);
-
-        // hydratation de l'objet membre avec les variables valorisées ci-dessus
-        
-
-        return unMembre;
-        
-        
-    }
+    Connection con = ConnexionBdd.ouvrirConnexion();
+    ArrayList<Membre> Membre = DaoMembre.getConnexion(con);
+    ConnexionBdd.fermerConnexion(con);
 }
