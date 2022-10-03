@@ -34,7 +34,7 @@
     };%></p>
 <p>Téléphone : <%out.println(unGroupe.getTelephone());%></p>
 <p>Mail : <%out.println(unGroupe.getMelSiteWeb());%></p>
-<p>Lieu de récéption : <%out.println(unGroupe.getLieuReception());%></p>
+<p>Lieu de récéption : <%out.println(unGroupe.getLieuRepetition());%></p>
 <p>Date de création : <%out.println(unGroupe.getDateCreation());%></p>
 
 <%  if(unGroupe.getLesTitres() != null && unGroupe.getLesTitres().size()!=0){        

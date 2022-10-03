@@ -38,9 +38,9 @@
     <input id="melSiteWeb"  type="text"  name="melSiteWeb" size="10" maxlength="10">
     <span style="color: blue;">${form.erreurs['melSiteWeb']}</span>
     </br>
-    <label for="lieuReception">Lieu de répétition : </label>
-    <input id="lieuReception"  type="text"  name="lieuReception" size="10" maxlength="10">
-    <span style="color: blue;">${form.erreurs['lieuReception']}</span>
+    <label for="lieuRepetition">Lieu de répétition : </label>
+    <input id="lieuRepetition"  type="text"  name="lieuRepetition" size="10" maxlength="10">
+    <span style="color: blue;">${form.erreurs['lieuRepetition']}</span>
     </br>
     <label for="dispositif">Dispositif : </label>
     <select name="idDispositif">

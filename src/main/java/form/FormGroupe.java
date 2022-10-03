@@ -55,8 +55,8 @@ public class FormGroupe {
         }
     }
     
-    private void validationLieuReception( String lieuReception) throws Exception {
-        if ( lieuReception != null  ) {
+    private void validationLieuRepetition( String lieuRepetition) throws Exception {
+        if ( lieuRepetition != null  ) {
             throw new Exception( "le lieu repetition est erronnée" );
         }
     }
@@ -84,7 +84,7 @@ public class FormGroupe {
         String dateCreation = getDataForm( request, "dateCreation");
         String telephone = getDataForm( request, "telephone");
         String melSiteWeb = getDataForm( request, "melSiteWeb");
-        String lieuReception = getDataForm( request, "lieuReception");
+        String lieuRepetition = getDataForm( request, "lieuRepetition");
         int idDispositif = Integer.parseInt(getDataForm( request, "idDispositif" ));
         int idMembre = Integer.parseInt(getDataForm( request, "idMembre" ));
         int idGenre = Integer.parseInt(getDataForm( request, "idGenre" ));
@@ -118,11 +118,11 @@ public class FormGroupe {
         unGroupe.setMelSiteWeb(melSiteWeb);
         
         try {
-            validationLieuReception( lieuReception );
+            validationLieuRepetition( lieuRepetition );
         } catch ( Exception e ) {
-            setErreur( "lieuReception", e.getMessage() );
+            setErreur( "lieuRepetition", e.getMessage() );
         }
-        unGroupe.setLieuReception(lieuReception);
+        unGroupe.setLieuRepetition(lieuRepetition);
         
         if ( erreurs.isEmpty() ) {
             resultat = "Succès de l'ajout.";

@@ -17,7 +17,7 @@ public class Groupe {
     private String dateCreation;
     private String telephone;
     private String melSiteWeb;
-    private String lieuReception;
+    private String lieuRepetition;
     private int estSelectionne;
     private Genre genre ;
     private Dispositif dispositif;
@@ -47,12 +47,12 @@ public class Groupe {
         this.melSiteWeb = melSiteWeb;
     }
 
-    public String getLieuReception() {
-        return lieuReception;
+    public String getLieuRepetition() {
+        return lieuRepetition;
     }
 
-    public void setLieuReception(String lieuReception) {
-        this.lieuReception = lieuReception;
+    public void setLieuRepetition(String lieuRepetition) {
+        this.lieuRepetition = lieuRepetition;
     }
 
     public int getEstSelectionne() {

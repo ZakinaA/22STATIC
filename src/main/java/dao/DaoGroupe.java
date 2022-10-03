@@ -47,7 +47,7 @@ public class DaoGroupe {
                 leGroupe.setDateCreation(rs.getString("dateCreation"));
                 leGroupe.setTelephone(rs.getString("telephone"));
                 leGroupe.setMelSiteWeb(rs.getString("melSiteWeb"));
-                leGroupe.setLieuReception(rs.getString("lieuReception"));
+                leGroupe.setLieuRepetition(rs.getString("lieuRepetition"));
 
                 Genre leGenre = new Genre();
                 leGenre.setId(rs.getInt("gen_id"));
@@ -70,7 +70,7 @@ public class DaoGroupe {
         return lesGroupes ;
     }
 
-        public static ArrayList<Groupe> getLesGroupesByDispositif(Connection connection, int idDispositif){
+    public static ArrayList<Groupe> getLesGroupesByDispositif(Connection connection, int idDispositif){
         ArrayList<Groupe> lesGroupes = new  ArrayList<Groupe>();
         try
         {
@@ -92,7 +92,7 @@ public class DaoGroupe {
                 leGroupe.setDateCreation(rs.getString("dateCreation"));
                 leGroupe.setTelephone(rs.getString("telephone"));
                 leGroupe.setMelSiteWeb(rs.getString("melSiteWeb"));
-                leGroupe.setLieuReception(rs.getString("lieuReception"));
+                leGroupe.setLieuRepetition(rs.getString("lieuRepetition"));
                 
                 lesGroupes.add(leGroupe);
             }
@@ -105,6 +105,90 @@ public class DaoGroupe {
         return lesGroupes ;
     }
 
+    public static ArrayList<Groupe> getLesGroupesByMembre(Connection connection, int idMembre){
+        ArrayList<Groupe> lesGroupes = new  ArrayList<Groupe>();
+        try
+        {
+            //preparation de la requete
+            requete=connection.prepareStatement("select * from groupe, groupemembre, membre, genre where idGenre=gen_id and idGroupe=gro_id and groupe.idMembre=mem_id and groupemembre.idMembre=?");
+            requete.setInt(1, idMembre);
+            System.out.println("Requete" + requete);
+
+            //executer la requete
+            rs=requete.executeQuery();
+
+            //On hydrate l'objet métier Groupe et sa relation Genre avec les résultats de la requête
+            while ( rs.next() ) {
+
+
+                Groupe leGroupe = new Groupe();
+                leGroupe.setId(rs.getInt("gro_id"));
+                leGroupe.setNom(rs.getString("nom"));
+                leGroupe.setDateCreation(rs.getString("dateCreation"));
+                leGroupe.setTelephone(rs.getString("telephone"));
+                leGroupe.setMelSiteWeb(rs.getString("melSiteWeb"));
+                leGroupe.setLieuRepetition(rs.getString("lieuRepetition"));
+                
+                Membre leMembre = new Membre();
+                leMembre.setId(rs.getInt("mem_id"));
+                leMembre.setNom(rs.getString("membre.nom"));
+                leMembre.setPrenom(rs.getString("prenom"));
+                leGroupe.setMembre(leMembre);
+                
+                Genre leGenre = new Genre();
+                leGenre.setLibelle(rs.getString("libelle"));
+                leGroupe.setGenre(leGenre);
+                
+                lesGroupes.add(leGroupe);
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        return lesGroupes ;
+    }
+    
+    public static Groupe getLeGroupeduMembre(Connection connection, int idMembre){
+        Groupe leGroupe = new Groupe();
+        try
+        {
+            //preparation de la requete
+            requete=connection.prepareStatement("select * from groupe, genre where idGenre=gen_id and idMembre=?");
+            requete.setInt(1, idMembre);
+            System.out.println("Requete" + requete);
+
+            //executer la requete
+            rs=requete.executeQuery();
+
+            //On hydrate l'objet métier Groupe et sa relation Genre avec les résultats de la requête
+            if ( rs.next() ) {
+
+                leGroupe.setId(rs.getInt("gro_id"));
+                leGroupe.setNom(rs.getString("nom"));
+                leGroupe.setDateCreation(rs.getString("dateCreation"));
+                leGroupe.setTelephone(rs.getString("telephone"));
+                leGroupe.setMelSiteWeb(rs.getString("melSiteWeb"));
+                leGroupe.setLieuRepetition(rs.getString("lieuRepetition"));
+                leGroupe.setEstSelectionne(rs.getInt("estSelectionne"));
+                
+                Genre leGenre = new Genre();
+                leGenre.setId(rs.getInt("gen_id"));
+                leGenre.setLibelle(rs.getString("libelle"));
+                leGroupe.setGenre(leGenre);
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        return leGroupe;
+    }
+    
+    
+    
     public static Groupe getLeGroupe(Connection connection, int idGroupe){
 
         Groupe leGroupe = new Groupe();
@@ -125,7 +209,7 @@ public class DaoGroupe {
                 leGroupe.setDateCreation(rs.getString("dateCreation"));
                 leGroupe.setTelephone(rs.getString("telephone"));
                 leGroupe.setMelSiteWeb(rs.getString("melSiteWeb"));
-                leGroupe.setLieuReception(rs.getString("lieuReception"));
+                leGroupe.setLieuRepetition(rs.getString("lieuRepetition"));
                 
 
                 Membre leMembre = new Membre();
@@ -201,13 +285,13 @@ public class DaoGroupe {
             // gpe_id (clé primaire de la table groupe) est en auto_increment,donc on ne renseigne pas cette valeur
             // le paramètre RETURN_GENERATED_KEYS est ajouté à la requête afin de pouvoir récupérer l'id généré par la bdd (voir ci-dessous)
             // supprimer ce paramètre en cas de requête sans auto_increment.
-            requete=connection.prepareStatement("INSERT INTO GROUPE ( nom, dateCreation, telephone, melSiteWeb, lieuReception, estSelectionne, idDispositif, idMembre, idGenre)\n" +
+            requete=connection.prepareStatement("INSERT INTO GROUPE ( nom, dateCreation, telephone, melSiteWeb, lieuRepetition, estSelectionne, idDispositif, idMembre, idGenre)\n" +
                     "VALUES (?,?,?,?,?,?,?,?,?)", requete.RETURN_GENERATED_KEYS );
             requete.setString(1, unGroupe.getNom());
             requete.setString(2, unGroupe.getDateCreation());
             requete.setString(3, unGroupe.getTelephone());
             requete.setString(4, unGroupe.getMelSiteWeb());
-            requete.setString(5, unGroupe.getLieuReception());
+            requete.setString(5, unGroupe.getLieuRepetition());
             requete.setInt(6, unGroupe.getEstSelectionne());
             requete.setInt(7, unGroupe.getDispositif().getId());
             requete.setInt(8, unGroupe.getMembre().getId());

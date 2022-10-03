@@ -25,7 +25,7 @@
             <th>dateCreation</th>
             <th>Telephone</th>
             <th>MelSiteWeb</th>
-            <th>LieuReception</th>
+            <th>LieuRepetition</th>
             <th>Genre</th>
 
         </tr>
@@ -58,7 +58,7 @@
                     out.println("</td>");
                     
                     out.println("<td>");
-                    out.println(unGroupe.getLieuReception());
+                    out.println(unGroupe.getLieuRepetition());
                     out.println("</td>");
 
                     out.println("<td>");

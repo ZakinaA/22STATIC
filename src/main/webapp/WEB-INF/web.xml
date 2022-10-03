@@ -41,6 +41,10 @@
         <url-pattern>/ServletMembre/ajouter</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ServletMembre</servlet-name>
+        <url-pattern>/ServletMembre/groupe</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ServletDispositif</servlet-name>
         <url-pattern>/ServletDispositif/lister</url-pattern>
     </servlet-mapping>
