@@ -20,6 +20,7 @@ public class Membre {
     private Statut statut ;
     private Instrument instrument ;
     private ArrayList<GroupeMembreInstrument> lesGroupesMembresInstruments ;
+    private ArrayList<Utilisateur> lesUtilisateurs;
     
     public Membre() {
     }
@@ -99,6 +100,16 @@ public class Membre {
         return lesGroupesMembresInstruments;
     }
 
+    public ArrayList<Utilisateur> getLesUtilisateurs() {
+        return lesUtilisateurs;
+    }
+
+    public void setLesUtilisateurs(ArrayList<Utilisateur> lesUtilisateurs) {
+        this.lesUtilisateurs = lesUtilisateurs;
+    }
+
+    
+    
     public void setLesGroupesMembresInstruments(ArrayList<GroupeMembreInstrument> lesGroupesMembresInstruments) {
         this.lesGroupesMembresInstruments = lesGroupesMembresInstruments;
     }

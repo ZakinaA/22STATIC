@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author sio2
@@ -12,6 +14,7 @@ public class Jury {
     private int idJury;
     private String libelle;
     private Dispositif dispositif;
+    private ArrayList<Partenaire> lesPartenaires;
 
     public Jury() {
     }
