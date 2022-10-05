@@ -28,7 +28,7 @@
 
 
 <div class="container px-4 px-lg-5">
-    <table  class="table table-bordered table-striped table-condensed " >
+    <table  class="table table-bordered table-striped table-condensed text-center" >
         <thead>
         <tr>
             <th>Nom</th>
@@ -78,8 +78,10 @@
                     
                     out.println("<td>");
                     if (unGroupe.getEstSelectionne() == 1){
+                        out.println("<a href ='../ServletJury/desinscrire?idGroupe=" + unGroupe.getId() + "'>");
                         out.println("<button type='button' class='btn btn-danger'>Desinscrire</button>");
                     } else {
+                        out.println("<a href ='../ServletJury/inscrire?idGroupe=" + unGroupe.getId() + "'>");
                         out.println("<button type='button' class='btn btn-success'>Inscrire</button>");
                     }
                     out.println("</td>");

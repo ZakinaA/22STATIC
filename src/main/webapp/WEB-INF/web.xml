@@ -66,6 +66,14 @@
         <servlet-name>ServletJury</servlet-name>
         <url-pattern>/ServletJury/lister</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletJury</servlet-name>
+        <url-pattern>/ServletJury/inscrire</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletJury</servlet-name>
+        <url-pattern>/ServletJury/desinscrire</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
