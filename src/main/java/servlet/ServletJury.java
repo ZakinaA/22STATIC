@@ -69,10 +69,10 @@ public class ServletJury extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletGroupe</title>");            
+            out.println("<title>Servlet Servlet Jury</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ServletGroupe at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ServletJury at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -94,33 +94,22 @@ public class ServletJury extends HttpServlet {
          // récupération de l url saisie dans le navigateur
         String url = request.getRequestURI();
         
-        System.out.println("servlergroupe url="+url);
+        System.out.println("ServletJury url="+url);
 
         //Affichage de tous les groupes (en indiquant le libellé du genre musical)
         if(url.equals("/normanzik/ServletJury/lister")){
-            System.out.println("ServletJury LISTER");
+             System.out.println("ServletJury LISTER");
             ArrayList<Groupe> lesGroupes = DaoGroupe.getLesGroupes(connection);
             request.setAttribute("pLesGroupes", lesGroupes);
             this.getServletContext().getRequestDispatcher("/view/jury/lister.jsp" ).forward( request, response );
         }
 
         // Affichage du groupe selectionné (depuis la fonctionnalité lister)
-        /*
-        if(url.equals("/normanzik/ServletGroupe/consulter")){
-
+        if(url.equals("/normanzik/ServletJury/inscrire")){
             int idGroupe = Integer.parseInt(request.getParameter("idGroupe"));
-            Groupe leGroupe = DaoGroupe.getLeGroupe(connection, idGroupe);
+            Groupe leGroupe = DaoJury.inscrireGroupe(connection, idGroupe);
             request.setAttribute("pGroupe", leGroupe);
             this.getServletContext().getRequestDispatcher("/view/groupe/consulter.jsp" ).forward( request, response );
-        }
-        */
-
-        if(url.equals("/normanzik/ServletJury/ajouter"))
-        {   
-            ArrayList<Membre> lesMembres = DaoAdmin.getLesMembres(connection);
-            request.setAttribute("pLesMembres", lesMembres);
-            this.getServletContext().getRequestDispatcher("/view/jury/ajouter.jsp" ).forward( request, response );
-        
         }
     }
 
