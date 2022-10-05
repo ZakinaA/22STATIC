@@ -17,9 +17,11 @@
         <servlet-class>servlet.ServletDispositif</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>NewServlet</servlet-name>
-        <servlet-class>servlet.NewServlet</servlet-class>
+        <servlet-name>ServletJury</servlet-name>
+        <servlet-class>servlet.ServletJury</servlet-class>
     </servlet>
+    
+    
     <servlet-mapping>
         <servlet-name>ServletGroupe</servlet-name>
         <url-pattern>/ServletGroupe/consulter</url-pattern>
@@ -55,6 +57,10 @@
     <servlet-mapping>
         <servlet-name>ServletMembre</servlet-name>
         <url-pattern>/ServletMembre/connexion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletJury</servlet-name>
+        <url-pattern>/ServletJury/ajouter</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
