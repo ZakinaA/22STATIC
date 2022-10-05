@@ -55,8 +55,8 @@
         <url-pattern>/ServletDispositif/consulter</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletMembre</servlet-name>
-        <url-pattern>/ServletMembre/connexion</url-pattern>
+        <servlet-name>ServletConnexion</servlet-name>
+        <url-pattern>/ServletConnexion/connexion</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletJury</servlet-name>
