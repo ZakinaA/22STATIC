@@ -60,8 +60,6 @@ CREATE TABLE Partenaire(
    par_id INT AUTO_INCREMENT,
    nom VARCHAR(50),
    prenom VARCHAR(50),
-   mdp VARCHAR(50),
-   mail VARCHAR(255),
    idJury INT NOT NULL,
    PRIMARY KEY(par_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -123,6 +121,15 @@ CREATE TABLE Programmer(
    PRIMARY KEY(idGroupe, IdFestival)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+CREATE TABLE Utilisateur(
+   uti_id INT AUTO_INCREMENT,
+   login VARCHAR(255) NOT NULL,
+   mdp VARCHAR(255) NOT NULL,
+   idPartenaire INT,
+   idMembre INT,
+   PRIMARY KEY(uti_id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 INSERT INTO `album` (`alb_id`, `nom`, `dateCreation`, `cheminImg`) VALUES
 (1, 'Le monde chico', '2009-01-22', NULL),
 (2, 'Envolée Zougloutique', '2009-01-22', NULL),
@@ -132,6 +139,9 @@ INSERT INTO `album` (`alb_id`, `nom`, `dateCreation`, `cheminImg`) VALUES
 INSERT INTO `dispositif` (`dis_id`, `annee`, `libelle`) VALUES
 (1, 2021, 'Normanzik'),
 (2, 2022, 'Norzik');
+
+INSERT INTO `utilisateur` (`uti_id`, `login`, `mdp`, `idPartenaire`, `idMembre`) VALUES
+(1, 'elmusaui', 'elmusaui', NULL, '6');
 
 INSERT INTO `donnerconcert` (`idGroupe`, `idLieuConcert`, `dateConcert`) VALUES
 (1, 1, '2022-05-31'),
@@ -198,6 +208,10 @@ INSERT INTO `titre` (`idGroupe`, `numero`, `intitule`, `duree`, `lienURL`, `idAl
 
 ALTER TABLE Jury
 ADD CONSTRAINT FK_JURY_DISPOSITIF FOREIGN KEY(idDispositif) REFERENCES Dispositif(dis_id);
+
+ALTER TABLE Utilisateur
+ADD CONSTRAINT FK_UTILISATEUR_PARTENAIRE FOREIGN KEY(idPartenaire) REFERENCES Partenaire(par_id),
+ADD CONSTRAINT FK_UTILISATEUR_MEMBRE FOREIGN KEY(idMembre) REFERENCES Membre(mem_id);
 
 ALTER TABLE Partenaire
 ADD CONSTRAINT FK_PARTENAIRE_JURY FOREIGN KEY(idJury) REFERENCES Jury(jur_id);
