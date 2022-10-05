@@ -30,31 +30,6 @@ public class DaoMembre {
     static PreparedStatement requete=null;
     static ResultSet rs=null;
     
-    public static ArrayList<Membre> getConnexion(Connection connection){
-        ArrayList<Membre> lesMembres = new  ArrayList<Membre>();
-        try
-        {
-            //preparation de la requete
-            requete=connection.prepareStatement("select mail, mdp from membre");
-            System.out.println("Requete" + requete);
-
-            //executer la requete
-            rs=requete.executeQuery();
-            while ( rs.next() ) {
-                Membre leMembre = new Membre();
-                leMembre.setMail(rs.getString("mail"));
-                leMembre.setMDP(rs.getString("mdp"));
-
-                lesMembres.add(leMembre);
-            }
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-            //out.println("Erreur lors de l’établissement de la connexion");
-        }
-        return lesMembres;
-    }
     
     public static Membre getLeMembre(Connection connection, int idMembre){
         Membre leMembre = new  Membre();

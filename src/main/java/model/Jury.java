@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author sio2
  */
 public class Jury {
-    private int idJury;
+    private int id;
     private String libelle;
     private Dispositif dispositif;
     private ArrayList<Partenaire> lesPartenaires;
@@ -19,12 +19,12 @@ public class Jury {
     public Jury() {
     }
 
-    public int getIdJury() {
-        return idJury;
+    public int getId() {
+        return id;
     }
 
-    public void setIdJury(int idJury) {
-        this.idJury = idJury;
+    public void Id(int id) {
+        this.id = id;
     }
 
     public String getLibelle() {

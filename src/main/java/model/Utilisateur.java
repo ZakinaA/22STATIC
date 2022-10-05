@@ -9,7 +9,7 @@ package model;
  * @author sio2
  */
 public class Utilisateur {
-    private int idUtilisateur;
+    private int id;
     private String login;
     private String mdp;
     private Membre membre;
@@ -18,12 +18,12 @@ public class Utilisateur {
     public Utilisateur() {
     }
 
-    public int getIdUtilisateur() {
-        return idUtilisateur;
+    public int getId() {
+        return id;
     }
 
-    public void setIdUtilisateur(int idUtilisateur) {
-        this.idUtilisateur = idUtilisateur;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getLogin() {

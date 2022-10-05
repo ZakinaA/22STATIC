@@ -13,6 +13,8 @@ import model.Dispositif;
 import model.Membre;
 import model.Statut;
 import java.sql.Connection;
+import model.Instrument;
+import model.Utilisateur;
 import test.ConnexionBdd;
 
 public class FormConnexion {
@@ -37,9 +39,9 @@ public class FormConnexion {
     }
 
     //méthode de validation du champ de saisie nom
-    private void validationMail( String mail ) throws Exception {
-        if ( mail != null) {
-            throw new Exception( "Le mail ne peut pas être null." );
+    private void validationLogin( String login ) throws Exception {
+        if ( login != null) {
+            throw new Exception( "Le login ne peut pas être null." );
         }
     }
 
@@ -60,5 +62,31 @@ public class FormConnexion {
         } else {
             return valeur.trim();
         }
+    }
+        public Utilisateur ajouterUtilisateur(HttpServletRequest request ) {
+
+        Utilisateur unUtilisateur  = new Utilisateur();
+
+        //récupération dans des variables des données saisies dans les champs de formulaire
+        String login = getDataForm( request, "login" );
+        String mdp = getDataForm( request, "mdp");
+
+        try {
+            validationLogin( login );
+        } catch ( Exception e ) {
+            setErreur( "login", e.getMessage() );
+        }
+         unUtilisateur.setLogin(login);
+         
+        try {
+            validationMDP( mdp );
+        } catch ( Exception e ) {
+            setErreur( "mdp", e.getMessage() );
+        }
+        unUtilisateur.setMdp(mdp);
+        
+        return unUtilisateur;
+        
+        
     }
 }

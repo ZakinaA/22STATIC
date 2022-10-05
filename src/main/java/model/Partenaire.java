@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author sio2
  */
 public class Partenaire {
-    private int idPartenaire;
+    private int id;
     private String nom;
     private String prenom;
     private Jury jury;
@@ -20,12 +20,12 @@ public class Partenaire {
     public Partenaire() {
     }
 
-    public int getIdPartenaire() {
-        return idPartenaire;
+    public int getId() {
+        return id;
     }
 
-    public void setIdPartenaire(int idPartenaire) {
-        this.idPartenaire = idPartenaire;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNom() {
