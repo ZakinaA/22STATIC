@@ -61,7 +61,4 @@ public class FormConnexion {
             return valeur.trim();
         }
     }
-    Connection con = ConnexionBdd.ouvrirConnexion();
-    ArrayList<Membre> Membre = DaoMembre.getConnexion(con);
-    ConnexionBdd.fermerConnexion(con);
 }

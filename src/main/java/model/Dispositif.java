@@ -15,6 +15,7 @@ public class Dispositif {
     private int annee;
     private String libelle;
     private ArrayList<Groupe> lesGroupes ;
+    private ArrayList<Jury> lesJury;
 
     public Dispositif() {
     }
@@ -50,6 +51,14 @@ public class Dispositif {
 
     public void setLesGroupes(ArrayList<Groupe> lesGroupes) {
         this.lesGroupes = lesGroupes;
+    }
+
+    public ArrayList<Jury> getLesJury() {
+        return lesJury;
+    }
+
+    public void setLesJury(ArrayList<Jury> lesJury) {
+        this.lesJury = lesJury;
     }
     
     public void addUngroupe(Groupe unGroupe){
