@@ -41,10 +41,11 @@ public class DaoUtilisateur {
             if ( rs.next() ) {
                 
                 leUtilisateur.setLogin(rs.getString("login"));
+                String idMembre = Integer.toString(rs.getInt("idMembre"));
                 
                 Connection con = ConnexionBdd.ouvrirConnexion();
                 
-                if (rs.getInt("idMembre")!= null){
+                if (idMembre != "null"){
                     
                     Membre leMembre = DaoMembre.getLeMembre(connection, rs.getInt("idMembre"));
                     leUtilisateur.setMembre(leMembre);

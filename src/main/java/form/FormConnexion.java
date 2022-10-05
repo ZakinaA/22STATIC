@@ -63,7 +63,7 @@ public class FormConnexion {
             return valeur.trim();
         }
     }
-        public Utilisateur ajouterUtilisateur(HttpServletRequest request ) {
+        public Utilisateur connexion(HttpServletRequest request ) {
 
         Utilisateur unUtilisateur  = new Utilisateur();
 

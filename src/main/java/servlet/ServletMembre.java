@@ -118,10 +118,6 @@ public class ServletMembre extends HttpServlet {
             this.getServletContext().getRequestDispatcher("/view/membre/groupe.jsp" ).forward( request, response );
         }
         
-        if(url.equals("/normanzik/ServletMembre/connexion"))
-        {
-            this.getServletContext().getRequestDispatcher("/view/membre/connexion.jsp" ).forward( request, response );
-        }
     }
 
     /**

@@ -1,3 +1,4 @@
+<%@page import="form.FormConnexion"%>
 <%@page import="model.Statut"%>
 <%@page import="model.Instrument"%>
 <%@page import="form.FormMembre"%>
@@ -21,17 +22,17 @@
 
 
 <%
-    FormMembre form = (FormMembre)request.getAttribute("form");
+    FormConnexion form = (FormConnexion)request.getAttribute("form");
 %>
 
-<form class="form-inline" action="ajouter" method="POST">
-    <label for="nom">Nom : </label>
-    <input id="nom" type="text" name="nom"  size="70" maxlength="70">
-    <span style="color: blue;">${form.erreurs['nom']}</span>
+<form class="form-inline" action="connexion" method="POST">
+    <label for="login">Login : </label>
+    <input id="login" type="text" name="login"  size="70" maxlength="70">
+    <span style="color: blue;">${form.erreurs['login']}</span>
     </br>
-    <label for="prenom">Prénom : </label>
-    <input id="prenom"  type="text"  name="prenom" size="70" maxlength="70">
-    <span style="color: blue;">${form.erreurs['prenom']}</span>
+    <label for="mdp">Mot de passe : </label>
+    <input id="mdp"  type="text"  name="mdp" size="70" maxlength="70">
+    <span style="color: blue;">${form.erreurs['mdp']}</span>
     </br>
     </br>
     <input type="submit" name="valider" id="valider" value="Valider"/>
