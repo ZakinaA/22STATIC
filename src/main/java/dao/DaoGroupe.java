@@ -48,6 +48,7 @@ public class DaoGroupe {
                 leGroupe.setTelephone(rs.getString("telephone"));
                 leGroupe.setMelSiteWeb(rs.getString("melSiteWeb"));
                 leGroupe.setLieuRepetition(rs.getString("lieuRepetition"));
+                leGroupe.setEstSelectionne(rs.getInt("estSelectionne"));
 
                 Genre leGenre = new Genre();
                 leGenre.setId(rs.getInt("gen_id"));
