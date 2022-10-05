@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import model.Membre;
 import model.Partenaire;
 import model.Utilisateur;
+import test.ConnexionBdd;
 
 /**
  *
@@ -28,7 +29,7 @@ public class DaoUtilisateur {
         try
         {
             //preparation de la requete
-            requete=connection.prepareStatement("select * from utilisateur, membre, partenaire where idMembre=mem_id and idPartenaire=par_id and login=? and mdp=?");
+            requete=connection.prepareStatement("select * from utilisateur where login=? and mdp=?");
             requete.setString(1, Login);
             requete.setString(1, Mdp);
             System.out.println("Requete" + requete);
@@ -40,17 +41,19 @@ public class DaoUtilisateur {
             if ( rs.next() ) {
                 
                 leUtilisateur.setLogin(rs.getString("login"));
-                leUtilisateur.setMdp(rs.getString("mdp"));
                 
-                Membre leMembre = new Membre();
-                leMembre.setId(rs.getInt("mem_id"));
-                leMembre.setNom(rs.getString("membre.nom"));
-                leMembre.setPrenom(rs.getString("prenom"));
+                Connection con = ConnexionBdd.ouvrirConnexion();
                 
-                Partenaire lePartenaire = new Partenaire();
-                lePartenaire.setId(rs.getInt("mem_id"));
-                lePartenaire.setNom(rs.getString("membre.nom"));
-                lePartenaire.setPrenom(rs.getString("prenom"));
+                if (rs.getInt("idMembre")!= null){
+                    
+                    Membre leMembre = DaoMembre.getLeMembre(connection, rs.getInt("idMembre"));
+                    leUtilisateur.setMembre(leMembre);
+                }
+                else{
+                    Partenaire lePartenaire = DaoPartenaire.getLePartenaire(connection, rs.getInt("idPartenaire"));
+                    leUtilisateur.setPartenaire(lePartenaire);
+                }
+                ConnexionBdd.fermerConnexion(con);
             }
         }
         catch (SQLException e)
