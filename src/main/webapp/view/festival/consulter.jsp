@@ -4,6 +4,8 @@
     Author     : guillaume martin
 --%>
 
+<%@page import="model.Festival"%>
+<%@page import="model.Groupe"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -22,18 +24,18 @@
 <br/>
 
 <%
-    out.println("<p>Contact du groupe : <a href='../ServletMembre/consulter?idMembre=" + unFestival.getMembre().getId() + "'>" +unFestival.getMembre().getNom() +" "+ unFestival.getMembre().getPrenom()+"</a></p>");
+    out.println("<p>Contact du groupe : <a href='../ServletGroupe/consulter?idGroupe=" + unFestival.getGroupe().getId() + "'>" +unFestival.getGroupe().getNom() +" "+ unFestival.getGroupe().getPrenom()+"</a></p>");
 %>
-<p>Membres : <%
-    if(unFestival.getLesMembres()!= null && unFestival.getLesMembres().size()!=0){
-        for(int i=0; i<unFestival.getLesMembres().size(); i++){
-            if(i==0 || i==unFestival.getLesMembres().size()){
+<p>Groupes : <%
+    if(unFestival.getLesGroupes()!= null && unFestival.getLesGroupes().size()!=0){
+        for(int i=0; i<unFestival.getLesGroupes().size(); i++){
+            if(i==0 || i==unFestival.getLesGroupes().size()){
             }
             else{
             out.println(", ");
             }
-            Membre mem = unFestival.getLesMembres().get(i);
-            out.println("<a href='../ServletMembre/consulter?idMembre=" + mem.getId() + "'>" + mem.getNom() +" "+mem.getPrenom()+"</a>");
+            Groupe mem = unFestival.getLesGroupes().get(i);
+            out.println("<a href='../ServletGroupe/consulter?idGroupe=" + mem.getId() + "'>" + mem.getNom() +" "+mem.getPrenom()+"</a>");
     }}
     else{
         out.println("Pas de membre");

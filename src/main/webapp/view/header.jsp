@@ -12,7 +12,7 @@
         <title>WebZik</title>
     </head>
 <header>
-    <body style="background-image: url('https://i.ibb.co/Bj2dHPm/t-l-chargement.png'); background-repeat: no-repeat; background-size: cover; backdrop-filter: blur(7.5px); height: 100%">
+    <body style="background-image: url('https://i.ibb.co/Bj2dHPm/t-l-chargement.png'); min-height: 100vh; background-repeat: no-repeat; background-size: cover; backdrop-filter: blur(7.5px); height: 100%">
         <!-- HEADER -->
         <nav class="navbar navbar-expand-sm bg-light py-5 px-5" style="opacity: 0.5; height: 13%">
         </nav>
