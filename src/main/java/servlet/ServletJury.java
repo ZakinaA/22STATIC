@@ -107,6 +107,13 @@ public class ServletJury extends HttpServlet{
         // Affichage du groupe selectionné (depuis la fonctionnalité lister)
         if(url.equals("/normanzik/ServletJury/inscrire")){
             int idGroupe = Integer.parseInt(request.getParameter("idGroupe"));
+            DaoJury.inscrireGroupe(connection, idGroupe);
+            this.getServletContext().getRequestDispatcher("/view/groupe/consulter.jsp" ).forward( request, response );
+        }
+        
+        if(url.equals("/normanzik/ServletJury/desinscrire")){
+            int idGroupe = Integer.parseInt(request.getParameter("idGroupe"));
+            DaoJury.desinscrireGroupe(connection, idGroupe);
             this.getServletContext().getRequestDispatcher("/view/groupe/consulter.jsp" ).forward( request, response );
         }
     }

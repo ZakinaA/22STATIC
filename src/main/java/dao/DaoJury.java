@@ -84,4 +84,23 @@ public class DaoJury {
         }
         return idGroupe;
     }
+    
+        public static int desinscrireGroupe(Connection connection,int idGroupe){
+        try
+        {
+            requete=connection.prepareStatement("UPDATE groupe SET estSelectionne = 0 WHERE groupe.gro_id = ?");
+            requete.setInt(1, idGroupe);
+            
+            System.out.println("requete updateDesInscriptionGroupe=" + requete);
+            
+
+            int resultatRequete = requete.executeUpdate();
+            System.out.println("resultat requete=" + resultatRequete);
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return idGroupe;
+    }
 }
