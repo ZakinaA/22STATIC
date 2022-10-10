@@ -1,5 +1,6 @@
 package form;
 
+import java.util.ArrayList;
 import model.Genre;
 import model.Groupe;
 
@@ -10,6 +11,7 @@ import model.Dispositif;
 import model.Instrument;
 import model.Membre;
 import model.Statut;
+import model.Utilisateur;
 
 public class FormMembre {
 
@@ -34,17 +36,28 @@ public class FormMembre {
 
     //méthode de validation du champ de saisie nom
     private void validationNom( String nom ) throws Exception {
-        if ( nom != null) {
+        if ( nom == null) {
             throw new Exception( "Le nom ne peut pas être null." );
         }
     }
 
     private void validationPrenom( String prenom) throws Exception {
-        if ( prenom != null) {
+        if ( prenom == null) {
             throw new Exception( "le prenom ne peut pas être null." );
         }
     }
     
+    private void validationLogin( String login) throws Exception {
+        if ( login == null) {
+            throw new Exception( "le login ne peut pas être null." );
+        }
+    }
+    
+    private void validationMdp( String mdp) throws Exception {
+        if ( mdp == null) {
+            throw new Exception( "le mdp ne peut pas être null." );
+        }
+    }
     private void setErreur( String champ, String message ) {
         erreurs.put(champ, message );
     }
@@ -59,7 +72,7 @@ public class FormMembre {
     }
 
     // creation d'un objet groupe (et son genre) à partir des données saisies dans le formulaire
-    public Membre ajouterMembre(HttpServletRequest request ) {
+    public Utilisateur ajouterMembre(HttpServletRequest request ) {
 
         Membre unMembre  = new Membre();
 
@@ -83,15 +96,6 @@ public class FormMembre {
         }
         unMembre.setPrenom(prenom);
         
-        
-        if ( erreurs.isEmpty() ) {
-            resultat = "Succès de l'ajout.";
-        } else {
-            resultat = "Échec de l'ajout.";
-        }
-        System.out.println("resultat erreurs="+resultat);
-
-        // hydratation de l'objet membre avec les variables valorisées ci-dessus
      
         Statut leStatut = new Statut();
         leStatut.setId(idStatut);
@@ -101,8 +105,34 @@ public class FormMembre {
         leInstrument.setId(idInstrument);
         unMembre.setInstrument(leInstrument);
         
-
-        return unMembre;
+        Utilisateur unUtilisateur = new Utilisateur();
+        String login = getDataForm( request, "login" );
+        String mdp = getDataForm( request, "mdp");
+        unUtilisateur.setMembre(unMembre);        
+        
+        try {
+            validationLogin( login );
+        } catch ( Exception e ) {
+            setErreur( "login", e.getMessage() );
+        }
+        unUtilisateur.setLogin(login);
+        
+        try {
+            validationMdp( mdp );
+        } catch ( Exception e ) {
+            setErreur( "mdp", e.getMessage() );
+        }
+        unUtilisateur.setMdp(mdp);
+        
+        
+        if ( erreurs.isEmpty() ) {
+            resultat = "Succès de l'ajout.";
+        } else {
+            resultat = "Échec de l'ajout.";
+        }
+        System.out.println("resultat erreurs="+resultat);
+        
+        return unUtilisateur;
         
         
     }

@@ -8,6 +8,8 @@ import dao.DaoAdmin;
 import dao.DaoDispositif;
 import dao.DaoGroupe;
 import dao.DaoMembre;
+import dao.DaoPartenaire;
+import dao.DaoUtilisateur;
 import dao.Utilitaire;
 import form.FormGroupe;
 import form.FormMembre;
@@ -28,7 +30,9 @@ import model.Genre;
 import model.Groupe;
 import model.Instrument;
 import model.Membre;
+import model.Partenaire;
 import model.Statut;
+import model.Utilisateur;
 
 /**
  *
@@ -135,18 +139,19 @@ public class ServletMembre extends HttpServlet {
         FormMembre form = new FormMembre();
 
         /* Appel au traitement et à la validation de la requête, et récupération de l'objet en résultant */
-        Membre leMembreSaisi = form.ajouterMembre(request);
+        Utilisateur unUtilisateur = form.ajouterMembre(request);
 
         /* Stockage du formulaire et de l'objet dans l'objet request */
         request.setAttribute( "form", form );
-        request.setAttribute( "pMembre", leMembreSaisi );
+        request.setAttribute( "pMembre", unUtilisateur );
 
         if (form.getErreurs().isEmpty()){
             // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du membre
-            Membre membreAjoute = DaoMembre.ajouterMembre(connection, leMembreSaisi);
-
+            Utilisateur membreAjoute = DaoMembre.ajouterMembre(connection, unUtilisateur);
+            Utilisateur utilisateurAjoute = DaoUtilisateur.ajouterUtilisateur(connection, unUtilisateur);
+            
             if (membreAjoute != null ){
-                Membre leMembre = DaoMembre.getLeMembre(connection, leMembreSaisi.getId());
+                Membre leMembre = DaoMembre.getLeMembre(connection, unUtilisateur.getMembre().getId());
                 request.setAttribute("pMembre", leMembre);
                 this.getServletContext().getRequestDispatcher("/view/membre/consulter.jsp" ).forward( request, response );
             }

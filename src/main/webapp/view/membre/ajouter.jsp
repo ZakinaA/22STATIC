@@ -66,6 +66,14 @@
     </select>
     </br>
     </br>
+    <label for="login">Login : </label>
+    <input id="login"  type="text"  name="login" size="70" maxlength="70">
+    <span style="color: blue;">${form.erreurs['login']}</span>
+    </br>
+    <label for="mdp">Mot de passe : </label>
+    <input id="mdp"  type="text"  name="mdp" size="70" maxlength="70">
+    <span style="color: blue;">${form.erreurs['mdp']}</span>
+    </br>
     <input type="submit" name="valider" id="valider" value="Valider"/>
 </form>
 </body>

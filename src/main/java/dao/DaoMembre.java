@@ -20,6 +20,7 @@ import model.Instrument;
 import model.Membre;
 import model.Statut;
 import model.Titre;
+import model.Utilisateur;
 
 /**
  *
@@ -124,16 +125,16 @@ public class DaoMembre {
         return lesMembres ;
     }
     
-    public static Membre ajouterMembre(Connection connection, Membre unMembre){
+    public static Utilisateur ajouterMembre(Connection connection, Utilisateur unUtilisateur){
         int idGenere = -1;
         try
         {
             requete=connection.prepareStatement("INSERT INTO MEMBRE (nom, prenom, idInstrument, idStatut)\n" +
                     "VALUES (?,?,?,?)", requete.RETURN_GENERATED_KEYS );
-            requete.setString(1, unMembre.getNom());
-            requete.setString(2, unMembre.getPrenom());
-            requete.setInt(3, unMembre.getInstrument().getId());
-            requete.setInt(4, unMembre.getStatut().getId());
+            requete.setString(1, unUtilisateur.getMembre().getNom());
+            requete.setString(2, unUtilisateur.getMembre().getPrenom());
+            requete.setInt(3, unUtilisateur.getMembre().getInstrument().getId());
+            requete.setInt(4, unUtilisateur.getMembre().getStatut().getId());
 
             System.out.println("requeteInsertion=" + requete);
             /* Exécution de la requête */
@@ -144,13 +145,13 @@ public class DaoMembre {
             rs = requete.getGeneratedKeys();
             while ( rs.next() ) {
                 idGenere = rs.getInt( 1 );
-                unMembre.setId(idGenere);
+                unUtilisateur.getMembre().setId(idGenere);
             }
 
             // si le résultat de la requete est différent de 1, c'est que la requête a échoué.
             // Dans ce cas, on remet l'objet groupe à null
             if (resultatRequete != 1){
-                unMembre= null;
+                unUtilisateur= null;
             }
 
         }
@@ -158,8 +159,8 @@ public class DaoMembre {
         {
             e.printStackTrace();
             //out.println("Erreur lors de l’établissement de la connexion");
-            unMembre= null;
+            unUtilisateur= null;
         }
-        return unMembre ;
+        return unUtilisateur ;
     }
 }

@@ -21,6 +21,7 @@ import model.Membre;
 import model.Partenaire;
 import model.Jury;
 import model.Titre;
+import model.Utilisateur;
 
 /**
  *
