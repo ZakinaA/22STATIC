@@ -78,7 +78,6 @@ public class ServletFestival extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
         // récupération de l url saisie dans le navigateur
         String url = request.getRequestURI();
         

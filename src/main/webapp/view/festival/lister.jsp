@@ -10,11 +10,11 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
         <h1 style="text-align: center; margin: 2%; color: black">Consulter Festival</h1>
 <br/>
 
@@ -33,8 +33,6 @@
             <th>Date de début</th>
             <th>Date de fin</th>
             <th>Logo</th>
-            <th>LieuRepetition</th>
-            <th>Genre</th>
 
         </tr>
         </thead >
@@ -66,7 +64,7 @@
                     out.println("</td>");
                     
                     out.println("<td>");
-                    out.println(unFestival.getLogo());
+                    out.println("<img src='" + unFestival.getLogo()+"'>");
                     out.println("</td>");
 
 
