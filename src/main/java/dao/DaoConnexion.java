@@ -42,13 +42,14 @@ public class DaoConnexion {
                
                 Connection con = ConnexionBdd.ouvrirConnexion();
                 int idMembre = rs.getInt("idMembre");
+                int idPartenaire = rs.getInt("idPartenaire");
                 leUtilisateur.setLogin(rs.getString("login"));
                 
                 if(idMembre != 0){
                     Membre leMembre = DaoMembre.getLeMembre(connection, rs.getInt("idMembre"));
                     leUtilisateur.setMembre(leMembre);
                 }
-                if(rs.getInt("idPartenaire") != 0){
+                if(idPartenaire != 0){
                     Partenaire lePartenaire = DaoPartenaire.getLePartenaire(connection, rs.getInt("idPartenaire"));
                     leUtilisateur.setPartenaire(lePartenaire);
                 }

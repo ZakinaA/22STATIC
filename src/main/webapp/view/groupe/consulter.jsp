@@ -1,7 +1,6 @@
 <%@page import="model.Titre"%>
 <%@page import="model.Membre"%>
 <%@page import="model.Groupe"%>
-<%@page import="model.Groupe"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
