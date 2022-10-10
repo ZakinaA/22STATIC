@@ -1,5 +1,4 @@
 <%@page import="model.Groupe"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Dispositif"%>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>

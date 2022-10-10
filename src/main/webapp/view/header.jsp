@@ -6,6 +6,11 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+        <title>WebZik</title>
+    </head>
 <header>
     <body style="background-image: url('https://i.ibb.co/Bj2dHPm/t-l-chargement.png'); background-repeat: no-repeat; background-size: cover; backdrop-filter: blur(7.5px); height: 100%">
         <!-- HEADER -->

@@ -15,35 +15,35 @@
     <body>
         <%@ include file="/view/header.jsp" %>
        <%
-    Groupe unGroupe = (Groupe)request.getAttribute("pGroupe");
+    Festival unFestival = (Festival)request.getAttribute("pFestival");
 %>
 
-<h1>Groupe : <%out.println(unGroupe.getNom());%></h1>
+<h1>Festival : <%out.println(unFestival.getNom());%></h1>
 <br/>
 
 <%
-    out.println("<p>Contact du groupe : <a href='../ServletMembre/consulter?idMembre=" + unGroupe.getMembre().getId() + "'>" +unGroupe.getMembre().getNom() +" "+ unGroupe.getMembre().getPrenom()+"</a></p>");
+    out.println("<p>Contact du groupe : <a href='../ServletMembre/consulter?idMembre=" + unFestival.getMembre().getId() + "'>" +unFestival.getMembre().getNom() +" "+ unFestival.getMembre().getPrenom()+"</a></p>");
 %>
 <p>Membres : <%
-    if(unGroupe.getLesMembres()!= null && unGroupe.getLesMembres().size()!=0){
-        for(int i=0; i<unGroupe.getLesMembres().size(); i++){
-            if(i==0 || i==unGroupe.getLesMembres().size()){
+    if(unFestival.getLesMembres()!= null && unFestival.getLesMembres().size()!=0){
+        for(int i=0; i<unFestival.getLesMembres().size(); i++){
+            if(i==0 || i==unFestival.getLesMembres().size()){
             }
             else{
             out.println(", ");
             }
-            Membre mem = unGroupe.getLesMembres().get(i);
+            Membre mem = unFestival.getLesMembres().get(i);
             out.println("<a href='../ServletMembre/consulter?idMembre=" + mem.getId() + "'>" + mem.getNom() +" "+mem.getPrenom()+"</a>");
     }}
     else{
         out.println("Pas de membre");
     };%></p>
-<p>Téléphone : <%out.println(unGroupe.getTelephone());%></p>
-<p>Mail : <%out.println(unGroupe.getMelSiteWeb());%></p>
-<p>Lieu de récéption : <%out.println(unGroupe.getLieuRepetition());%></p>
-<p>Date de création : <%out.println(unGroupe.getDateCreation());%></p>
+<p>Téléphone : <%out.println(unFestival.getTelephone());%></p>
+<p>Mail : <%out.println(unFestival.getMelSiteWeb());%></p>
+<p>Lieu de récéption : <%out.println(unFestival.getLieuRepetition());%></p>
+<p>Date de création : <%out.println(unFestival.getDateCreation());%></p>
 
-<%  if(unGroupe.getLesTitres() != null && unGroupe.getLesTitres().size()!=0){        
+<%  if(unFestival.getLesTitres() != null && unFestival.getLesTitres().size()!=0){        
     
             out.println("<div class='container px-4 px-lg-5'>");
             out.println("<table  class='table table-bordered table-striped table-condensed'>");
@@ -58,8 +58,8 @@
             out.println("<tr>");
     
             
-                for (int i=0; i<unGroupe.getLesTitres().size(); i++) {
-                    Titre tit = unGroupe.getLesTitres().get(i);
+                for (int i=0; i<unFestival.getLesTitres().size(); i++) {
+                    Titre tit = unFestival.getLesTitres().get(i);
                     
                     out.println("<td>");
                     out.println("<a href='"+tit.getLienURL()+"'>" + tit.getIntitule()+"</a>");
@@ -75,7 +75,7 @@
 
 
                 }}else{
-                    out.println("Le Groupe n'a pas de titre");
+                    out.println("Le Festival n'a pas de titre");
                 }
 
             %>
