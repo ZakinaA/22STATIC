@@ -42,6 +42,7 @@ public class DaoConnexion {
                
                 Connection con = ConnexionBdd.ouvrirConnexion();
                 int idMembre = rs.getInt("idMembre");
+                leUtilisateur.setLogin(rs.getString("login"));
                 
                 if(idMembre != 0){
                     Membre leMembre = DaoMembre.getLeMembre(connection, rs.getInt("idMembre"));

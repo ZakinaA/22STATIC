@@ -118,7 +118,7 @@ public class ServletConnexion extends HttpServlet {
         
         if (form.getErreurs().isEmpty()){
             Utilisateur connecter = DaoConnexion.getLeUtilisateur(connection, lUtilisateur);
-            if(connecter == null){
+            if(connecter.getLogin() == null){
                 this.getServletContext().getRequestDispatcher("/view/connexion/connexion.jsp" ).forward( request, response );
             }
             else if (connecter.getMembre() != null ){
@@ -134,7 +134,10 @@ public class ServletConnexion extends HttpServlet {
                 request.setAttribute("pLesGroupes", lesGroupes);
                 this.getServletContext().getRequestDispatcher("/view/jury/lister.jsp" ).forward( request, response );
             }
-        }       
+        }
+        else{
+            this.getServletContext().getRequestDispatcher("/view/connexion/connexion.jsp" ).forward( request, response );
+        }
     }
 
     /**

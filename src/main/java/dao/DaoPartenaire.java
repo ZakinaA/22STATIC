@@ -37,7 +37,7 @@ public class DaoPartenaire {
         try
         {
             //preparation de la requete
-            requete=connection.prepareStatement("select * from partenaire par_id=?");
+            requete=connection.prepareStatement("select * from partenaire par_id=?;");
             requete.setInt(1, idPartenaire);
             System.out.println("Requete" + requete);
 

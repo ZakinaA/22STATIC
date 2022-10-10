@@ -11,7 +11,7 @@ package model;
 public class Titre {
     private int numero;
     private String intitule;
-    private int duree;
+    private String duree;
     private String lienURL;
     private Groupe groupe ;
 
@@ -35,11 +35,11 @@ public class Titre {
         this.intitule = intitule;
     }
 
-    public int getDuree() {
+    public String getDuree() {
         return duree;
     }
 
-    public void setDuree(int duree) {
+    public void setDuree(String duree) {
         this.duree = duree;
     }
 
