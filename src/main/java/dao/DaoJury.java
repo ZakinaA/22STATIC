@@ -66,14 +66,13 @@ public class DaoJury {
         return lesGroupes ;
     }
     
-    /*
-    public static Groupe inscrireGroupe(Connection connection,int idGroupe){
+    public static int inscrireGroupe(Connection connection,int idGroupe){
         try
         {
             requete=connection.prepareStatement("UPDATE groupe SET estSelectionne = 1 WHERE groupe.gro_id = ?");
             requete.setInt(1, idGroupe);
             
-            System.out.println("requete Insertion=" + requete);
+            System.out.println("requete updateInscriptionGroupe=" + requete);
             
 
             int resultatRequete = requete.executeUpdate();
@@ -83,7 +82,6 @@ public class DaoJury {
         {
             e.printStackTrace();
         }
-        return;
+        return idGroupe;
     }
-    */
 }

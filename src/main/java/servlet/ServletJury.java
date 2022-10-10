@@ -1,14 +1,12 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package servlet;
 
 import dao.DaoAdmin;
-import dao.DaoDispositif;
 import dao.DaoGroupe;
 import dao.DaoJury;
-import dao.DaoMembre;
 import dao.Utilitaire;
 import form.FormGroupe;
 import java.io.IOException;
@@ -26,13 +24,14 @@ import model.Dispositif;
 import model.Genre;
 import model.Groupe;
 import model.Membre;
+import static test.ConnexionBdd.connection;
 
 /**
  *
- * @author Zakina
+ * @author sio2
  */
-public class ServletJury extends HttpServlet {
-
+public class ServletJury extends HttpServlet{
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -69,7 +68,7 @@ public class ServletJury extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet Servlet Jury</title>");            
+            out.println("<title>Servlet ServletJury</title>");            
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ServletJury at " + request.getContextPath() + "</h1>");
@@ -87,6 +86,7 @@ public class ServletJury extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -107,12 +107,9 @@ public class ServletJury extends HttpServlet {
         // Affichage du groupe selectionné (depuis la fonctionnalité lister)
         if(url.equals("/normanzik/ServletJury/inscrire")){
             int idGroupe = Integer.parseInt(request.getParameter("idGroupe"));
-            Groupe leGroupe = DaoJury.inscrireGroupe(connection, idGroupe);
-            request.setAttribute("pGroupe", leGroupe);
             this.getServletContext().getRequestDispatcher("/view/groupe/consulter.jsp" ).forward( request, response );
         }
     }
-
     /**
      * Handles the HTTP <code>POST</code> method.
      *
@@ -200,5 +197,4 @@ public class ServletJury extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
