@@ -1,24 +1,19 @@
 <%@page import="model.Titre"%>
 <%@page import="model.Membre"%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@page import="model.Groupe"%>
+<%@page import="model.Groupe"%>
+<%@page import="java.util.ArrayList"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html style="height: 100%">
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-    <title>WebZik</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Normanzik: consulter les groupes</title>
 </head>
-    <body style="background-image: url('https://i.ibb.co/Bj2dHPm/t-l-chargement.png'); background-repeat: no-repeat; background-size: cover; backdrop-filter: blur(7.5px); height: 100%">
-        <!-- HEADER -->
-        <nav class="navbar navbar-expand-sm bg-light py-5 px-5" style="opacity: 0.5; height: 13%">
-        </nav>
-        <div class="container-fluid" style="position: absolute; top: 22px; left: 0px">
-                <a class="navbar-brand" href="# ">
-                <img src="https://i.ibb.co/tQRkg9M/logo.png" alt="Logo" width="60" height="60" class="d-inline-block mx-4" >
-                    Norman'Zik
-                </a>
-            </div>
-        <!-- HEADER -->
+
+<body>
+    <%@ include file="/view/header.jsp" %>
 <%
     Groupe unGroupe = (Groupe)request.getAttribute("pGroupe");
 %>

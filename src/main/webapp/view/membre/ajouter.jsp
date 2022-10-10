@@ -1,21 +1,30 @@
+<%-- 
+    Document   : ajouter
+    Created on : 10 oct. 2022, 11:02:46
+    Author     : arnaud
+--%>
 <%@page import="model.Statut"%>
 <%@page import="model.Instrument"%>
 <%@page import="form.FormMembre"%>
 <%@page import="form.FormMembre"%>
 <%@page import="model.Membre"%>
 <%@page import="model.Dispositif"%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@page import="model.Groupe"%>
 <%@ page import="form.FormMembre" %>
 <%@ page import="model.Genre" %>
 <%@ page import="java.util.ArrayList" %>
+<%@page import="model.Groupe"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
-<html>
+<html style="height: 100%">
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-    <title>WebZik</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Ajouter un membre</title>
 </head>
 <body>
+    <%@ include file="/view/header.jsp" %>
 <h1>Ajouter Membre</h1>
 <br/>
 

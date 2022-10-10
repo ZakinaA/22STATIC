@@ -12,9 +12,10 @@
     <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Lister les festivals</title>
     </head>
     <body>
+        <%@ include file="/view/header.jsp" %>
         <h1 style="text-align: center; margin: 2%; color: black">Consulter Festival</h1>
 <br/>
 

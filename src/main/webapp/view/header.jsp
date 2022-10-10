@@ -1,8 +1,11 @@
+<%-- 
+    Document   : header
+    Created on : 10 oct. 2022, 13:53:10
+    Author     : sio2
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit this template
--->
 <header>
     <body style="background-image: url('https://i.ibb.co/Bj2dHPm/t-l-chargement.png'); background-repeat: no-repeat; background-size: cover; backdrop-filter: blur(7.5px); height: 100%">
         <!-- HEADER -->
@@ -27,3 +30,4 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <!-- HEADER -->
     </body>
 </header>
+

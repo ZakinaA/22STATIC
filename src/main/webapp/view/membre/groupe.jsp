@@ -1,15 +1,21 @@
+<%-- 
+    Document   : groupe
+    Created on : 10 oct. 2022, 11:02:46
+    Author     : arnaud
+--%>
 <%@page import="model.Membre"%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@page import="model.Groupe"%>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>WebZik</title>
 </head>
 <body>
-
+    <%@ include file="/view/header.jsp" %>
 <%
     ArrayList<Groupe> lesGroupes = (ArrayList)request.getAttribute("pLesGroupes");
     Groupe unGroupe = (Groupe)request.getAttribute("pGroupe");
