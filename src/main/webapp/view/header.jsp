@@ -11,6 +11,12 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
         <title>WebZik</title>
     </head>
+    <style>
+        li{
+            display: inline-block;
+            font-size: 20px;
+        }
+    </style>
 <header>
     <body style="background-image: url('https://i.ibb.co/Bj2dHPm/t-l-chargement.png'); min-height: 100vh; background-repeat: no-repeat; background-size: cover; backdrop-filter: blur(7.5px); height: 100%">
         <!-- HEADER -->
@@ -21,12 +27,12 @@
                 <img src="https://i.ibb.co/tQRkg9M/logo.png" alt="Logo" width="60" height="60" class="d-inline-block mx-4" >
                     Norman'Zik
                 </a>
-            <div class="container-fluid" style="position: absolute; top: 22px; right: 0px; width: 300px ">
-            <ul class="navbar-nav" >
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="../discover.html" style="">Découvrir</a>
+            <div style="position: absolute; top: 0px; right: 0px; width: 350px ">
+            <ul>
+                <li>
+                    <a class="nav-link" aria-current="page" href="../discover.html" style="">Découvrir</a>
                 </li>
-                <li class="nav-item">
+                <li>
                     <a class="nav-link" href="../ServletConnexion/connexion">Se connecter</a>
                 </li>
         </div>
