@@ -5,7 +5,7 @@
 <%@page import="form.FormMembre"%>
 <%@page import="model.Membre"%>
 <%@page import="model.Dispositif"%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Groupe"%>
 <%@ page import="form.FormMembre" %>
 <%@ page import="model.Genre" %>
@@ -14,9 +14,11 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>WebZik</title>
 </head>
-<body>
+<body >
+    <%@ include file="/view/header.jsp" %>
 <h1>Connexion</h1>
 <br/>
 

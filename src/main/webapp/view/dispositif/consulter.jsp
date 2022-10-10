@@ -1,13 +1,15 @@
 <%@page import="model.Groupe"%>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.Dispositif"%>
 <%@ page import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
     <title>WebZik</title>
 </head>
 <body>
+    <%@ include file="/view/header.jsp" %>
 <%
     Dispositif unDispositif = (Dispositif)request.getAttribute("pDispositif");
 %>
