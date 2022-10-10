@@ -25,7 +25,7 @@
 </head>
 <body>
     <%@ include file="/view/header.jsp" %>
-<h1>Ajouter Membre</h1>
+<h1>Créer un compte membre</h1>
 <br/>
 
 
