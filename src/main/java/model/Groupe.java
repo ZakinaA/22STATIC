@@ -26,7 +26,7 @@ public class Groupe {
     private ArrayList<Membre> lesMembres ;
     private ArrayList<LieuConcert> lesLieuConcerts ;
     private ArrayList<GroupeMembreInstrument> lesGroupesMembresInstruments ;
-    
+    private ArrayList<Programmer> lesProgrammer ;
     
         public Groupe() {
     }

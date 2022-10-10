@@ -17,6 +17,10 @@
         <servlet-class>servlet.ServletDispositif</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ServletFestival</servlet-name>
+        <servlet-class>servlet.ServletFestival</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ServletJury</servlet-name>
         <servlet-class>servlet.ServletJury</servlet-class>
     </servlet>
@@ -53,6 +57,14 @@
     <servlet-mapping>
         <servlet-name>ServletDispositif</servlet-name>
         <url-pattern>/ServletDispositif/consulter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletFestival</servlet-name>
+        <url-pattern>/ServletFestival/lister</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletFestival</servlet-name>
+        <url-pattern>/ServletFestival/consulter</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletConnexion</servlet-name>
