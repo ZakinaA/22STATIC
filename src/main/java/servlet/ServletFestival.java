@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Festival;
+import model.Groupe;
 
 /**
  *
@@ -93,9 +94,9 @@ public class ServletFestival extends HttpServlet {
         if(url.equals("/normanzik/ServletFestival/consulter"))
         {
             int idFestival = Integer.parseInt(request.getParameter("idFestival"));
-            Festival leFestival = DaoFestival.getLeFestival(connection, idFestival);
-            request.setAttribute("pFestival", leFestival);
-            this.getServletContext().getRequestDispatcher("/view/dispositif/consulter.jsp" ).forward( request, response );
+            ArrayList<Groupe> lesGroupes = DaoFestival.getLesGroupesFestival(connection, idFestival);
+            request.setAttribute("pLesGroupesDuFestival", lesGroupes);
+            this.getServletContext().getRequestDispatcher("/view/festival/consulter.jsp" ).forward( request, response );
         }
     }
 

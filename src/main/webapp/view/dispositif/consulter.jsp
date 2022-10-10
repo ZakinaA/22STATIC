@@ -20,7 +20,7 @@
 
 
 <div class="container px-4 px-lg-5">
-    <table  class="table table-bordered table-striped table-condensed">
+    <table  class="table table-bordered table-striped table-condensed rounded" style="background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5); border-radius: 10px; ">
         <thead>
         <tr>
             <th>Nom</th>

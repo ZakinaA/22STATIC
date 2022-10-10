@@ -63,12 +63,12 @@ public class DaoFestival {
         return lesFestivals ;
     }
     
-    public static ArrayList<Festival> getLesFestivalsDuGroupe(Connection connection, int idGroupe){
-        ArrayList<Festival> lesFestivals = new  ArrayList<Festival>();
+    public static ArrayList<Groupe> getLesGroupesFestival(Connection connection, int idGroupe){
+        ArrayList<Groupe> lesGroupes = new  ArrayList<Groupe>();
         try
         {
             //preparation de la requete
-                requete=connection.prepareStatement("select fes_id, festival.nom, annee from festival, groupe, programmer where gro_id = idGroupe and programmer.idFestival = fes_id and gro_id = ?");
+                requete=connection.prepareStatement("SELECT gro_id, groupe.nom FROM groupe, programmer, festival WHERE groupe.gro_id = programmer.idGroupe AND programmer.IdFestival = festival.fes_id AND festival.fes_id = ?");
                 requete.setInt(1, idGroupe);
                 System.out.println("Requete" + requete);
 
@@ -79,15 +79,10 @@ public class DaoFestival {
             while ( rs.next() ) {
 
 
-                Festival leFestival = new Festival();
-                leFestival.setId(rs.getInt("fes_id"));
-                leFestival.setNom(rs.getString("nom"));
-                leFestival.setAnnee(rs.getString("annee"));
-                leFestival.setDateDebut(rs.getString("dateDebut"));
-                leFestival.setDateFin(rs.getString("dateFin"));
-                leFestival.setLogo(rs.getString("logo"));
-
-                lesFestivals.add(leFestival);
+                Groupe leGroupe = new Groupe();
+                leGroupe.setId(rs.getInt("gro_id"));
+                leGroupe.setNom(rs.getString("groupe.nom"));
+                lesGroupes.add(leGroupe);
             }
         }
         catch (SQLException e)
@@ -95,7 +90,7 @@ public class DaoFestival {
             e.printStackTrace();
             //out.println("Erreur lors de l’établissement de la connexion");
         }
-        return lesFestivals ;
+        return lesGroupes ;
     }
     
      public static Festival getLeFestival(Connection connection, int idFestival){
