@@ -43,6 +43,7 @@ public class DaoMembre {
             //executer la requete
             rs=requete.executeQuery();
             if ( rs.next() ) {
+                leMembre.setId(rs.getInt("mem_id"));
                 leMembre.setNom(rs.getString("membre.nom"));
                 leMembre.setPrenom(rs.getString("prenom"));
                 

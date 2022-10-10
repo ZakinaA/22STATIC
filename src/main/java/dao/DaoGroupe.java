@@ -238,7 +238,7 @@ public class DaoGroupe {
         return leGroupe ;
     }
 
-        public static ArrayList<Groupe> getLesGroupesdispo(Connection connection, int idDispositif){
+    public static ArrayList<Groupe> getLesGroupesdispo(Connection connection, int idDispositif){
         ArrayList<Groupe> lesGroupes = new  ArrayList<Groupe>();
         try
         {

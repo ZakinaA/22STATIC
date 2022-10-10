@@ -4,14 +4,27 @@
  */
 package servlet;
 
+import dao.DaoConnexion;
+import dao.DaoGroupe;
+import dao.DaoMembre;
+import form.FormConnexion;
 import form.FormMembre;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Groupe;
+import model.Membre;
+import model.Utilisateur;
+import static test.ConnexionBdd.connection;
 
 /**
  *
@@ -29,6 +42,20 @@ public class ServletConnexion extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    
+    Connection connection ;
+    static PreparedStatement requete=null;
+    static ResultSet rs=null;
+    
+     @Override
+    public void init()
+    {
+        
+        ServletContext servletContext=getServletContext();
+        connection=(Connection)servletContext.getAttribute("connection");
+        
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -79,9 +106,35 @@ public class ServletConnexion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        FormMembre form = new FormMembre();
+        
+        FormConnexion form = new FormConnexion();
         
         
+        Utilisateur lUtilisateur = form.connexion(request);  
+        
+        
+        request.setAttribute( "form", form );
+        request.setAttribute( "pUtilisateur", lUtilisateur );
+        
+        if (form.getErreurs().isEmpty()){
+            Utilisateur connecter = DaoConnexion.getLeUtilisateur(connection, lUtilisateur);
+            if(connecter == null){
+                this.getServletContext().getRequestDispatcher("/view/connexion/connexion.jsp" ).forward( request, response );
+            }
+            else if (connecter.getMembre() != null ){
+                int idMembre = connecter.getMembre().getId();
+                Groupe leGroupe = DaoGroupe.getLeGroupeduMembre(connection, idMembre);
+                request.setAttribute("pGroupe", leGroupe);
+                ArrayList<Groupe> lesGroupes = DaoGroupe.getLesGroupesByMembre(connection, idMembre);
+                request.setAttribute("pLesGroupes", lesGroupes);
+                this.getServletContext().getRequestDispatcher("/view/membre/groupe.jsp" ).forward( request, response );
+            }
+            else if (connecter.getPartenaire() != null ){
+                ArrayList<Groupe> lesGroupes = DaoGroupe.getLesGroupes(connection);
+                request.setAttribute("pLesGroupes", lesGroupes);
+                this.getServletContext().getRequestDispatcher("/view/jury/lister.jsp" ).forward( request, response );
+            }
+        }       
     }
 
     /**

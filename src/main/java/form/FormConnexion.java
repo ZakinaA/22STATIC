@@ -20,7 +20,7 @@ import test.ConnexionBdd;
 public class FormConnexion {
 
     private String resultat;
-    private Map<String, String> erreurs      = new HashMap<String, String>();
+    private Map<String, String> erreurs = new HashMap<String, String>();
 
     public String getResultat() {
         return resultat;
@@ -40,13 +40,13 @@ public class FormConnexion {
 
     //méthode de validation du champ de saisie nom
     private void validationLogin( String login ) throws Exception {
-        if ( login != null) {
+        if ( login == null) {
             throw new Exception( "Le login ne peut pas être null." );
         }
     }
 
     private void validationMDP( String mdp) throws Exception {
-        if ( mdp != null) {
+        if ( mdp == null) {
             throw new Exception( "le mot de passe ne peut pas être null." );
         }
     }

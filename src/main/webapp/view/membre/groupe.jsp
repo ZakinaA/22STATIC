@@ -14,10 +14,9 @@
     ArrayList<Groupe> lesGroupes = (ArrayList)request.getAttribute("pLesGroupes");
     Groupe unGroupe = (Groupe)request.getAttribute("pGroupe");
 %>
-<% if (unGroupe != null) {%>
+<% if (unGroupe.getNom() != null) {%>
 
 <h1>Mon groupe</h1>
-<br/>
 <div class="container px-4 px-lg-5">
     <table  class="table table-bordered table-striped table-condensed">
         <thead>
@@ -55,14 +54,19 @@
                     out.println(unGroupe.getLieuRepetition());
                     out.println("</td>");
 
-                    out.println("<td>");
+                    /*out.println("<td>");
                     out.println(unGroupe.getGenre().getLibelle());
-                    out.println("</td>");
-                }%>
+                    out.println("</td>");*/
+                }else{%>
+                    <h1>Vous n'êtes pas membre contact d'un groupe</h1>
+                <%}%>
         </tr>
         </tbody>
     </table>
-<% if (lesGroupes != null) {%>
+    <% if (lesGroupes.isEmpty()) {%>
+            <h1>Vous n'appartenez à aucun groupe</h1>
+       <%}else{
+    %>
 <h1>Mes groupes</h1>
 <div class="container px-4 px-lg-5">
     <table  class="table table-bordered table-striped table-condensed">
