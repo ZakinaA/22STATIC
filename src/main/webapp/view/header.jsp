@@ -29,7 +29,7 @@
         <nav class="navbar navbar-expand-sm bg-light py-5 px-5" style="opacity: 0.8; height: 13%; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
         </nav>
         <div class="container-fluid" style="position: absolute; top: 22px; ">
-                <a class="logo" href="# ">
+                <a class="logo" href="">
                 <img src="https://i.ibb.co/tQRkg9M/logo.png" alt="Logo" width="60" height="60" class="d-inline-block mx-3" >
                     Norman'Zik
                 </a>

@@ -22,7 +22,7 @@
         <table style="margin: 5% 5% 5% 10%">
             <tr>
                 <th style="border:10px">
-                    <a href="../SerlvetGroupe/lister">
+                    <a href="../ServletGroupe/lister">
                     <div style="width: 175px; height: 250px; background-color: black">
                         <div style="font-size:120px; width: 100%; height: 70%"> 
                             <i style="margin:8%; color: white" class="fa-solid fa-user-group"></i>
@@ -34,7 +34,7 @@
                     </a>
                 </th>
                 <th style="border:10px">
-                    <a href="../SerlvetAlbum/lister">
+                    <a href="#">
                     <div style="width: 175px; height: 250px; background-color: black">
                         <div style="font-size:120px; width: 100%; height: 70%"> 
                             <i style="margin:8% 15%; color: white" class="fa-solid fa-record-vinyl"></i>
@@ -46,7 +46,7 @@
                     </a>
                 </th>
                 <th style="border:100px">
-                    <a href="../SerlvetFestival/lister">
+                    <a href="../ServletFestival/lister">
                     <div style="width: 175px; height: 250px; background-color: black">
                         <div style="font-size:120px; width: 100%; height: 70%"> 
                             <i style="margin:8% 12%; color: white" class="fa-solid fa-ticket"></i>
