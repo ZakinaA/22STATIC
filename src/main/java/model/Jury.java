@@ -23,9 +23,18 @@ public class Jury {
         return id;
     }
 
-    public void Id(int id) {
+    public void setId(int id) {
         this.id = id;
     }
+
+    public ArrayList<Partenaire> getLesPartenaires() {
+        return lesPartenaires;
+    }
+
+    public void setLesPartenaires(ArrayList<Partenaire> lesPartenaires) {
+        this.lesPartenaires = lesPartenaires;
+    }
+    
 
     public String getLibelle() {
         return libelle;

@@ -494,7 +494,7 @@ public class DaoAdmin {
                 Festival leFestival = new Festival();
                 leFestival.setId(rs.getInt("fes_id"));
                 leFestival.setNom(rs.getString("nom"));
-                leFestival.setAnnee(rs.getInt("annee"));
+                leFestival.setAnnee(rs.getString("annee"));
                 lesFestivals.add(leFestival);
             }
         }
@@ -515,7 +515,7 @@ public class DaoAdmin {
             Festival leFestival = new Festival();
                 leFestival.setId(rs.getInt("fes_id"));
                 leFestival.setNom(rs.getString("nom"));
-                leFestival.setAnnee(rs.getInt("annee"));
+                leFestival.setAnnee(rs.getString("annee"));
             System.out.println("requeteInsertion=" + requete);
 
             int resultatRequete = requete.executeUpdate();
@@ -541,7 +541,7 @@ public class DaoAdmin {
         return unFestival ;
     }
         
-        public static Festival modifierFestival(Connection connection, Festival unFestival){
+        /*public static Festival modifierFestival(Connection connection, Festival unFestival){
         int idGenere = -1;
         try
         {
@@ -608,7 +608,7 @@ public class DaoAdmin {
             unFestival= null;
         }
         return unFestival ;
-    }
+    }*/
        
         public static ArrayList<Dispositif> getLesDispositifs(Connection connection){
         ArrayList<Dispositif> lesDispositifs = new  ArrayList<Dispositif>();
@@ -750,7 +750,7 @@ public class DaoAdmin {
                 Titre leTitre = new Titre();
                 leTitre.setNumero(rs.getInt("numero"));
                 leTitre.setIntitule(rs.getString("intitule"));
-                leTitre.setDuree(rs.getInt("duree"));
+                leTitre.setDuree(rs.getString("duree"));
                 leTitre.setLienURL(rs.getString("lienURL"));
                 lesTitres.add(leTitre);
             }
@@ -772,7 +772,7 @@ public class DaoAdmin {
             Titre leTitre = new Titre();
                 leTitre.setNumero(rs.getInt("numero"));
                 leTitre.setIntitule(rs.getString("intitule"));
-                leTitre.setDuree(rs.getInt("duree"));
+                leTitre.setDuree(rs.getString("duree"));
                 leTitre.setLienURL(rs.getString("lienURL"));
                 
             System.out.println("requeteInsertion=" + requete);
@@ -798,7 +798,7 @@ public class DaoAdmin {
             unTitre= null;
         }
         return unTitre ;
-    }
+    }/*
         
         public static Titre modifierTitre(Connection connection, Titre unTitre){
         int idGenere = -1;
@@ -869,7 +869,7 @@ public class DaoAdmin {
             unTitre= null;
         }
         return unTitre ;
-    }
+    }*/
        
         public static ArrayList<Album> getLesAlbums(Connection connection){
         ArrayList<Album> lesAlbums = new  ArrayList<Album>();
@@ -1628,7 +1628,7 @@ public class DaoAdmin {
             unPartenaire= null;
         }
         return unPartenaire ;
-    }
+    }/*
        
        public static ArrayList<LieuConcert> getLesLieuConcerts(Connection connection){
         ArrayList<LieuConcert> lesLieuConcerts = new  ArrayList<LieuConcert>();
@@ -1760,5 +1760,5 @@ public class DaoAdmin {
             unLieuConcert= null;
         }
         return unLieuConcert ;
-    }
+    }*/
 }
