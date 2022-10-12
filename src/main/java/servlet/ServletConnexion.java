@@ -89,7 +89,7 @@ public class ServletConnexion extends HttpServlet {
         
         System.out.println("servlermembre url="+url);
         
-        if(url.equals("/normanzik/ServletConnexion/connexion"))
+        if(url.equals("/STATIC/ServletConnexion/connexion"))
         {
             this.getServletContext().getRequestDispatcher("/view/connexion/connexion.jsp" ).forward( request, response );
         }

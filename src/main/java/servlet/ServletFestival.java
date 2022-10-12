@@ -83,14 +83,14 @@ public class ServletFestival extends HttpServlet {
         
         System.out.println("servlerfestival url="+url);
         
-        if(url.equals("/normanzik/ServletFestival/lister")){
+        if(url.equals("/STATIC/ServletFestival/lister")){
             System.out.println("servlerfestival LESFESTIVALS");
             ArrayList<Festival> lesFestivals = DaoFestival.getLesFestivals(connection);
             request.setAttribute("pLesFestivals", lesFestivals);
             this.getServletContext().getRequestDispatcher("/view/festival/lister.jsp" ).forward( request, response );
         }
         
-        if(url.equals("/normanzik/ServletFestival/consulter"))
+        if(url.equals("/STATIC/ServletFestival/consulter"))
         {
             int idFestival = Integer.parseInt(request.getParameter("idFestival"));
             Festival leFestival = DaoFestival.getLeFestival(connection, idFestival);
