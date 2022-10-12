@@ -31,7 +31,7 @@ public class ConnexionBdd {
         }     
         try {
             //obtention de la connexion
-            connection= DriverManager.getConnection("jdbc:mariadb://127.0.0.1:3307/normanzik","root","");
+            connection= DriverManager.getConnection("jdbc:mariadb://127.20.177.250:3306/STATIC","ADM_STATIC","mpStatic");
             System.out.println("Connexion OK");
            
         } catch (SQLException e) {
