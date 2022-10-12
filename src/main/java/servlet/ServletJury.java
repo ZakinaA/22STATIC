@@ -97,7 +97,7 @@ public class ServletJury extends HttpServlet{
         System.out.println("ServletJury url="+url);
 
         //Affichage de tous les groupes (en indiquant le libellé du genre musical)
-        if(url.equals("/STATIC/ServletJury/lister")){
+        if(url.equals("/normanzik/ServletJury/lister")){
              System.out.println("ServletJury LISTER");
             ArrayList<Groupe> lesGroupes = DaoGroupe.getLesGroupes(connection);
             request.setAttribute("pLesGroupes", lesGroupes);
@@ -105,7 +105,7 @@ public class ServletJury extends HttpServlet{
         }
 
         // Affichage du groupe selectionné (depuis la fonctionnalité lister)
-        if(url.equals("/STATIC/ServletJury/inscrire")){
+        if(url.equals("/normanzik/ServletJury/inscrire")){
             int idGroupe = Integer.parseInt(request.getParameter("idGroupe"));
             DaoJury.inscrireGroupe(connection, idGroupe);
             Groupe leGroupe = DaoGroupe.getLeGroupe(connection, idGroupe);
@@ -113,7 +113,7 @@ public class ServletJury extends HttpServlet{
             this.getServletContext().getRequestDispatcher("/view/groupe/consulter.jsp" ).forward( request, response );
         }
         
-        if(url.equals("/STATIC/ServletJury/desinscrire")){
+        if(url.equals("/normanzik/ServletJury/desinscrire")){
             int idGroupe = Integer.parseInt(request.getParameter("idGroupe"));
             DaoJury.desinscrireGroupe(connection, idGroupe);
             Groupe leGroupe = DaoGroupe.getLeGroupe(connection, idGroupe);

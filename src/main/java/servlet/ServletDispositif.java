@@ -82,14 +82,14 @@ public class ServletDispositif extends HttpServlet {
         
        System.out.println("servlerdispositif url="+url);
         
-        if(url.equals("/STATIC/ServletDispositif/lister")){
+        if(url.equals("/normanzik/ServletDispositif/lister")){
             System.out.println("servlerdispositif LESDISPOSITIFS");
             ArrayList<Dispositif> lesDispositifs = DaoDispositif.getLesDispositifs(connection);
             request.setAttribute("pLesDispositifs", lesDispositifs);
             this.getServletContext().getRequestDispatcher("/view/dispositif/lister.jsp" ).forward( request, response );
         }
         
-        if(url.equals("/STATIC/ServletDispositif/consulter"))
+        if(url.equals("/normanzik/ServletDispositif/consulter"))
         {
             int idDispositif = Integer.parseInt(request.getParameter("idDispositif"));
             Dispositif leDispositif = DaoDispositif.getLeDispositif(connection, idDispositif);
