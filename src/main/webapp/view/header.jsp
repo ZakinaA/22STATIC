@@ -36,7 +36,7 @@
             <div style="position: absolute; top: 5px; right: 0px; width: 400px ">
             <ul>
                 <li>
-                    <a class="nav-link" aria-current="page" href="../discover.html" style="">Découvrir</a>
+                    <a class="nav-link" aria-current="page" href="../view/decouvrir.jsp" style="">Découvrir</a>
                 </li>
                 <li>
                     <a class="nav-link" href="../ServletConnexion/connexion">Se connecter</a>

@@ -21,32 +21,26 @@
         ArrayList<Groupe> lesGroupes = (ArrayList)request.getAttribute("pLesGroupesDuFestival");
 %>
 
-<h1>LAISSE MOI</h1>
+<h1 style="text-align: center; margin: 2%; color: black">Les groupes du festival</h1>
 <br/>
 
 <div class="container px-4 px-lg-5">
     <table  class="table table-bordered table-striped table-condensed rounded" style="background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5); border-radius: 10px; ">
         <thead>
         <tr>
-            <th>ID</th>
             <th>Nom</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
             <tr>
             <%
                for (Groupe unGroupe : lesGroupes) {
                     out.println("<tr><td>");
                     out.println("<a href ='../ServletGroupe/consulter?idGroupe=" + unGroupe.getId() + "'>");
-                    out.println(unGroupe.getId());
-                    out.println("</a></td>");
-                    out.println("<td>");
                     out.println(unGroupe.getNom());
-                    out.println("</td>");
+                    out.println("</a></td>");
                 }
             %>
-        </tr>
         </tr>
         </tbody>
     </table>
