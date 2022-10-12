@@ -2,7 +2,8 @@
 
 Projet <strong>Normanzik</strong> du Groupe STATIC<br>
 Composé de Ouael, Sofiane, Guillaume, Arnaud<br>
-Lien du <strong>Trello</strong> : https://trello.com/b/gDsrHJdT
+Lien du <strong>Trello</strong> : <a href="https://trello.com/b/gDsrHJdT">ici</a><br>
+Lien du <strong>doc de spéc.</strong> : <a href="https://docs.google.com/document/d/1TKqBDYrIr0_ypZ0XyzY6gIcUFhe2GVCzsOk2oeA2D5c/edit?usp=sharing">ici</a>
 
 # Fonctionnalités :
 - En cours
