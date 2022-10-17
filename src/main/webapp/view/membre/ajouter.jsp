@@ -33,7 +33,7 @@
     FormMembre form = (FormMembre)request.getAttribute("form");
 %>
 
-<form class="form-inline" action="ajouter" method="POST">
+<form action="ajouter" method="POST">
     <label for="nom">Nom : </label>
     <input id="nom" type="text" name="nom"  size="70" maxlength="70">
     <span style="color: blue;">${form.erreurs['nom']}</span>

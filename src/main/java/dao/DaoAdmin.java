@@ -1129,12 +1129,12 @@ public class DaoAdmin {
         ArrayList<Instrument> lesInstruments = new  ArrayList<Instrument>();
         try
         {
-            requete=connection.prepareStatement("select * from  INSTRUMENT");
+            requete=connection.prepareStatement("select * from  instrument");
             rs=requete.executeQuery();
             while ( rs.next() ) {
 
                 Instrument leInstrument = new Instrument();
-                leInstrument.setId(rs.getInt("gen_id"));
+                leInstrument.setId(rs.getInt("ins_id"));
                 leInstrument.setLibelle(rs.getString("libelle"));
                 lesInstruments.add(leInstrument);
             }
