@@ -40,7 +40,35 @@
                         <li>
                             <a class="nav-link" href="http://localhost:8080/normanzik/ServletConnexion/deconnexion">Se déconnecter</a>
                         </li>
-                    <%}else if(nomPartenaire!=null){
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Groupe
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/lister">Lister</a>
+                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/ajouter">Ajouter</a>
+                            </div>
+                        </li>
+                    <%}
+                    
+                    else if(nomPartenaire == "admin"){%>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Groupe
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/lister">Lister</a>
+                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/ajouter">Ajouter</a>
+                            </div>
+                        </li>
+                        
+                        
+                        <li>
+                            <a class="nav-link" href="http://localhost:8080/normanzik/ServletConnexion/deconnexion">Se déconnecter</a>
+                        </li>
+                    <%}
+
+                    else if(nomPartenaire!=null){
                         out.println("<li>Vous êtes le partenaire "+ nomPartenaire +"</li>");%>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -50,9 +78,13 @@
                                 <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletJury/lister">Lister</a>
                             </div>
                         </li>
+                        
+                        
                         <li>
                             <a class="nav-link" href="http://localhost:8080/normanzik/ServletConnexion/deconnexion">Se déconnecter</a>
                         </li>
+                        
+                        
                 <%}else{%>
                 <li>
                     <a class="nav-link" aria-current="page" href="http://localhost:8080/normanzik/view/decouvrir.jsp" style="">Découvrir</a>
@@ -66,7 +98,6 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/lister">Lister</a>
-                        <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/ajouter">Ajouter</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
