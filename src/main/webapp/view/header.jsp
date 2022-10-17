@@ -35,11 +35,9 @@
             <ul>
                 <% String nomMembre = (String)session.getAttribute("nomMembre");
                    String nomPartenaire = (String)session.getAttribute("nomPartenaire");
+                   
                     if (nomMembre!=null){
                         out.println("<li>connecté en tant que "+ nomMembre +"</li>");%>
-                        <li>
-                            <a class="nav-link" href="http://localhost:8080/normanzik/ServletConnexion/deconnexion">Se déconnecter</a>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Groupe
@@ -48,10 +46,24 @@
                                 <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/lister">Lister</a>
                                 <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/ajouter">Ajouter</a>
                             </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Festival
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletFestival/lister">Lister</a>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="http://localhost:8080/normanzik/ServletConnexion/deconnexion">Se déconnecter</a>
                         </li>
                     <%}
                     
                     else if(nomPartenaire == "admin"){%>
+                        <li>
+                            <a class="nav-link" aria-current="page" href="http://localhost:8080/normanzik/view/decouvrir.jsp" style="">Découvrir</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Groupe
@@ -61,7 +73,24 @@
                                 <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/ajouter">Ajouter</a>
                             </div>
                         </li>
-                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dispositif
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletDispositif/lister">Lister</a>
+                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletDispositif/ajouter">Ajouter</a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Festival
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletFestival/lister">Lister</a>
+                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletFestival/ajouter">Ajouter</a>
+                            </div>
+                        </li>
                         
                         <li>
                             <a class="nav-link" href="http://localhost:8080/normanzik/ServletConnexion/deconnexion">Se déconnecter</a>
@@ -78,8 +107,6 @@
                                 <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletJury/lister">Lister</a>
                             </div>
                         </li>
-                        
-                        
                         <li>
                             <a class="nav-link" href="http://localhost:8080/normanzik/ServletConnexion/deconnexion">Se déconnecter</a>
                         </li>
@@ -87,10 +114,9 @@
                         
                 <%}else{%>
                 <li>
-                    <a class="nav-link" aria-current="page" href="http://localhost:8080/normanzik/view/decouvrir.jsp" style="">Découvrir</a>
-                </li>
-                <li>
-                    <a class="nav-link" href="http://localhost:8080/normanzik/ServletConnexion/connexion">Se connecter</a>
+                    <a class="nav-link" aria-current="page" href="http://localhost:8080/normanzik/view/decouvrir.jsp" style="">
+                        Découvrir
+                    </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -102,21 +128,21 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Dispositif
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletDispositif/lister">Lister</a>
-                        <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletDispositif/ajouter">Ajouter</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Festival
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletFestival/lister">Lister</a>
-                        <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletFestival/ajouter">Ajouter</a>
                     </div>
+                </li>
+                <li>
+                    <a class="nav-link" href="http://localhost:8080/normanzik/ServletMembre/ajouter">
+                        Créer un compte
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="http://localhost:8080/normanzik/ServletConnexion/connexion">
+                        Se connecter
+                    </a>
                 </li>
             <%}%>
         </div>
