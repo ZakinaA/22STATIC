@@ -21,7 +21,7 @@
                     <th>Libelle</th>
                     <th>Année</th>
                 </tr>
-                </thead>
+                </thead> 
                 <tbody>
                 <tr>
                     <%
