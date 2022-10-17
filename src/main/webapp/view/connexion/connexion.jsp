@@ -27,7 +27,7 @@
     FormConnexion form = (FormConnexion)request.getAttribute("form");
 %>
 
-<form class="form-inline" action="connexion" method="POST">
+<form action="connexion" method="POST">
     <label for="login">Login : </label>
     <input id="login" type="text" name="login"  size="70" maxlength="70">
     <span style="color: blue;">${form.erreurs['login']}</span>

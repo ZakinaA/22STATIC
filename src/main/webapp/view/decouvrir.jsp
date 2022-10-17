@@ -59,13 +59,14 @@
                 </th>
             </tr>
         </table>
+        
         <div>
             <p style="margin-left: 10%; color: white; font-size: 30px">Retrouvez les artistes, leurs albums, les festivals <br>
                 et les musiques de la région normande</p>
         </div>
-        
+        <div align=right style=" width: 100px; height: 100px; position: absolute; right: 0">
+            <img style="float: right; width: 100%; height: 100%" src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/abstract-royalty-free-album-cover-design-template-2c32911349349393a5b3bf5de27e5f0b_screen.jpg?ts=1637986268" />
+        </div>
     </div>
-    <div align=right style="width: 100px; height: 100px; position: relative; right: 0">
-        <img style="width: 100%; height: 100%" src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/abstract-royalty-free-album-cover-design-template-2c32911349349393a5b3bf5de27e5f0b_screen.jpg?ts=1637986268" />
-   </div> 
+     
 </html>
