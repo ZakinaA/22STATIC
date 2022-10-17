@@ -32,7 +32,7 @@
         <nav class="navbar navbar-expand-sm bg-light py-5 px-5" style="opacity: 0.8; height: 13%; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
         </nav>
         <div class="container-fluid" style="position: absolute; top: 22px; ">
-                <a class="logo" href="../index.jsp">
+                <a class="logo" href="http://localhost:8080/normanzik/index.jsp">
                 <img src="https://i.ibb.co/tQRkg9M/logo.png" alt="Logo" width="60" height="60" class="d-inline-block mx-3" >
                     Norman'Zik
                 </a>
@@ -50,7 +50,6 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/lister">Lister</a>
-                        <!-- Il faut cacher se bouton  -->
                         <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/ajouter">Ajouter</a>
                     </div>
                 </li>
@@ -77,7 +76,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletFestival/lister">Lister</a>
-                        <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletFestival/lister">Ajouter</a>
+                        <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletFestival/ajouter">Ajouter</a>
                     </div>
                 </li>
         </div>
