@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import model.Dispositif;
 import model.Instrument;
+import static model.MD5.getMd5;
 import model.Membre;
 import model.Statut;
 import model.Utilisateur;
@@ -107,7 +108,7 @@ public class FormMembre {
         
         Utilisateur unUtilisateur = new Utilisateur();
         String login = getDataForm( request, "login" );
-        String mdp = getDataForm( request, "mdp");
+        String mdp = getMd5(getDataForm( request, "mdp"));
         unUtilisateur.setMembre(unMembre);        
         
         try {

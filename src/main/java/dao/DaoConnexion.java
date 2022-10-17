@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import static model.MD5.getMd5;
 import model.Membre;
 import model.Partenaire;
 import model.Utilisateur;
@@ -31,7 +32,7 @@ public class DaoConnexion {
             //preparation de la requete
             requete=connection.prepareStatement("select * from utilisateur where login=? and mdp=?");
             requete.setString(1, unUtilisateur.getLogin());
-            requete.setString(2, unUtilisateur.getMdp());
+            requete.setString(2, getMd5(unUtilisateur.getMdp()));
             System.out.println("Requete" + requete);
 
             //executer la requete
