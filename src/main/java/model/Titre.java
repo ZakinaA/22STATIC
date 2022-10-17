@@ -14,6 +14,7 @@ public class Titre {
     private String duree;
     private String lienURL;
     private Groupe groupe ;
+    
 
     public Titre() {
     }

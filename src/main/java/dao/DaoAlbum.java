@@ -55,36 +55,7 @@ public class DaoAlbum {
         }
         return lesAlbums ;
     }
-    public static ArrayList<Titre> getLesTitresAlbum(Connection connection, int idTitre){
-        ArrayList<Titre> lesTitres = new  ArrayList<Titre>();
-        try
-        {
-            //preparation de la requete
-                requete=connection.prepareStatement("SELECT titre.intitule, titre.duree, titre.lienURL FROM titre, album WHERE titre.idAlbum = album.alb_id AND album.alb_id = ?");
-                requete.setInt(1, idTitre);
-                System.out.println("Requete" + requete);
 
-                //executer la requete
-                rs=requete.executeQuery();
-
-            //On hydrate l'objet métier Titre et sa relation Genre avec les résultats de la requête
-            while ( rs.next() ) {
-
-
-                Titre leTitre = new Titre();
-                leTitre.setIntitule(rs.getString("titre.numero"));
-                leTitre.setDuree(rs.getString("titre.duree"));
-                leTitre.setLienURL(rs.getString("titre.lienURL"));
-                lesTitres.add(leTitre);
-            }
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-            //out.println("Erreur lors de l’établissement de la connexion");
-        }
-        return lesTitres ;
-    }
     
      public static Album getLeAlbum(Connection connection, int idAlbum){
         Album leAlbum = new Album();
@@ -101,7 +72,7 @@ public class DaoAlbum {
             //On hydrate l'objet métier Album et sa relation Genre avec les résultats de la requête
             if ( rs.next() ) {
                 
-                leAlbum.setId(rs.getInt("ald_id"));
+                leAlbum.setId(rs.getInt("alb_id"));
                 leAlbum.setNom(rs.getString("nom"));
                 leAlbum.setDateCreation(rs.getString("dateCreation"));
                 leAlbum.setCheminImg(rs.getString("cheminImg"));

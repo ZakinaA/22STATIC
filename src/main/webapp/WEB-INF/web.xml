@@ -103,11 +103,11 @@
         <url-pattern>/ServletAlbum/lister</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ServletFestival</servlet-name>
+        <servlet-name>ServletAlbum</servlet-name>
         <url-pattern>/ServletAlbum/consulter</url-pattern>
     </servlet-mapping>
         <servlet-mapping>
-        <servlet-name>ServletFestival</servlet-name>
+        <servlet-name>ServletAlbum</servlet-name>
         <url-pattern>/ServletAlbum/ajouter</url-pattern>
     </servlet-mapping>
     <session-config>

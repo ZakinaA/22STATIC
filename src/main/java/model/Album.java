@@ -73,4 +73,8 @@ public class Album {
     public void setLesTitres(ArrayList<Titre> lesTitres) {
         this.lesTitres = lesTitres;
     }
+
+    public ArrayList<Titre> getLesTitres() {
+        return lesTitres;
+    }
 }

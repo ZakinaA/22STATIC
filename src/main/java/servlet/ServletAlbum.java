@@ -18,7 +18,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Album;
-import model.Groupe;
 import model.Titre;
 
 /**
@@ -80,21 +79,20 @@ public class ServletAlbum extends HttpServlet {
         // récupération de l url saisie dans le navigateur
         String url = request.getRequestURI();
         
-        System.out.println("servlerfestival url="+url);
+        System.out.println("servleralbum url="+url);
         
         if(url.equals("/normanzik/ServletAlbum/lister")){
-            System.out.println("servlerfestival LESFESTIVALS");
             ArrayList<Album> lesAlbums = DaoAlbum.getLesAlbums(connection);
             request.setAttribute("pLesAlbums", lesAlbums);
-            this.getServletContext().getRequestDispatcher("/view/festival/lister.jsp" ).forward( request, response );
+            this.getServletContext().getRequestDispatcher("/view/album/lister.jsp" ).forward( request, response );
         }
         
         if(url.equals("/normanzik/ServletAlbum/consulter"))
         {
             int idAlbum = Integer.parseInt(request.getParameter("idAlbum"));
-            ArrayList<Titre> lesTitres = DaoAlbum.getLesTitresAlbum(connection, idAlbum);
-            request.setAttribute("pLesGroupesDuAlbum", lesTitres);
-            this.getServletContext().getRequestDispatcher("/view/festival/consulter.jsp" ).forward( request, response );
+            Album lesTitresAlbum = DaoAlbum.getLeAlbum(connection, idAlbum);
+            request.setAttribute("pLesTitresAlbum", lesTitresAlbum);
+            this.getServletContext().getRequestDispatcher("/view/album/consulter.jsp" ).forward( request, response );
         }
     }
 

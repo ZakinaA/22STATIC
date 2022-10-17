@@ -14,6 +14,7 @@ import model.Genre;
 import model.Groupe;
 import model.Titre;
 import model.Titre;
+import test.ConnexionBdd;
 /**
  *
  * @author sio2
