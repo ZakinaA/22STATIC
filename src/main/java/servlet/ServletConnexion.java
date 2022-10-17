@@ -21,6 +21,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Groupe;
 import model.Membre;
 import model.Utilisateur;
@@ -109,9 +110,8 @@ public class ServletConnexion extends HttpServlet {
         
         FormConnexion form = new FormConnexion();
         
-        
-        Utilisateur lUtilisateur = form.connexion(request);  
-        
+        HttpSession session = request.getSession();
+        Utilisateur lUtilisateur = form.connexion(request);
         
         request.setAttribute( "form", form );
         request.setAttribute( "pUtilisateur", lUtilisateur );
@@ -122,6 +122,7 @@ public class ServletConnexion extends HttpServlet {
                 this.getServletContext().getRequestDispatcher("/view/connexion/connexion.jsp" ).forward( request, response );
             }
             else if (connecter.getMembre() != null ){
+                session.setAttribute("nomMembre", connecter.getMembre().getNom());
                 int idMembre = connecter.getMembre().getId();
                 Groupe leGroupe = DaoGroupe.getLeGroupeduMembre(connection, idMembre);
                 request.setAttribute("pGroupe", leGroupe);
@@ -130,6 +131,7 @@ public class ServletConnexion extends HttpServlet {
                 this.getServletContext().getRequestDispatcher("/view/membre/groupe.jsp" ).forward( request, response );
             }
             else if (connecter.getPartenaire() != null ){
+                session.setAttribute("nomPartenaire", connecter.getPartenaire().getNom());
                 ArrayList<Groupe> lesGroupes = DaoGroupe.getLesGroupes(connection);
                 request.setAttribute("pLesGroupes", lesGroupes);
                 this.getServletContext().getRequestDispatcher("/view/jury/lister.jsp" ).forward( request, response );

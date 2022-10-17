@@ -1,9 +1,4 @@
-<%-- 
-    Document   : header
-    Created on : 10 oct. 2022, 13:53:10
-    Author     : sio2
---%>
-
+<%@page import="java.lang.String"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -32,12 +27,19 @@
         <nav class="navbar navbar-expand-sm bg-light py-5 px-5" style="opacity: 0.8; height: 13%; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
         </nav>
         <div class="container-fluid" style="position: absolute; top: 22px; ">
-                <a class="logo" href="http://localhost:8080/normanzik/index.jsp">
+                <a class="logo" href="../index.jsp">
                 <img src="https://i.ibb.co/tQRkg9M/logo.png" alt="Logo" width="60" height="60" class="d-inline-block mx-3" >
                     Norman'Zik
                 </a>
             <div style="position: absolute; top: 5px; right: 0px; width: 850px ">
             <ul>
+                <% String nomMembre = (String)session.getAttribute("nomMembre");
+                   String nomPartenaire = (String)session.getAttribute("nomPartenaire");
+                    if (nomMembre!=null){
+                        out.println("<li>Vous êtes le membre "+ nomMembre +"</li>");
+                    }else if(nomPartenaire!=null){
+                        out.println("<li>Vous êtes le partenaire "+ nomPartenaire +"</li>");
+                }%>
                 <li>
                     <a class="nav-link" aria-current="page" href="http://localhost:8080/normanzik/view/decouvrir.jsp" style="">Découvrir</a>
                 </li>

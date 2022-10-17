@@ -3,6 +3,7 @@
     Created on : 10 oct. 2022, 11:02:46
     Author     : arnaud
 --%>
+<%@page import="java.lang.System.out"%>
 <%@page import="model.Membre"%>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@page import="model.Groupe"%>
@@ -60,9 +61,9 @@
                     out.println(unGroupe.getLieuRepetition());
                     out.println("</td>");
 
-                    /*out.println("<td>");
+                    out.println("<td>");
                     out.println(unGroupe.getGenre().getLibelle());
-                    out.println("</td>");*/
+                    out.println("</td>");
                 }else{%>
                     <h1>Vous n'êtes pas membre contact d'un groupe</h1>
                 <%}%>
@@ -71,8 +72,7 @@
     </table>
     <% if (lesGroupes.isEmpty()) {%>
             <h1>Vous n'appartenez à aucun groupe</h1>
-       <%}else{
-    %>
+       <%}%>
 <h1>Mes groupes</h1>
 <div class="container px-4 px-lg-5">
     <table  class="table table-bordered table-striped table-condensed">
