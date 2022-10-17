@@ -36,21 +36,22 @@
                 <img src="https://i.ibb.co/tQRkg9M/logo.png" alt="Logo" width="60" height="60" class="d-inline-block mx-3" >
                     Norman'Zik
                 </a>
-            <div style="position: absolute; top: 5px; right: 0px; width: 700px ">
+            <div style="position: absolute; top: 5px; right: 0px; width: 850px ">
             <ul>
                 <li>
-                    <a class="nav-link" aria-current="page" href="../view/decouvrir.jsp" style="">Découvrir</a>
+                    <a class="nav-link" aria-current="page" href="http://localhost:8080/normanzik/view/decouvrir.jsp" style="">Découvrir</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="../ServletConnexion/connexion">Se connecter</a>
+                    <a class="nav-link" href="http://localhost:8080/normanzik/ServletConnexion/connexion">Se connecter</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Groupe
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Lister</a>
-                        <a class="dropdown-item" href="#">Ajouter</a>
+                        <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/lister">Lister</a>
+                        <!-- Il faut cacher se bouton  -->
+                        <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/ajouter">Ajouter</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -58,7 +59,25 @@
                         Jury
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="#">Lister</a>
+                        <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletJury/lister">Lister</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dispositif
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletDispositif/lister">Lister</a>
+                        <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletDispositif/ajouter">Ajouter</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Festival
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletFestival/lister">Lister</a>
+                        <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletFestival/lister">Ajouter</a>
                     </div>
                 </li>
         </div>
