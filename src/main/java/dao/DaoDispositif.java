@@ -25,6 +25,49 @@ public class DaoDispositif {
     Connection connection=null;
     static PreparedStatement requete=null;
     static ResultSet rs=null;
+    
+    public static Dispositif ajouterDispositif(Connection connection, Dispositif dispositifAjouter) {
+        int idGenere = -1;
+        try
+        {
+            //preparation de la requete
+            // gpe_id (clé primaire de la table groupe) est en auto_increment,donc on ne renseigne pas cette valeur
+            // le paramètre RETURN_GENERATED_KEYS est ajouté à la requête afin de pouvoir récupérer l'id généré par la bdd (voir ci-dessous)
+            // supprimer ce paramètre en cas de requête sans auto_increment.
+            requete=connection.prepareStatement("INSERT INTO dispositif (annee, libelle)\n" +
+                    "VALUES (?,?)", requete.RETURN_GENERATED_KEYS );
+            requete.setInt(1, dispositifAjouter.getAnnee());
+            requete.setString(2, dispositifAjouter.getLibelle());
+
+            System.out.println("requeteInsertion=" + requete);
+            /* Exécution de la requête */
+            int resultatRequete = requete.executeUpdate();
+            System.out.println("resultatrequete=" + resultatRequete);
+
+            // Récupération de id auto-généré par la bdd dans la table groupe
+            rs = requete.getGeneratedKeys();
+            while ( rs.next() ) {
+                idGenere = rs.getInt( 1 );
+                dispositifAjouter.setId(idGenere);
+            }
+
+            // si le résultat de la requete est différent de 1, c'est que la requête a échoué.
+            // Dans ce cas, on remet l'objet groupe à null
+            if (resultatRequete != 1){
+                dispositifAjouter = null;
+            }
+
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+            dispositifAjouter = null;
+        }
+        return dispositifAjouter;
+    }
+    
+
 
     public static ArrayList<Dispositif> getLesDispositifs(Connection connection){
         ArrayList<Dispositif> lesDispositifs = new  ArrayList<Dispositif>();
@@ -80,8 +123,6 @@ public class DaoDispositif {
                 ArrayList<Groupe> lesGroupesByDispositif = DaoGroupe.getLesGroupesByDispositif(con, idDispositif);
                 leDispositif.setLesGroupes(lesGroupesByDispositif);
                 ConnexionBdd.fermerConnexion(con);
-                
-                ConnexionBdd.fermerConnexion(con);
             }
         }
         catch (SQLException e)
@@ -90,43 +131,5 @@ public class DaoDispositif {
             //out.println("Erreur lors de l’établissement de la connexion");
         }
         return leDispositif ;
-    }
-
-    
-    public static Dispositif ajouterDispositif(Connection connection, Dispositif unDispositif){
-        int idGenere = -1;
-        try
-        {
-            requete=connection.prepareStatement("INSERT INTO DISPOSITIF (annee, libelle)\n" +
-                    "VALUES (?,?)", requete.RETURN_GENERATED_KEYS );
-            requete.setInt(1, unDispositif.getAnnee());
-            requete.setString(2, unDispositif.getLibelle());
-
-            System.out.println("requeteInsertion=" + requete);
-            /* Exécution de la requête */
-            int resultatRequete = requete.executeUpdate();
-            System.out.println("resultatrequete=" + resultatRequete);
-
-            // Récupération de id auto-généré par la bdd dans la table groupe
-            rs = requete.getGeneratedKeys();
-            while ( rs.next() ) {
-                idGenere = rs.getInt( 1 );
-                unDispositif.setId(idGenere);
-            }
-
-            // si le résultat de la requete est différent de 1, c'est que la requête a échoué.
-            // Dans ce cas, on remet l'objet groupe à null
-            if (resultatRequete != 1){
-                unDispositif= null;
-            }
-
-        }
-        catch (SQLException e)
-        {
-            e.printStackTrace();
-            //out.println("Erreur lors de l’établissement de la connexion");
-            unDispositif= null;
-        }
-        return unDispositif ;
     }
 }

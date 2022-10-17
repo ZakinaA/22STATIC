@@ -6,6 +6,8 @@ package servlet;
 
 import dao.DaoDispositif;
 import dao.DaoMembre;
+import dao.Utilitaire;
+import form.FormDispositif;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -96,6 +98,14 @@ public class ServletDispositif extends HttpServlet {
             request.setAttribute("pDispositif", leDispositif);
             this.getServletContext().getRequestDispatcher("/view/dispositif/consulter.jsp" ).forward( request, response );
         }
+        
+        if(url.equals("/normanzik/ServletDispositif/ajouter"))
+        {
+            System.out.println("servlerdispositif LESDISPOSITIFS");
+            ArrayList<Dispositif> lesDispositifs = DaoDispositif.getLesDispositifs(connection);
+            request.setAttribute("pLesDispositifs", lesDispositifs);
+            this.getServletContext().getRequestDispatcher("/view/dispositif/ajouter.jsp" ).forward( request, response );
+        }
     }
 
     /**
@@ -109,8 +119,59 @@ public class ServletDispositif extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        FormDispositif form = new FormDispositif();
+
+        /* Appel au traitement et à la validation de la requête, et récupération de l'objet en résultant */
+        Dispositif leDispositifSaisi = form.ajouterDispositif(request);
+
+        /* Stockage du formulaire et de l'objet dans l'objet request */
+        request.setAttribute( "form", form );
+        request.setAttribute( "pDispositif", leDispositifSaisi );
+
+        if (form.getErreurs().isEmpty()){
+            // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du groupe
+            Dispositif dispositifAjoute = DaoDispositif.ajouterDispositif(connection, leDispositifSaisi);
+
+            if (dispositifAjoute != null ){
+                Dispositif leDispositif = DaoDispositif.getLeDispositif(connection, leDispositifSaisi.getId());
+                request.setAttribute("pDispositif", leDispositif);
+                this.getServletContext().getRequestDispatcher("/view/dispositif/consulter.jsp" ).forward( request, response );
+            }
+            else
+            {
+                // Cas où l'insertion en bdd a échoué
+                //On renvoie vers le formulaire
+                this.getServletContext().getRequestDispatcher("/view/dispositif/ajouter.jsp" ).forward( request, response );
+            }
+        }
+        else
+        {
+            this.getServletContext().getRequestDispatcher("/view/dispositif/ajouter.jsp" ).forward( request, response );
+        }
     }
+
+    //fermeture des ressources
+    public void destroy(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
+    {
+        try
+        {
+            //fermeture
+            System.out.println("Connexion fermée");
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            System.out.println("Erreur lors de l’établissement de la connexion");
+        }
+        finally
+        {
+            //Utilitaire.fermerConnexion(rs);
+            //Utilitaire.fermerConnexion(requete);
+            Utilitaire.fermerConnexion(connection);
+        }
+    }
+    
 
     /**
      * Returns a short description of the servlet.
