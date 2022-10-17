@@ -94,6 +94,11 @@ public class ServletConnexion extends HttpServlet {
         {
             this.getServletContext().getRequestDispatcher("/view/connexion/connexion.jsp" ).forward( request, response );
         }
+        if(url.equals("/normanzik/ServletConnexion/deconnexion")){
+            HttpSession session=request.getSession();
+            session.invalidate();
+            this.getServletContext().getRequestDispatcher("/view/connexion/connexion.jsp" ).forward( request, response );
+        }
     }
 
     /**

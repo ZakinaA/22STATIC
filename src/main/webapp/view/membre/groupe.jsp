@@ -3,7 +3,7 @@
     Created on : 10 oct. 2022, 11:02:46
     Author     : arnaud
 --%>
-<%@page import="java.lang.System.out"%>
+
 <%@page import="model.Membre"%>
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@page import="model.Groupe"%>
@@ -64,9 +64,7 @@
                     out.println("<td>");
                     out.println(unGroupe.getGenre().getLibelle());
                     out.println("</td>");
-                }else{%>
-                    <h1>Vous n'êtes pas membre contact d'un groupe</h1>
-                <%}%>
+                }%>
         </tr>
         </tbody>
     </table>
@@ -125,7 +123,6 @@
 
 
                 }
-            }
             %>
         </tr>
         </tbody>

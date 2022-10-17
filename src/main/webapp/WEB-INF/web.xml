@@ -74,13 +74,17 @@
         <servlet-name>ServletFestival</servlet-name>
         <url-pattern>/ServletFestival/consulter</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ServletFestival</servlet-name>
         <url-pattern>/ServletFestival/ajouter</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletConnexion</servlet-name>
         <url-pattern>/ServletConnexion/connexion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletConnexion</servlet-name>
+        <url-pattern>/ServletConnexion/deconnexion</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ServletJury</servlet-name>
