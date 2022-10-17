@@ -28,19 +28,19 @@
                             <i style="margin:8%; color: white" class="fa-solid fa-user-group"></i>
                         </div>
                         <div>
-                            <p style="text-align: center; margin-top: 15px">Les groupes</p>
+                            <p style="text-align: center; margin-top: 15px; color: white">Les groupes</p>
                         </div>
                     </div>
                     </a>
                 </th>
                 <th style="border:10px">
-                    <a href="#">
+                    <a href="../ServletAlbum/lister">
                     <div style="width: 175px; height: 250px; background-color: black">
                         <div style="font-size:120px; width: 100%; height: 70%"> 
                             <i style="margin:8% 15%; color: white" class="fa-solid fa-record-vinyl"></i>
                         </div>
                         <div>
-                            <p style="text-align: center; margin-top: 15px">Les albums</p>
+                            <p style="text-align: center; margin-top: 15px; color: white">Les albums</p>
                         </div>
                     </div>
                     </a>
@@ -52,7 +52,7 @@
                             <i style="margin:8% 12%; color: white" class="fa-solid fa-ticket"></i>
                         </div>
                         <div>
-                            <p style="text-align: center; margin-top: 15px">Les festivals</p>
+                            <p style="text-align: center; margin-top: 15px; color: white">Les festivals</p>
                         </div>
                     </div>
                     </a>

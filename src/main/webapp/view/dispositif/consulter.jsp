@@ -12,7 +12,7 @@
 <%
     Dispositif unDispositif = (Dispositif)request.getAttribute("pDispositif");
 %>
-<h1>Consulter <%out.println(unDispositif.getLibelle());%></h1>
+<h1 style="text-align: center; margin: 2%; color: black">Consulter <%out.println(unDispositif.getLibelle());%></h1>
 <br/>
 
 

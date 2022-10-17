@@ -19,7 +19,7 @@
 </head>
 <body >
     <%@ include file="/view/header.jsp" %>
-<h1>Connexion</h1>
+<h1 style="text-align: center; margin: 2%; color: black">Connexion</h1>
 <br/>
 
 
@@ -27,7 +27,7 @@
     FormConnexion form = (FormConnexion)request.getAttribute("form");
 %>
 
-<form action="connexion" method="POST">
+<form action="connexion" method="POST" style="text-align: center; margin: 0 10%; background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5); border-radius: 10px;">
     <label for="login">Login : </label>
     <input id="login" type="text" name="login"  size="70" maxlength="70">
     <span style="color: blue;">${form.erreurs['login']}</span>

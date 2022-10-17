@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Sofiane
@@ -14,7 +16,9 @@ public class Album {
     private String nom;
     private String dateCreation;
     private Groupe groupe;
+    private String cheminImg;
     private Titre titres;
+    private ArrayList<Titre> lesTitres ;
 
     public Album() {
     }
@@ -31,6 +35,10 @@ public class Album {
         return nom;
     }
 
+    public String getCheminImg() {
+        return cheminImg;
+    }
+    
     public void setNom(String nom) {
         this.nom = nom;
     }
@@ -41,6 +49,10 @@ public class Album {
 
     public void setDateCreation(String dateCreation) {
         this.dateCreation = dateCreation;
+    }
+
+    public void setCheminImg(String cheminImg) {
+        this.cheminImg = cheminImg;
     }
 
     public Groupe getGroupe() {
@@ -57,5 +69,8 @@ public class Album {
 
     public void setTitres(Titre titres) {
         this.titres = titres;
+    }
+    public void setLesTitres(ArrayList<Titre> lesTitres) {
+        this.lesTitres = lesTitres;
     }
 }

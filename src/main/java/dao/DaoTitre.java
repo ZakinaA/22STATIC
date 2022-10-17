@@ -55,4 +55,36 @@ public class DaoTitre {
         }
         return lesTitres ;
     }
+    public static ArrayList<Titre> getLesTitresAlbum(Connection connection, int idAlbum){
+        ArrayList<Titre> lesTitres = new  ArrayList<Titre>();
+        try
+        {
+            //preparation de la requete
+                requete=connection.prepareStatement("select * from titre, album where alb_id = idAlbum and alb_id = ?");
+                requete.setInt(1, idAlbum);
+                System.out.println("Requete" + requete);
+
+                //executer la requete
+                rs=requete.executeQuery();
+
+            //On hydrate l'objet métier Groupe et sa relation Genre avec les résultats de la requête
+            while ( rs.next() ) {
+
+
+                Titre leTitre = new Titre();
+                leTitre.setNumero(rs.getInt("numero"));
+                leTitre.setIntitule(rs.getString("intitule"));
+                leTitre.setDuree(rs.getString("duree"));
+                leTitre.setLienURL(rs.getString("lienURL"));
+
+                lesTitres.add(leTitre);
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        return lesTitres ;
+    }
 }

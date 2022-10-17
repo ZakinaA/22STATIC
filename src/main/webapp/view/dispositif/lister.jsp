@@ -6,7 +6,7 @@
 <%
     ArrayList<Dispositif> lesDispositifs = (ArrayList)request.getAttribute("pLesDispositifs");
 %>
-<h1>Consulter Dispositif</h1>
+<h1 style="text-align: center; margin: 2%; color: black">Consulter Dispositif</h1>
 <br/>
 
 

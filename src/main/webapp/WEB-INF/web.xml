@@ -24,6 +24,10 @@
         <servlet-name>ServletJury</servlet-name>
         <servlet-class>servlet.ServletJury</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ServletAlbum</servlet-name>
+        <servlet-class>servlet.ServletAlbum</servlet-class>
+    </servlet>
     
     
     <servlet-mapping>
@@ -93,6 +97,18 @@
     <servlet-mapping>
         <servlet-name>ServletJury</servlet-name>
         <url-pattern>/ServletJury/desinscrire</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAlbum</servlet-name>
+        <url-pattern>/ServletAlbum/lister</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletFestival</servlet-name>
+        <url-pattern>/ServletAlbum/consulter</url-pattern>
+    </servlet-mapping>
+        <servlet-mapping>
+        <servlet-name>ServletFestival</servlet-name>
+        <url-pattern>/ServletAlbum/ajouter</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
