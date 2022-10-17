@@ -71,7 +71,7 @@
     <span style="color: blue;">${form.erreurs['login']}</span>
     </br>
     <label for="mdp">Mot de passe : </label>
-    <input id="mdp"  type="text"  name="mdp" size="70" maxlength="70">
+    <input id="mdp"  type="password"  name="mdp" size="70" maxlength="70">
     <span style="color: blue;">${form.erreurs['mdp']}</span>
     </br>
     <input type="submit" name="valider" id="valider" value="Valider"/>

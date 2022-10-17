@@ -24,11 +24,11 @@ public class DaoUtilisateur {
         int idGenere = -1;
         try
         {
-            requete=connection.prepareStatement("INSERT INTO utilisateur (login, mdp, idPartenaire, idMembre)\n" +
-                    "VALUES (?,?,?,?)", requete.RETURN_GENERATED_KEYS );
+            requete=connection.prepareStatement("INSERT INTO utilisateur (login, mdp, idMembre)\n" +
+                    "VALUES (?,?,?)", requete.RETURN_GENERATED_KEYS );
             requete.setString(1, unUtilisateur.getLogin());
             requete.setString(2, unUtilisateur.getMdp());
-            requete.setInt(4, unUtilisateur.getMembre().getId());
+            requete.setInt(3, unUtilisateur.getMembre().getId());
 
             System.out.println("requeteInsertion=" + requete);
             /* Exécution de la requête */
