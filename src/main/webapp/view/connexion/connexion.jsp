@@ -19,6 +19,8 @@
 </head>
 <body >
     <%@ include file="/view/header.jsp" %>
+<%if (nomMembre!=null || nomPartenaire!=null){
+    }else{%>
 <h1 style="text-align: center; margin: 2%; color: black">Connexion</h1>
 <br/>
 
@@ -39,5 +41,6 @@
     </br>
     <input type="submit" name="valider" id="valider" value="Valider"/>
 </form>
+    <%}%>
 </body>
 </html>

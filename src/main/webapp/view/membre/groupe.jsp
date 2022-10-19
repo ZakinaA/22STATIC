@@ -25,8 +25,9 @@
 %>
 <% if (unGroupe.getNom() != null) {%>
 
-<h1>Mon groupe</h1>
+
 <div class="container px-4 px-lg-5">
+<h1 style="text-align: center; margin: 2%; color: black">Mon groupe</h1>
     <table  class="table table-bordered table-striped table-condensed rounded" style="background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5); border-radius: 10px; ">
         <thead>
         <tr>
@@ -78,9 +79,9 @@
     </table>
     <% if (lesGroupes.size()<1){%>
        <%}else{%>
-<h1>Mes groupes</h1>
+<h1 style="text-align: center; margin: 2%; color: black">Les groupes dans lesquels je joue</h1>
 <div class="container px-4 px-lg-5">
-    <table  class="table table-bordered table-striped table-condensed">
+    <table  class="table table-bordered table-striped table-condensed" style="background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5); border-radius: 10px; ">
         <thead>
         <tr>
             <th>Nom</th>
