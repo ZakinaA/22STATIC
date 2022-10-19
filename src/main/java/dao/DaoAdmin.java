@@ -253,6 +253,28 @@ public class DaoAdmin {
         }
         return lesMembres ;
     }
+       
+       public static ArrayList<Membre> getLesMembresAjoutable(Connection connection){
+        ArrayList<Membre> lesMembres = new  ArrayList<Membre>();
+        try
+        {
+            requete=connection.prepareStatement("SELECT mem_id, membre.nom FROM membre EXCEPT SELECT mem_id, membre.nom FROM membre, groupe, groupemembre WHERE membre.mem_id = groupe.idMembre EXCEPT SELECT mem_id, membre.nom FROM membre, groupemembre WHERE membre.mem_id = groupemembre.idMembre");
+            rs=requete.executeQuery();
+            while ( rs.next() ) {
+
+                Membre leMembre = new Membre();
+                leMembre.setId(rs.getInt("mem_id"));
+                leMembre.setNom(rs.getString("nom"));
+                lesMembres.add(leMembre);
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        return lesMembres ;
+    }
     
     
     public static Membre ajouterMembre(Connection connection, Membre unMembre){

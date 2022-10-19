@@ -121,7 +121,13 @@ public class ServletGroupe extends HttpServlet {
             ArrayList<Genre> lesGenres = DaoAdmin.getLesGenres(connection);
             request.setAttribute("pLesGenres", lesGenres);
             this.getServletContext().getRequestDispatcher("/view/groupe/ajouter.jsp" ).forward( request, response );
+        }
         
+        if(url.equals("/normanzik/ServletGroupe/ajouterMembre"))
+        {   
+            ArrayList<Membre> lesMembres = DaoAdmin.getLesMembresAjoutable(connection);
+            request.setAttribute("pLesMembres", lesMembres);
+            this.getServletContext().getRequestDispatcher("/view/groupe/ajouterMembre.jsp" ).forward( request, response );
         }
     }
 
