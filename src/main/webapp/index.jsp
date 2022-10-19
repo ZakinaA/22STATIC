@@ -24,6 +24,7 @@
     <%
         ArrayList<Groupe> lesGroupes = (ArrayList)request.getAttribute("pLesGroupes");
     %>
+    <img style="display: flex; position: absolute; top: 30%; right: 10%; width: 30%;" src="https://www.adobe.com/fr/express/create/cover/media_18d167bb3f9bbb450af1f75b3e98a29856b16e5b3.jpeg?width=400&format=jpeg&optimize=medium">
     <div>
         
         <table style="margin: 5% 5% 5% 10%">

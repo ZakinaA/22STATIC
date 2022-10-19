@@ -132,6 +132,16 @@ public class ServletGroupe extends HttpServlet {
             request.setAttribute("pLesMembres", lesMembres);
             this.getServletContext().getRequestDispatcher("/view/groupe/ajouterMembre.jsp" ).forward( request, response );
         }
+        
+        if(url.equals("/normanzik/ServletGroupe/supprimerMembre"))
+        { 
+            int idGroupe = Integer.parseInt(request.getParameter("idGroupe"));
+            int idMembre = Integer.parseInt(request.getParameter("idMembre"));
+            int supprimer = DaoGroupe.supprimerMembreDunGroupe(connection, idGroupe, idMembre);
+            Groupe leGroupe = DaoGroupe.getLeGroupe(connection, idGroupe);
+            request.setAttribute("pGroupe", leGroupe);
+            this.getServletContext().getRequestDispatcher("/view/groupe/consulter.jsp" ).forward( request, response );
+        }
     }
 
     /**

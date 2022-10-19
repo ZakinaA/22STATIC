@@ -47,6 +47,10 @@
         <url-pattern>/ServletGroupe/ajouterMembre</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ServletGroupe</servlet-name>
+        <url-pattern>/ServletGroupe/supprimerMembre</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ServletMembre</servlet-name>
         <url-pattern>/ServletMembre/consulter</url-pattern>
     </servlet-mapping>    
