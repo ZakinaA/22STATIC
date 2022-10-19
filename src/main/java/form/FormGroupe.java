@@ -151,15 +151,16 @@ public class FormGroupe {
     public Groupe ajouterMembre(HttpServletRequest request ) {
         ArrayList<Membre> leMembreAjouter = new  ArrayList<Membre>();
         Groupe unGroupe  = new Groupe();
-
-        int idGroupe = Integer.parseInt()
+        Membre leMembre = new Membre();
+        
+        int idGroupe = Integer.parseInt(getDataForm( request, "idGroupe" ));
         int idMembre = Integer.parseInt(getDataForm( request, "idMembre" ));
 
         System.out.println("resultat erreurs="+resultat);
         
-        Membre leMembre = new Membre();
         leMembre.setId(idMembre);
         leMembreAjouter.add(leMembre);
+        unGroupe.setId(idGroupe);
         unGroupe.setLesMembres(leMembreAjouter);
         return unGroupe;
     }

@@ -125,8 +125,9 @@ public class ServletGroupe extends HttpServlet {
         
         if(url.equals("/normanzik/ServletGroupe/ajouterMembre"))
         {   
-            ArrayList<Groupe> lesGroupes = DaoGroupe.getLesGroupes(connection);
-            request.setAttribute("pLesGroupes", lesGroupes);
+            int idGroupe = Integer.parseInt(request.getParameter("idGroupe"));
+            Groupe leGroupe = DaoGroupe.getLeGroupe(connection, idGroupe);
+            request.setAttribute("pGroupe", leGroupe);
             ArrayList<Membre> lesMembres = DaoAdmin.getLesMembresAjoutable(connection);
             request.setAttribute("pLesMembres", lesMembres);
             this.getServletContext().getRequestDispatcher("/view/groupe/ajouterMembre.jsp" ).forward( request, response );
@@ -189,8 +190,8 @@ public class ServletGroupe extends HttpServlet {
             request.setAttribute("pLesGenres", lesGenres);
             this.getServletContext().getRequestDispatcher("/view/groupe/ajouter.jsp" ).forward( request, response );
         }
+        
     }
-
     //fermeture des ressources
     public void destroy(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
     {

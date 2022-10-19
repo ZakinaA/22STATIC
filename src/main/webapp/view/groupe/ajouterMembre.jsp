@@ -19,23 +19,14 @@
 
 
 <%
+    Groupe unGroupe = (Groupe)request.getAttribute("pGroupe");
     //Client client=(Client)request.getAttribute("client");
     FormGroupe form = (FormGroupe)request.getAttribute("formAjouterMembre");
 %>
 
 <form action="ajouter" method="POST">
-    <label for="idGroupe">Groupe : </label>
-    <select name="idGroupe">
-        <%
-            ArrayList<Groupe> lesGroupes = (ArrayList)request.getAttribute("pLesGroupes");
-            for (int i=0; i<lesGroupes.size();i++){
-                Groupe leGroupe = lesGroupes.get(i);
-                out.println("<option value='" + leGroupe.getId()+"'>" + leGroupe.getNom()+"</option>" );
-            }
-        %>
-    </select>
-    </br>
-    </br>
+    <label for="idGroupe">ID Groupe : </label>
+    <% out.println("<input name='idGroupe' class='form-control' type='text' value='"+ unGroupe.getId() +"' readonly>");%>
     <label for="idMembre">Membre : </label>
     <select name="idMembre">
         <%
