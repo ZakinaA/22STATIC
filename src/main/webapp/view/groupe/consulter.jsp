@@ -30,11 +30,23 @@
                 if(i==0 || i==unGroupe.getLesMembres().size()){
                 }
                 else{
-                out.println(", ");
+                    out.println(", ");
                 }
                 Membre mem = unGroupe.getLesMembres().get(i);
                 out.println("<a href='../ServletMembre/consulter?idMembre=" + mem.getId() + "'>" + mem.getNom() +" "+mem.getPrenom()+"</a>");
-        }}
+                if(nomMembre == unGroupe.getMembre().getNom()){
+                    out.println("<td>");
+                    out.println("<a href ='../ServletGroupe/ajouterMembre?idGroupe=" + unGroupe.getId() + "'>");
+                    out.println("<button type='button' class='btn btn-danger'>Supprimer</button>");
+                    out.println("</a></td>");
+
+                    out.println("<td>");
+                    out.println("<a href ='../ServletGroupe/ajouterMembre?idGroupe=" + unGroupe.getId() + "'>");
+                    out.println("<button type='button' class='btn btn-primary'>Ajouter</button>");
+                    out.println("</a></td>");
+                }
+            }
+        }
         else{
             out.println("Pas de membre");
         };%></p>

@@ -206,6 +206,7 @@ public class DaoGroupe {
             //On hydrate l'objet métier Groupe et sa relation Genre avec les résultats de la requête
             if ( rs.next() ) {
                 
+                leGroupe.setId(rs.getInt("gro_id"));
                 leGroupe.setNom(rs.getString("groupe.nom"));
                 leGroupe.setDateCreation(rs.getString("dateCreation"));
                 leGroupe.setTelephone(rs.getString("telephone"));
@@ -326,4 +327,18 @@ public class DaoGroupe {
         return unGroupe ;
     }
     
+    public static int supprimerMembreDunGroupe(Connection connection, int idGroupe, int idMembre){
+        try
+        {
+            requete=connection.prepareStatement("DELETE FROM groupemembre WHERE idGroupe=? and idGroupe=?");
+            requete.setInt(1, idGroupe);
+            requete.setInt(2, idGroupe);
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");=
+        }
+        return 1 ;
+    }
 }

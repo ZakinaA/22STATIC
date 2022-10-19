@@ -38,6 +38,7 @@
             <th>LieuRepetition</th>
             <th>Genre</th>
             <th>Ajouter un membre</th>
+            <th>Supprimer le groupe</th>
 
         </tr>
         </thead>
@@ -72,7 +73,12 @@
                     out.println("<td>");
                     out.println("<a href ='../ServletGroupe/ajouterMembre?idGroupe=" + unGroupe.getId() + "'>");
                     out.println("<button type='button' class='btn btn-primary'>Ajouter</button>");
-                    out.println("</td>");
+                    out.println("</a></td>");
+                    
+                    out.println("<td>");
+                    out.println("<a href ='../ServletGroupe/ajouterMembre?idGroupe=" + unGroupe.getId() + "'>");
+                    out.println("<button type='button' class='btn btn-danger'>Supprimer</button>");
+                    out.println("</a></td>");
                 }%>
         </tr>
         </tbody>
