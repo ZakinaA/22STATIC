@@ -30,7 +30,7 @@
         <table style="margin: 5% 5% 5% 10%">
             <tr>
                 <th style="border:10px">
-                    <a href="../ServletGroupe/lister">
+                    <a href="http://172.20.177.250:8080/STATIC/ServletGroupe/lister">
                     <div style="width: 175px; height: 250px; background-color: black">
                         <div style="font-size:120px; width: 100%; height: 70%"> 
                             <i style="margin:8%; color: white" class="fa-solid fa-user-group"></i>
@@ -42,7 +42,7 @@
                     </a>
                 </th>
                 <th style="border:10px">
-                    <a href="../ServletAlbum/lister">
+                    <a href="http://172.20.177.250:8080/STATIC/ServletAlbum/lister">
                     <div style="width: 175px; height: 250px; background-color: black">
                         <div style="font-size:120px; width: 100%; height: 70%"> 
                             <i style="margin:8% 15%; color: white" class="fa-solid fa-record-vinyl"></i>
@@ -55,7 +55,7 @@
                 </th>
                 <th style="border:100px">
                     <%--<a href="../ServletFestival/lister">--%>
-                        <a href="../ServletFestival/lister">
+                        <a href="http://172.20.177.250:8080/STATIC/ServletFestival/lister">
                     <div style="width: 175px; height: 250px; background-color: black">
                         <div style="font-size:120px; width: 100%; height: 70%"> 
                             <i style="margin:8% 12%; color: white" class="fa-solid fa-ticket"></i>
@@ -67,8 +67,8 @@
                     </a>
                 </th>
                 <th style="border:100px">
-                    <a href="../ServletConnexion/connexion">
-                        <a href="../ServletConnexion/connexion">
+                    <a href="http://172.20.177.250:8080/STATIC/ServletConnexion/connexion">
+                        <a href="http://172.20.177.250:8080/STATIC/ServletConnexion/connexion">
                     <div style="width: 175px; height: 250px; background-color: black">
                         <div style="font-size:120px; width: 100%; height: 70%"> 
                             <i style="margin:8% 12%; color: white" class="fa-solid fa-arrow-right-to-bracket"></i>

@@ -99,7 +99,7 @@ public class ServletMembre extends HttpServlet {
         System.out.println("servlermembre url="+url);
         
         HttpSession session = request.getSession();
-       if(url.equals("/normanzik/ServletMembre/consulter"))
+       if(url.equals("/STATIC/ServletMembre/consulter"))
         {   
             if(request.getParameter("idMembre")!=null){
                 int idMembre = Integer.parseInt(request.getParameter("idMembre"));
@@ -114,7 +114,7 @@ public class ServletMembre extends HttpServlet {
             }
         }
        
-        if(url.equals("/normanzik/ServletMembre/ajouter"))
+        if(url.equals("/STATIC/ServletMembre/ajouter"))
         {
             ArrayList<Statut> lesStatuts = DaoAdmin.getLesStatuts(connection);
             request.setAttribute("pLesStatuts", lesStatuts);
@@ -123,7 +123,7 @@ public class ServletMembre extends HttpServlet {
             this.getServletContext().getRequestDispatcher("/view/membre/ajouter.jsp" ).forward( request, response );
         }
         
-        if(url.equals("/normanzik/ServletMembre/groupe")){
+        if(url.equals("/STATIC/ServletMembre/groupe")){
             int idMembre = (int)session.getAttribute("idMembre");
             Groupe leGroupe = DaoGroupe.getLeGroupeduMembre(connection, idMembre);
             request.setAttribute("pGroupe", leGroupe);

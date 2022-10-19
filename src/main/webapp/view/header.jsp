@@ -38,15 +38,15 @@
                    String nomPartenaire = (String)session.getAttribute("nomPartenaire");
                    
                     if (nomMembre!=null){
-                        out.println("<li>connecté en tant que <a href='http://localhost:8080/normanzik/ServletMembre/consulter'>"+ nomMembre +"</a></li>");%>
+                        out.println("<li>connecté en tant que <a href='http://172.20.177.250:8080/STATIC/ServletMembre/consulter'>"+ nomMembre +"</a></li>");%>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Groupe
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletMembre/groupe">Mes groupes</a>
-                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/lister">Lister</a>
-                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/ajouter">Créer</a>
+                                <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletMembre/groupe">Mes groupes</a>
+                                <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletGroupe/lister">Lister</a>
+                                <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletGroupe/ajouter">Créer</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -54,11 +54,11 @@
                                 Festival
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletFestival/lister">Lister</a>
+                                <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletFestival/lister">Lister</a>
                             </div>
                         </li>
                         <li>
-                            <a class="nav-link" href="http://localhost:8080/normanzik/ServletConnexion/deconnexion">Se déconnecter</a>
+                            <a class="nav-link" href="http://172.20.177.250:8080/STATIC/ServletConnexion/deconnexion">Se déconnecter</a>
                         </li>
                     <%}
                     
@@ -69,8 +69,8 @@
                                 Groupe
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/lister">Lister</a>
-                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/ajouter">Ajouter</a>
+                                <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletGroupe/lister">Lister</a>
+                                <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletGroupe/ajouter">Ajouter</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -78,8 +78,8 @@
                                 Dispositif
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletDispositif/lister">Lister</a>
-                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletDispositif/ajouter">Ajouter</a>
+                                <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletDispositif/lister">Lister</a>
+                                <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletDispositif/ajouter">Ajouter</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -87,13 +87,13 @@
                                 Festival
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletFestival/lister">Lister</a>
-                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletFestival/ajouter">Ajouter</a>
+                                <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletFestival/lister">Lister</a>
+                                <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletFestival/ajouter">Ajouter</a>
                             </div>
                         </li>
                         
                         <li>
-                            <a class="nav-link" href="http://localhost:8080/normanzik/ServletConnexion/deconnexion">Se déconnecter</a>
+                            <a class="nav-link" href="http://172.20.177.250:8080/STATIC/ServletConnexion/deconnexion">Se déconnecter</a>
                         </li>
                     <%}
 
@@ -104,11 +104,11 @@
                                 Jury
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletJury/lister">Lister</a>
+                                <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletJury/lister">Lister</a>
                             </div>
                         </li>
                         <li>
-                            <a class="nav-link" href="http://localhost:8080/normanzik/ServletConnexion/deconnexion">Se déconnecter</a>
+                            <a class="nav-link" href="http://172.20.177.250:8080/STATIC/ServletConnexion/deconnexion">Se déconnecter</a>
                         </li>
                         
                         
@@ -118,7 +118,7 @@
                         Groupe
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/lister">Lister</a>
+                        <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletGroupe/lister">Lister</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -126,16 +126,16 @@
                         Festival
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletFestival/lister">Lister</a>
+                        <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletFestival/lister">Lister</a>
                     </div>
                 </li>
                 <li>
-                    <a class="nav-link" href="http://localhost:8080/normanzik/ServletMembre/ajouter">
+                    <a class="nav-link" href="http://172.20.177.250:8080/STATIC/ServletMembre/ajouter">
                         Créer un compte
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="http://localhost:8080/normanzik/ServletConnexion/connexion">
+                    <a class="nav-link" href="http://172.20.177.250:8080/STATIC/ServletConnexion/connexion">
                         Se connecter
                     </a>
                 </li>

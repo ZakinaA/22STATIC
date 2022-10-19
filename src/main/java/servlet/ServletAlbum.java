@@ -81,20 +81,20 @@ public class ServletAlbum extends HttpServlet {
         
         System.out.println("servleralbum url="+url);
         
-        if(url.equals("/normanzik/ServletAlbum/lister")){
+        if(url.equals("/STATIC/ServletAlbum/lister")){
             ArrayList<Album> lesAlbums = DaoAlbum.getLesAlbums(connection);
             request.setAttribute("pLesAlbums", lesAlbums);
             this.getServletContext().getRequestDispatcher("/view/album/lister.jsp" ).forward( request, response );
         }
         
-        if(url.equals("/normanzik/ServletAlbum/consulter"))
+        if(url.equals("/STATIC/ServletAlbum/consulter"))
         {
             int idAlbum = Integer.parseInt(request.getParameter("idAlbum"));
             Album lesTitresAlbum = DaoAlbum.getLeAlbum(connection, idAlbum);
             request.setAttribute("pLesTitresAlbum", lesTitresAlbum);
             this.getServletContext().getRequestDispatcher("/view/album/consulter.jsp" ).forward( request, response );
         }
-        if(url.equals("/normanzik/ServletAlbum/ajouter"))
+        if(url.equals("/STATIC/ServletAlbum/ajouter"))
         {
             System.out.println("servlerfestival LESFESTIVALS");
             ArrayList<Album> lesAlbums = DaoAlbum.getLesAlbums(connection);

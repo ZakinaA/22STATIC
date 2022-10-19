@@ -90,11 +90,11 @@ public class ServletConnexion extends HttpServlet {
         
         System.out.println("servlermembre url="+url);
         
-        if(url.equals("/normanzik/ServletConnexion/connexion"))
+        if(url.equals("/STATIC/ServletConnexion/connexion"))
         {
             this.getServletContext().getRequestDispatcher("/view/connexion/connexion.jsp" ).forward( request, response );
         }
-        if(url.equals("/normanzik/ServletConnexion/deconnexion")){
+        if(url.equals("/STATIC/ServletConnexion/deconnexion")){
             HttpSession session=request.getSession();
             session.invalidate();
             this.getServletContext().getRequestDispatcher("/view/connexion/connexion.jsp" ).forward( request, response );

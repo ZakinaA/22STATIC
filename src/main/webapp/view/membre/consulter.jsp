@@ -28,7 +28,7 @@
 </div>
 
  <%}else{
-    /*response.sendRedirect("localhost:8080/normanzik/ServletMembre/groupe");*/
+    /*response.sendRedirect("localhost:8080/STATIC/ServletMembre/groupe");*/
 }%>
 
 
