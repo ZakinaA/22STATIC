@@ -200,7 +200,49 @@ public class ServletGroupe extends HttpServlet {
             request.setAttribute("pLesGenres", lesGenres);
             this.getServletContext().getRequestDispatcher("/view/groupe/ajouter.jsp" ).forward( request, response );
         }
-        
+        //
+        FormGroupe formAjouterMembre = new FormGroupe();
+
+        /* Appel au traitement et à la validation de la requête, et récupération de l'objet en résultant */
+        Membre leMembreSaisis = formAjouterMembre.ajouterMembre(request);
+
+        /* Stockage du formulaire et de l'objet dans l'objet request */
+        request.setAttribute( "form", formAjouterMembre );
+        request.setAttribute( "pGroupe", leMembreSaisis );
+
+        if (form.getErreurs().isEmpty()){
+            // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du groupe
+            Membre leMembreAjouter = DaoGroupe.ajouterMembre(connection, leMembreSaisis);
+
+            if (leMembreAjouter != null ){
+                Groupe leGroupe = DaoGroupe.getLeGroupe(connection, leMembreSaisis.getId());
+                request.setAttribute("pGroupe", leGroupe);
+                this.getServletContext().getRequestDispatcher("/view/groupe/consulter.jsp" ).forward( request, response );
+            }
+            else
+            {
+                // Cas où l'insertion en bdd a échoué
+                //On renvoie vers le formulaire
+            int idGroupe = Integer.parseInt(request.getParameter("idGroupe"));
+            Groupe leGroupe = DaoGroupe.getLeGroupe(connection, idGroupe);
+            request.setAttribute("pGroupe", leGroupe);
+            ArrayList<Membre> lesMembres = DaoAdmin.getLesMembresAjoutable(connection);
+            request.setAttribute("pLesMembres", lesMembres);
+            this.getServletContext().getRequestDispatcher("/view/groupe/ajouterMembre.jsp" ).forward( request, response );
+            }
+        }
+        else
+        {
+
+            // il y a des erreurs de saisie. On réaffiche le formulaire avec des messages d'erreurs
+            int idGroupe = Integer.parseInt(request.getParameter("idGroupe"));
+            Groupe leGroupe = DaoGroupe.getLeGroupe(connection, idGroupe);
+            request.setAttribute("pGroupe", leGroupe);
+            ArrayList<Membre> lesMembres = DaoAdmin.getLesMembresAjoutable(connection);
+            request.setAttribute("pLesMembres", lesMembres);
+            this.getServletContext().getRequestDispatcher("/view/groupe/ajouterMembre.jsp" ).forward( request, response );
+        }
+        //
     }
     //fermeture des ressources
     public void destroy(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
