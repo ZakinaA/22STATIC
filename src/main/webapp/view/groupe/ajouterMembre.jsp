@@ -24,7 +24,7 @@
     FormGroupe form = (FormGroupe)request.getAttribute("formAjouterMembre");
 %>
 
-<form action="ajouter" method="POST">
+<form action="ajouterMembre" method="POST">
     <label for="idGroupe">ID Groupe : </label>
     <% out.println("<input name='idGroupe' class='form-control' type='text' value='"+ unGroupe.getId() +"' readonly>");%>
     <label for="idMembre">Membre : </label>

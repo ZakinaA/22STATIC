@@ -327,6 +327,42 @@ public class DaoGroupe {
         return unGroupe ;
     }
     
+    ////
+    public static Membre ajouterMembre(Connection connection, Membre unMembre){
+        int idGenere = -1;
+        try
+        {
+            //preparation de la requete
+            // gpe_id (clé primaire de la table groupe) est en auto_increment,donc on ne renseigne pas cette valeur
+            // le paramètre RETURN_GENERATED_KEYS est ajouté à la requête afin de pouvoir récupérer l'id généré par la bdd (voir ci-dessous)
+            // supprimer ce paramètre en cas de requête sans auto_increment.
+            requete=connection.prepareStatement("INSERT INTO `groupemembre` (`idGroupe`, `idMembre`, `idInstrument`) VALUES ('?', '?', '1')");
+            requete.setInt(1, unMembre.getLesGroupes().get(1).getId());
+            requete.setInt(2, unMembre.getId());
+
+            System.out.println("requeteInsertion=" + requete);
+            /* Exécution de la requête */
+            int resultatRequete = requete.executeUpdate();
+            System.out.println("resultatrequete=" + resultatRequete);
+
+
+            // si le résultat de la requete est différent de 1, c'est que la requête a échoué.
+            // Dans ce cas, on remet l'objet groupe à null
+            if (resultatRequete != 1){
+                unMembre = null;
+            }
+
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+            unMembre = null;
+        }
+        return unMembre ;
+    }
+    ////
+    
     public static int supprimerMembreDunGroupe(Connection connection, int idGroupe, int idMembre){
         try
         {
