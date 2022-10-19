@@ -15,7 +15,7 @@
 </head>
 <body>
     <%@ include file="/view/header.jsp" %>
-<%if (nomMembre!=null || nomPartenaire!=null){%>
+<%if (nomMembre!=null){%>
 
 <%
     Membre unMembre = (Membre)request.getAttribute("pMembre");

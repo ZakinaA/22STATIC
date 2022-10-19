@@ -16,6 +16,7 @@
 </head>
 <body>
     <%@ include file="/view/header.jsp" %>
+<%if (nomPartenaire!=null){%>
     <h1>Les Groupes</h1>
 <br/>
 
@@ -90,5 +91,6 @@
         </tbody>
     </table>
 </div>
+        <%}else{}%>
 </body>
 </html>

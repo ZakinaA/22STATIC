@@ -26,7 +26,7 @@
 <body>
     <%@ include file="/view/header.jsp" %>
     
-<%if (nomMembre!=null || nomPartenaire!=null){
+<%if (nomMembre!=null){
       /*response.sendRedirect("localhost:8080/normanzik/ServletMembre/groupe");*/
  }else{
 

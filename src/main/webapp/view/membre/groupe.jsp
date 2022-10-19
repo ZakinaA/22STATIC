@@ -17,7 +17,7 @@
 </head>
 <body>
     <%@ include file="/view/header.jsp" %>
-<%if (nomMembre!=null || nomPartenaire!=null){%>
+<%if (nomMembre!=null){%>
     
 <%
     ArrayList<Groupe> lesGroupes = (ArrayList)request.getAttribute("pLesGroupes");
@@ -36,6 +36,7 @@
             <th>MelSiteWeb</th>
             <th>LieuRepetition</th>
             <th>Genre</th>
+            <th>Ajouter un membre</th>
 
         </tr>
         </thead>
@@ -65,6 +66,11 @@
 
                     out.println("<td>");
                     out.println(unGroupe.getGenre().getLibelle());
+                    out.println("</td>");
+                    
+                    out.println("<td>");
+                    out.println("<a href ='../ServletGroupe/ajouterMembre?idGroupe=" + unGroupe.getId() + "'>");
+                    out.println("<button type='button' class='btn btn-primary'>Ajouter</button>");
                     out.println("</td>");
                 }%>
         </tr>
