@@ -17,6 +17,8 @@
 </head>
 <body>
     <%@ include file="/view/header.jsp" %>
+<%if (nomMembre!=null || nomPartenaire!=null){%>
+    
 <%
     ArrayList<Groupe> lesGroupes = (ArrayList)request.getAttribute("pLesGroupes");
     Groupe unGroupe = (Groupe)request.getAttribute("pGroupe");
@@ -68,9 +70,8 @@
         </tr>
         </tbody>
     </table>
-    <% if (lesGroupes.isEmpty()) {%>
-            <h1>Vous n'appartenez à aucun groupe</h1>
-       <%}%>
+    <% if (lesGroupes.size()<1){%>
+       <%}else{%>
 <h1>Mes groupes</h1>
 <div class="container px-4 px-lg-5">
     <table  class="table table-bordered table-striped table-condensed">
@@ -123,10 +124,11 @@
 
 
                 }
-            %>
+                }%>
         </tr>
         </tbody>
     </table>
 </div>
+<%}else{}%>
 </body>
 </html>

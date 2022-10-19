@@ -33,18 +33,20 @@
                 </a>
             <div style="position: absolute; top: 5px; right: 0px; width: 850px ">
             <ul>
-                <% String nomMembre = (String)session.getAttribute("nomMembre");
+                <% String url = request.getRequestURI();
+                   String nomMembre = (String)session.getAttribute("nomMembre");
                    String nomPartenaire = (String)session.getAttribute("nomPartenaire");
                    
                     if (nomMembre!=null){
-                        out.println("<li>connecté en tant que "+ nomMembre +"</li>");%>
+                        out.println("<li>connecté en tant que <a href='http://localhost:8080/normanzik/ServletMembre/consulter'>"+ nomMembre +"</a></li>");%>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Groupe
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletMembre/groupe">Mes groupes</a>
                                 <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/lister">Lister</a>
-                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/ajouter">Ajouter</a>
+                                <a class="dropdown-item" href="http://localhost:8080/normanzik/ServletGroupe/ajouter">Créer</a>
                             </div>
                         </li>
                         <li class="nav-item dropdown">
@@ -61,9 +63,7 @@
                     <%}
                     
                     else if(nomPartenaire == "admin"){%>
-                        <li>
-                            <a class="nav-link" aria-current="page" href="http://localhost:8080/normanzik/view/decouvrir.jsp" style="">Découvrir</a>
-                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Groupe
@@ -113,11 +113,6 @@
                         
                         
                 <%}else{%>
-                <li>
-                    <a class="nav-link" aria-current="page" href="http://localhost:8080/normanzik/view/decouvrir.jsp" style="">
-                        Découvrir
-                    </a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Groupe

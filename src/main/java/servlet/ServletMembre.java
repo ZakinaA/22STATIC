@@ -25,6 +25,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import static jdk.vm.ci.meta.JavaKind.Int;
 import model.Dispositif;
 import model.Genre;
 import model.Groupe;
@@ -96,12 +98,20 @@ public class ServletMembre extends HttpServlet {
         
         System.out.println("servlermembre url="+url);
         
+        HttpSession session = request.getSession();
        if(url.equals("/normanzik/ServletMembre/consulter"))
-        {
-            int idMembre = Integer.parseInt(request.getParameter("idMembre"));
-            Membre leMembre = DaoMembre.getLeMembre(connection, idMembre);
-            request.setAttribute("pMembre", leMembre);
-            this.getServletContext().getRequestDispatcher("/view/membre/consulter.jsp" ).forward( request, response );
+        {   
+            if(request.getParameter("idMembre")!=null){
+                int idMembre = Integer.parseInt(request.getParameter("idMembre"));
+                Membre leMembre = DaoMembre.getLeMembre(connection, idMembre);
+                request.setAttribute("pMembre", leMembre);
+                this.getServletContext().getRequestDispatcher("/view/membre/consulter.jsp" ).forward( request, response );
+            }else{
+                int idMembre = (int)session.getAttribute("idMembre");
+                Membre leMembre = DaoMembre.getLeMembre(connection, idMembre);
+                request.setAttribute("pMembre", leMembre);
+                this.getServletContext().getRequestDispatcher("/view/membre/consulter.jsp" ).forward( request, response );
+            }
         }
        
         if(url.equals("/normanzik/ServletMembre/ajouter"))
@@ -114,7 +124,7 @@ public class ServletMembre extends HttpServlet {
         }
         
         if(url.equals("/normanzik/ServletMembre/groupe")){
-            int idMembre = Integer.parseInt(request.getParameter("idMembre"));
+            int idMembre = (int)session.getAttribute("idMembre");
             Groupe leGroupe = DaoGroupe.getLeGroupeduMembre(connection, idMembre);
             request.setAttribute("pGroupe", leGroupe);
             ArrayList<Groupe> lesGroupes = DaoGroupe.getLesGroupesByMembre(connection, idMembre);

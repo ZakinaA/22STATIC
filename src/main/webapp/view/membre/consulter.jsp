@@ -15,6 +15,8 @@
 </head>
 <body>
     <%@ include file="/view/header.jsp" %>
+<%if (nomMembre!=null || nomPartenaire!=null){%>
+
 <%
     Membre unMembre = (Membre)request.getAttribute("pMembre");
 %>
@@ -24,6 +26,11 @@
 <p>Instrument joué : <%out.println(unMembre.getInstrument().getLibelle());%></p>
 <p>Statut : <%out.println(unMembre.getStatut().getLibelleStatut());%></p>
 </div>
+
+ <%}else{
+    /*response.sendRedirect("localhost:8080/normanzik/ServletMembre/groupe");*/
+}%>
+
 
 </body>
 </html>

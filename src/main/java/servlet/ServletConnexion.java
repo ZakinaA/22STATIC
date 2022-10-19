@@ -127,6 +127,7 @@ public class ServletConnexion extends HttpServlet {
                 this.getServletContext().getRequestDispatcher("/view/connexion/connexion.jsp" ).forward( request, response );
             }
             else if (connecter.getMembre() != null ){
+                session.setAttribute("idMembre", connecter.getMembre().getId());
                 session.setAttribute("nomMembre", connecter.getMembre().getNom());
                 int idMembre = connecter.getMembre().getId();
                 Groupe leGroupe = DaoGroupe.getLeGroupeduMembre(connection, idMembre);
