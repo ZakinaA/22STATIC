@@ -31,7 +31,7 @@
  }else{
 
 %>
-<h1>Créer un compte membre</h1>
+<h1 style="text-align: center; margin: 2%; color: black">Créer un compte membre</h1>
 <br/>
 
 
@@ -39,7 +39,7 @@
     FormMembre form = (FormMembre)request.getAttribute("form");
 %>
 
-<form action="ajouter" method="POST">
+<form action="ajouter" method="POST" style="text-align: center; margin: 0 10%; background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5); border-radius: 10px; ">
     <label for="nom">Nom : </label>
     <input id="nom" type="text" name="nom"  size="70" maxlength="70">
     <span style="color: blue;">${form.erreurs['nom']}</span>

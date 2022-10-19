@@ -15,8 +15,8 @@ public class Album {
     private int id;
     private String nom;
     private String dateCreation;
-    private Groupe groupe;
     private String cheminImg;
+    private Groupe groupe;
     private Titre titres;
     private ArrayList<Titre> lesTitres ;
 

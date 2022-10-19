@@ -94,6 +94,13 @@ public class ServletAlbum extends HttpServlet {
             request.setAttribute("pLesTitresAlbum", lesTitresAlbum);
             this.getServletContext().getRequestDispatcher("/view/album/consulter.jsp" ).forward( request, response );
         }
+        if(url.equals("/normanzik/ServletAlbum/ajouter"))
+        {
+            System.out.println("servlerfestival LESFESTIVALS");
+            ArrayList<Album> lesAlbums = DaoAlbum.getLesAlbums(connection);
+            request.setAttribute("pLesAlbums", lesAlbums);
+            this.getServletContext().getRequestDispatcher("/view/album/ajouter.jsp" ).forward( request, response );
+        }
     }
 
     /**

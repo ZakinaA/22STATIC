@@ -1,12 +1,19 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package form;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
-import model.Dispositif;
+import javax.servlet.http.HttpServletRequest;
+import model.Album;
 
-public class FormDispositif {
-
+/**
+ *
+ * @author sio2
+ */
+public class FormAlbum {
     private String resultat;
     private Map<String, String> erreurs = new HashMap<String, String>();
 
@@ -27,15 +34,21 @@ public class FormDispositif {
     }
 
     //méthode de validation du champ de saisie nom
-    private void validationNom( String libelle ) throws Exception {
-        if ( libelle != null && libelle.length() < 3 ) {
-            throw new Exception( "Le nom du dispositif est incorrect." );
+    private void validationNom( String nom ) throws Exception {
+        if ( nom != null && nom.length() < 2 ) {
+            throw new Exception( "Le nom de l'album est incorrect." );
         }
     }
 
     private void validationDateCreation( String dateCreation) throws Exception {
         if ( dateCreation != null && dateCreation.length() < 4  ) {
-            throw new Exception( "La date de création est erronnée" );
+            throw new Exception( "la date de création est erronnée" );
+        }
+    }
+    
+    private void validationCheminImg( String cheminImg) throws Exception {
+        if ( cheminImg != null && cheminImg.length() < 4  ) {
+            throw new Exception( "L'image est erronnée" );
         }
     }
     
@@ -53,35 +66,20 @@ public class FormDispositif {
     }
 
     // creation d'un objet groupe (et son genre) à partir des données saisies dans le formulaire
-    public Dispositif ajouterDispositif(HttpServletRequest request ) {
+    public Album ajouterAlbum(HttpServletRequest request ) {
 
-        Dispositif unDispositif  = new Dispositif();
+        Album unAlbum  = new Album();
 
         //récupération dans des variables des données saisies dans les champs de formulaire
-        String libelle = getDataForm( request, "libelle" );
+        String nom = getDataForm( request, "nom" );
         String dateCreation = getDataForm( request, "dateCreation");
-
-        try {
-            validationNom( libelle );
-        } catch ( Exception e ) {
-            setErreur( "libelle", e.getMessage() );
-        }
+        String cheminImg = getDataForm( request, "cheminImg");
         
-        try {
-            validationDateCreation( dateCreation );
-        } catch ( Exception e ) {
-            setErreur( "dateCreation", e.getMessage() );
-        }
-
-        if ( erreurs.isEmpty() ) {
-            resultat = "Succès de l'ajout.";
-        } else {
-            resultat = "Échec de l'ajout.";
-        }
         System.out.println("resultat erreurs="+resultat);
         
-        unDispositif.setAnnee(Integer.parseInt(dateCreation));
-        unDispositif.setLibelle(libelle);
-        return unDispositif;      
+        unAlbum.setCheminImg(cheminImg);
+        unAlbum.setDateCreation(dateCreation);
+        unAlbum.setNom(nom);
+        return unAlbum;      
     }
 }

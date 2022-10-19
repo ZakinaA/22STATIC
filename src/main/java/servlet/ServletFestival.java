@@ -98,6 +98,13 @@ public class ServletFestival extends HttpServlet {
             request.setAttribute("pLesGroupesDuFestival", lesGroupes);
             this.getServletContext().getRequestDispatcher("/view/festival/consulter.jsp" ).forward( request, response );
         }
+        if(url.equals("/normanzik/ServletFestival/ajouter"))
+        {
+            System.out.println("servlerfestival LESFESTIVALS");
+            ArrayList<Festival> lesFestivals = DaoFestival.getLesFestivals(connection);
+            request.setAttribute("pLesFestivals", lesFestivals);
+            this.getServletContext().getRequestDispatcher("/view/festival/ajouter.jsp" ).forward( request, response );
+        }
     }
 
     /**
