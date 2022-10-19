@@ -34,9 +34,9 @@
                 }
                 Membre mem = unGroupe.getLesMembres().get(i);
                 out.println("<a href='../ServletMembre/consulter?idMembre=" + mem.getId() + "'>" + mem.getNom() +" "+mem.getPrenom()+"</a>");
-                if(nomMembre == unGroupe.getMembre().getNom()){
+                /*if(nomMembre == unGroupe.getMembre().getNom()){*/
                     out.println("<td>");
-                    out.println("<a href ='../ServletGroupe/ajouterMembre?idGroupe=" + unGroupe.getId() + "'>");
+                    out.println("<a href ='../ServletGroupe/supprimerMembre?idGroupe=" + unGroupe.getId() + "?idMembre="+mem.getId()+"'>");
                     out.println("<button type='button' class='btn btn-danger'>Supprimer</button>");
                     out.println("</a></td>");
 
@@ -44,7 +44,7 @@
                     out.println("<a href ='../ServletGroupe/ajouterMembre?idGroupe=" + unGroupe.getId() + "'>");
                     out.println("<button type='button' class='btn btn-primary'>Ajouter</button>");
                     out.println("</a></td>");
-                }
+                /*}*/
             }
         }
         else{

@@ -79,6 +79,7 @@ public class DaoMembre {
             rs=requete.executeQuery();
             while ( rs.next() ) {
                 Membre leMembre = new Membre();
+                leMembre.setId(rs.getInt("mem_id"));
                 leMembre.setNom(rs.getString("membre.nom"));
                 leMembre.setPrenom(rs.getString("prenom"));
 
