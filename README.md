@@ -15,3 +15,6 @@ Lien du <strong>doc de spéc.</strong> : <a href="https://docs.google.com/docume
 - <a href="https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client/2.7.5">MariaDB v2.7.1</a>
 - <a href="https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.65/bin/">Apache Tomcat 9.0.65</a>
 - <a href="https://getbootstrap.com/">Bootstrap 5.2.2</a>
+
+# Fonctionnalités :
+- Compte admin : admin mpadmin
