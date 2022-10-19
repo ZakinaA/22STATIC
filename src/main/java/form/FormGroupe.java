@@ -1,5 +1,6 @@
 package form;
 
+import java.util.ArrayList;
 import model.Genre;
 import model.Groupe;
 
@@ -145,7 +146,21 @@ public class FormGroupe {
         leMembre.setId(idMembre);
         unGroupe.setMembre(leMembre);
         return unGroupe;
+    }
+    
+    public Groupe ajouterMembre(HttpServletRequest request ) {
+        ArrayList<Membre> leMembreAjouter = new  ArrayList<Membre>();
+        Groupe unGroupe  = new Groupe();
+
+        int idGroupe = Integer.parseInt()
+        int idMembre = Integer.parseInt(getDataForm( request, "idMembre" ));
+
+        System.out.println("resultat erreurs="+resultat);
         
-        
+        Membre leMembre = new Membre();
+        leMembre.setId(idMembre);
+        leMembreAjouter.add(leMembre);
+        unGroupe.setLesMembres(leMembreAjouter);
+        return unGroupe;
     }
 }

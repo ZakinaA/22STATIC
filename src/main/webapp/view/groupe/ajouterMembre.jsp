@@ -24,6 +24,18 @@
 %>
 
 <form action="ajouter" method="POST">
+    <label for="idGroupe">Groupe : </label>
+    <select name="idGroupe">
+        <%
+            ArrayList<Groupe> lesGroupes = (ArrayList)request.getAttribute("pLesGroupes");
+            for (int i=0; i<lesGroupes.size();i++){
+                Groupe leGroupe = lesGroupes.get(i);
+                out.println("<option value='" + leGroupe.getId()+"'>" + leGroupe.getNom()+"</option>" );
+            }
+        %>
+    </select>
+    </br>
+    </br>
     <label for="idMembre">Membre : </label>
     <select name="idMembre">
         <%

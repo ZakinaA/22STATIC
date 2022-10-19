@@ -125,6 +125,8 @@ public class ServletGroupe extends HttpServlet {
         
         if(url.equals("/normanzik/ServletGroupe/ajouterMembre"))
         {   
+            ArrayList<Groupe> lesGroupes = DaoGroupe.getLesGroupes(connection);
+            request.setAttribute("pLesGroupes", lesGroupes);
             ArrayList<Membre> lesMembres = DaoAdmin.getLesMembresAjoutable(connection);
             request.setAttribute("pLesMembres", lesMembres);
             this.getServletContext().getRequestDispatcher("/view/groupe/ajouterMembre.jsp" ).forward( request, response );
