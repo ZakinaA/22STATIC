@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import model.Album;
 import model.Dispositif;
 import model.Genre;
 import model.Groupe;
@@ -225,8 +226,8 @@ public class DaoGroupe {
                 ArrayList<Membre> lesMembresDuGroupes = DaoMembre.getLesMembresDuGroupe(con, idGroupe);
                 leGroupe.setLesMembres(lesMembresDuGroupes);
                 
-                ArrayList<Titre> lesTitresDuGroupes = DaoTitre.getLesTitresDuGroupe(con, idGroupe);
-                leGroupe.setLesTitres(lesTitresDuGroupes);
+                ArrayList<Album> lesAlbumsDuGroupe = DaoAlbum.getLesAlbumsByGroupe(con, idGroupe);
+                leGroupe.setLesAlbums(lesAlbumsDuGroupe);
                 
                 ConnexionBdd.fermerConnexion(con);
             }

@@ -42,11 +42,12 @@ public class InitConnexion implements ServletContextListener {
             System.out.println("Erreur lors du chargemement du pilote.....");
         }
 
+        
         try
         {
-            //obtention de la connexion
-            connection = DriverManager.getConnection ("jdbc:mariadb://172.20.177.250:3306/STATIC","ADM_STATIC","mpStatic");
-            //connection = DriverManager.getConnection ("jdbc:mariadb://localhost:3307/normanzik","root","");
+            /*obtention de la connexion
+            connection = DriverManager.getConnection ("jdbc:mariadb://172.20.177.250:3306/STATIC","ADM_STATIC","mpStatic");*/
+            connection = DriverManager.getConnection ("jdbc:mariadb://localhost:3307/static","root","");
             //sauvegarder la connexion dans le context
             servletContext.setAttribute("connection",connection);
             System.out.println("jdbc:mariadb://127.0.0.1:3306 - connexion ");

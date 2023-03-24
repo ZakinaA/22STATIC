@@ -10,15 +10,7 @@
 <%@ page import="form.FormMembre" %>
 <%@ page import="model.Genre" %>
 <%@ page import="java.util.ArrayList" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>WebZik</title>
-</head>
-<body >
-    <%@ include file="/view/header.jsp" %>
+    <%@ include file="/view/header.jsp" %> <%@ include file="/view/body.jsp" %>   <%@ include file="/view/nav.jsp" %>
 <%if (nomMembre!=null || nomPartenaire!=null){
     }else{%>
 <h1 style="text-align: center; margin: 2%; color: black">Connexion</h1>

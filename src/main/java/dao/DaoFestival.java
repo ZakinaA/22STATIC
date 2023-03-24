@@ -18,6 +18,7 @@ import model.Genre;
 import model.Festival;
 import model.Festival;
 import model.Groupe;
+import model.Programmer;
 import test.ConnexionBdd;
 
 /**
@@ -114,7 +115,10 @@ public class DaoFestival {
                 leFestival.setDateDebut(rs.getString("dateDebut"));
                 leFestival.setDateFin(rs.getString("dateFin"));
                 leFestival.setLogo(rs.getString("logo"));
- 
+                
+                ArrayList<Programmer> lesProgrammer = DaoProgrammer.getLesProgrammersByFestival(connection, idFestival);
+                leFestival.setLesProgrammer(lesProgrammer);
+                
             }
         }
         catch (SQLException e)

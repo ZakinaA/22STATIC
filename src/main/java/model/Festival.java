@@ -71,5 +71,13 @@ public class Festival {
         this.logo = logo;
     }
 
+    public ArrayList<Programmer> getLesProgrammer() {
+        return lesProgrammer;
+    }
+
+    public void setLesProgrammer(ArrayList<Programmer> lesProgrammer) {
+        this.lesProgrammer = lesProgrammer;
+    }
+
     
 }

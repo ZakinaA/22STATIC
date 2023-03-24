@@ -2,7 +2,7 @@
 <%@page import="model.Dispositif"%>
 <%@ page import="java.util.ArrayList" %>
 
-    <%@ include file="/view/header.jsp" %>
+    <%@ include file="/view/header.jsp" %> <%@ include file="/view/body.jsp" %>   <%@ include file="/view/nav.jsp" %>
 <%
     ArrayList<Dispositif> lesDispositifs = (ArrayList)request.getAttribute("pLesDispositifs");
 %>
@@ -13,8 +13,8 @@
 
 
 
-<div class="container px-4 px-lg-5">
-    <table class="table table-bordered table-striped table-condensed rounded" style="background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5); border-radius: 10px; ">
+<div class="center container px-4 px-lg-5">
+    <table class="center table table-bordered table-striped table-condensed rounded" style="background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5); border-radius: 10px; ">
         <thead>
         <tr>
             <th>Libelle</th>

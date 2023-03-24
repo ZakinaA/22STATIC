@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Album;
+import model.Groupe;
 import model.Titre;
 import test.ConnexionBdd;
 
@@ -45,6 +46,9 @@ public class DaoAlbum {
                 leAlbum.setDateCreation(rs.getString("dateCreation"));
                 leAlbum.setCheminImg(rs.getString("cheminImg"));
                 
+                ArrayList<Titre> lesTitresAlbum = DaoTitre.getLesTitresAlbum(connection, rs.getInt("alb_id"));
+                leAlbum.setLesTitres(lesTitresAlbum);
+                
                 lesAlbums.add(leAlbum);
             }
         }
@@ -55,7 +59,42 @@ public class DaoAlbum {
         }
         return lesAlbums ;
     }
+    
+    public static ArrayList<Album> getLesAlbumsByGroupe(Connection connection, int idGroupe){
+        ArrayList<Album> lesAlbums = new  ArrayList<Album>();
+        try
+        {
+            //preparation de la requete
+            requete=connection.prepareStatement("select * from album where idGroupe = ?");
+            requete.setInt(1, idGroupe);
+            System.out.println("Requete" + requete);
 
+            //executer la requete
+            rs=requete.executeQuery();
+
+            //On hydrate l'objet métier Album et sa relation Genre avec les résultats de la requête
+            while ( rs.next() ) {
+
+
+                Album leAlbum = new Album();
+                leAlbum.setId(rs.getInt("alb_id"));
+                leAlbum.setNom(rs.getString("nom"));
+                leAlbum.setDateCreation(rs.getString("dateCreation"));
+                leAlbum.setCheminImg(rs.getString("cheminImg"));
+                
+                ArrayList<Titre> lesTitresAlbum = DaoTitre.getLesTitresAlbum(connection, rs.getInt("alb_id"));
+                leAlbum.setLesTitres(lesTitresAlbum);
+                
+                lesAlbums.add(leAlbum);
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+        }
+        return lesAlbums ;
+    }
     
      public static Album getLeAlbum(Connection connection, int idAlbum){
         Album leAlbum = new Album();
@@ -76,10 +115,14 @@ public class DaoAlbum {
                 leAlbum.setNom(rs.getString("nom"));
                 leAlbum.setDateCreation(rs.getString("dateCreation"));
                 leAlbum.setCheminImg(rs.getString("cheminImg"));
+                leAlbum.setLienAlbum(rs.getString("lienAlbum"));
                 
                 Connection con = ConnexionBdd.ouvrirConnexion();
                 ArrayList<Titre> lesTitresAlbum = DaoTitre.getLesTitresAlbum(con, idAlbum);
                 leAlbum.setLesTitres(lesTitresAlbum);
+                
+                Groupe leGroupe = DaoGroupe.getLeGroupe(con, rs.getInt("idGroupe"));
+                leAlbum.setGroupe(leGroupe);
                 
                 ConnexionBdd.fermerConnexion(con);
             }

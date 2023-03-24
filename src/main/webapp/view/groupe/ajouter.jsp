@@ -5,15 +5,8 @@
 <%@ page import="model.Genre" %>
 <%@ page import="java.util.ArrayList" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Normanzik: ajouter un groupes</title>
-</head>
-<body>
-    <%@ include file="/view/header.jsp" %>
+
+    <%@ include file="/view/header.jsp" %> <%@ include file="/view/body.jsp" %>   <%@ include file="/view/nav.jsp" %>
     <h1>Ajouter Groupe</h1>
 <br/>
 

@@ -16,15 +16,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@page import="model.Groupe"%>
 <%@page import="java.util.ArrayList"%>
-<!DOCTYPE html>
-<html style="height: 100%">
-<head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Ajouter un membre</title>
-</head>
-<body>
-    <%@ include file="/view/header.jsp" %>
+
+    <%@ include file="/view/header.jsp" %> <%@ include file="/view/body.jsp" %>   <%@ include file="/view/nav.jsp" %>
     
 <%if (nomMembre!=null){
       /*response.sendRedirect("localhost:8080/STATIC/ServletMembre/groupe");*/

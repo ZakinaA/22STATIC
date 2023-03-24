@@ -1,25 +1,18 @@
+<%@page import="model.Album"%>
 <%@page import="model.Titre"%>
 <%@page import="model.Membre"%>
 <%@page import="model.Groupe"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html style="height: 100%">
-<head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Normanzik: consulter les groupes</title>
-</head>
 
-<body>
-    <%@ include file="/view/header.jsp" %>
+    <%@ include file="/view/header.jsp" %> <%@ include file="/view/body.jsp" %> <%@ include file="/view/nav.jsp" %>
 <%
     Groupe unGroupe = (Groupe)request.getAttribute("pGroupe");
 %>
 
 <h1 style="text-align: center; margin: 2%; color: black">Groupe : <%out.println(unGroupe.getNom());%></h1>
 <br/>
-<div style="margin: 0 10%; background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5); border-radius: 10px;">
+<div class="center" style="padding: 10px; background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5); border-radius: 10px;">
     
 <%
     out.println("<p>Contact du groupe : <a href='../ServletMembre/consulter?idMembre=" + unGroupe.getMembre().getId() + "'>" +unGroupe.getMembre().getNom() +" "+ unGroupe.getMembre().getPrenom()+"</a></p>");
@@ -34,14 +27,14 @@
                 }
                 Membre mem = unGroupe.getLesMembres().get(i);
                 out.println("<a href='../ServletMembre/consulter?idMembre=" + mem.getId() + "'>" + mem.getNom() +" "+mem.getPrenom()+"</a>");
-                if(nomMembre.equals(unGroupe.getMembre().getNom())){
+                if(nomMembre!=null && nomMembre.equals(unGroupe.getMembre().getNom())){
                     out.println("<td>");
-                    out.println("<a href ='../ServletGroupe/supprimerMembre?idGroupe=" + unGroupe.getId() + "?idMembre="+mem.getId()+"'>");
+                    out.println("<a style='text-decoration: none;' href ='../ServletGroupe/supprimerMembre?idGroupe=" + unGroupe.getId() + "?idMembre="+mem.getId()+"'>");
                     out.println("<button type='button' class='btn btn-danger'>Supprimer</button>");
                     out.println("</a></td>");
 
                     out.println("<td>");
-                    out.println("<a href ='../ServletGroupe/ajouterMembre?idGroupe=" + unGroupe.getId() + "'>");
+                    out.println("<a style='text-decoration: none;' href ='../ServletGroupe/ajouterMembre?idGroupe=" + unGroupe.getId() + "'>");
                     out.println("<button type='button' class='btn btn-primary'>Ajouter</button>");
                     out.println("</a></td>");
                 }
@@ -54,46 +47,59 @@
     <p>Mail : <%out.println(unGroupe.getMelSiteWeb());%></p>
     <p>Lieu de récéption : <%out.println(unGroupe.getLieuRepetition());%></p>
     <p>Date de création : <%out.println(unGroupe.getDateCreation());%></p>
-    <table  class="table table-bordered table-striped table-condensed rounded" style="background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5); border-radius: 10px; ">
-    <%  if(unGroupe.getLesTitres() != null && unGroupe.getLesTitres().size()!=0){        
+    <% if(unGroupe.getLesAlbums() != null && unGroupe.getLesAlbums().size()!=0){%>
+        <% for (Album lAlbum : unGroupe.getLesAlbums()) { %>
+        <table  class='table table-striped table-condensed rounded' style='background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5); border-radius: 10px; '>
+            <thead>
+                <tr>
+                    <th>
 
-                out.println("<div class='container px-4 px-lg-5'>");
-                out.println("<table  class='table table-bordered table-striped table-condensed'>");
-                out.println("<thead>");
-                out.println("<tr>");
-                out.println("<th>Intitulé</th>");
-                out.println("<th>Durée</th>");
-                out.println("<th>Lien</th>");
-                out.println("</tr>");
-                out.println("</thead>");
-                out.println("<tbody>");
-                out.println("<tr>");
+                        <%out.println("ALBUM : <a href ='../ServletAlbum/consulter?idAlbum=" + lAlbum.getId() + "'>");
+                        out.println(lAlbum.getNom());
+                        out.println("</a>"); %>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <%out.println("<table class='center table table-striped table-condensed rounded' style='background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5);'>");
+                        out.println("<thead>");
+                        out.println("<tr>");
+                        out.println("<th>Intitulé</th>");
+                        out.println("<th>Durée</th>");
+                        out.println("<th>Lien</th>");
+                        out.println("</tr>");
+                        out.println("</thead>");
+                        out.println("<tbody>");
+                        out.println("<tr>");
 
+                            for (Titre tit : lAlbum.getLesTitres()) {
+                                out.println("<tr>");
+                                out.println("<td>");
+                                out.println("<a href='"+tit.getLienURL()+"'>" + tit.getIntitule()+"</a>");
+                                out.println("</td>");
 
-                    for (int i=0; i<unGroupe.getLesTitres().size(); i++) {
-                        Titre tit = unGroupe.getLesTitres().get(i);
+                                out.println("<td>");
+                                out.println(tit.getDuree()+"s");
+                                out.println("</td>");
 
-                        out.println("<td>");
-                        out.println("<a href='"+tit.getLienURL()+"'>" + tit.getIntitule()+"</a>");
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(tit.getDuree()+"s");
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(tit.getLienURL());
-                        out.println("</td>");
-
-
-                    }}else{
-                        out.println("Le Groupe n'a pas de titre");
-                    }
-
-                %>
-            </tr>
+                                out.println("<td>");
+                                out.println("<a href='"+tit.getLienURL()+"'>"+tit.getLienURL()+"</a>");
+                                out.println("</td>");
+                                out.println("</tr>");
+                            }
+                        out.println("</tr>");
+                        out.println("</tbody>");
+                        out.println("</table>");%>
+                    </td>
+                </tr>   
             </tbody>
         </table>
+    <%}}else{
+            out.println("Le Groupe n'a pas d'album");
+        }
+    %>
     </div>
 </body>
 </html>

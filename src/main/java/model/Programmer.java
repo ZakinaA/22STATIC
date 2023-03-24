@@ -9,28 +9,29 @@ package model;
  * @author sio2
  */
 public class Programmer {
-    private int idGroupe;
-    private int idFestival;
+    private Groupe leGroupe;
+    private Festival leFestival;
     private String dateProgrammation;
 
     public Programmer() {
     }
 
-    public int getIdGroupe() {
-        return idGroupe;
+    public Groupe getLeGroupe() {
+        return leGroupe;
     }
 
-    public void setIdGroupe(int idGroupe) {
-        this.idGroupe = idGroupe;
+    public void setLeGroupe(Groupe leGroupe) {
+        this.leGroupe = leGroupe;
     }
 
-    public int getIdFestival() {
-        return idFestival;
+    public Festival getLeFestival() {
+        return leFestival;
     }
 
-    public void setIdFestival(int idFestival) {
-        this.idFestival = idFestival;
+    public void setLeFestival(Festival leFestival) {
+        this.leFestival = leFestival;
     }
+
 
     public String getDateProgrammation() {
         return dateProgrammation;

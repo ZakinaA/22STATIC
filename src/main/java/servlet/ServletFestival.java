@@ -94,8 +94,8 @@ public class ServletFestival extends HttpServlet {
         if(url.equals("/STATIC/ServletFestival/consulter"))
         {
             int idFestival = Integer.parseInt(request.getParameter("idFestival"));
-            ArrayList<Groupe> lesGroupes = DaoFestival.getLesGroupesFestival(connection, idFestival);
-            request.setAttribute("pLesGroupesDuFestival", lesGroupes);
+            Festival leFestival = DaoFestival.getLeFestival(connection, idFestival);
+            request.setAttribute("pFestival", leFestival);
             this.getServletContext().getRequestDispatcher("/view/festival/consulter.jsp" ).forward( request, response );
         }
         if(url.equals("/STATIC/ServletFestival/ajouter"))

@@ -7,13 +7,8 @@
 <%@page import="form.FormFestival"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Ajouter un festival</title>
-    </head>
-    <body>
-        <%@ include file="/view/header.jsp" %>
+
+        <%@ include file="/view/header.jsp" %> <%@ include file="/view/body.jsp" %>   <%@ include file="/view/nav.jsp" %>
         <h1 style="text-align: center; margin: 2%; color: black">Ajouter un festival</h1>
         
         <%

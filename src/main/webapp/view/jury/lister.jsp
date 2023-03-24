@@ -15,7 +15,7 @@
     <title>Jury</title>
 </head>
 <body>
-    <%@ include file="/view/header.jsp" %>
+    <%@ include file="/view/header.jsp" %> <%@ include file="/view/body.jsp" %>   <%@ include file="/view/nav.jsp" %>
 <%if (nomPartenaire!=null){%>
     <h1>Les Groupes</h1>
 <br/>
@@ -26,7 +26,7 @@
 %>
 
 
-<div class="container px-4 px-lg-5">
+<div class="center container px-4 px-lg-5">
     <table  class="table table-bordered table-striped table-condensed rounded" style="background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5); border-radius: 10px; " >
         <thead>
         <tr>

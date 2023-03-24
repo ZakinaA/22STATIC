@@ -23,6 +23,7 @@ public class Groupe {
     private Dispositif dispositif;
     private Membre membre;
     private ArrayList<Titre> lesTitres ;
+    private ArrayList<Album> lesAlbums ;
     private ArrayList<Membre> lesMembres ;
     private ArrayList<LieuConcert> lesLieuConcerts ;
     private ArrayList<GroupeMembreInstrument> lesGroupesMembresInstruments ;
@@ -173,4 +174,21 @@ public class Groupe {
         lesGroupesMembresInstruments.add(unGroupeMembreInstrument);
     }
 
+    public ArrayList<Album> getLesAlbums() {
+        return lesAlbums;
+    }
+
+    public void setLesAlbums(ArrayList<Album> lesAlbums) {
+        this.lesAlbums = lesAlbums;
+    }
+
+    public ArrayList<Programmer> getLesProgrammer() {
+        return lesProgrammer;
+    }
+
+    public void setLesProgrammer(ArrayList<Programmer> lesProgrammer) {
+        this.lesProgrammer = lesProgrammer;
+    }
+
+    
 }

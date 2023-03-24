@@ -7,15 +7,8 @@
 <%@page import="model.Festival"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Lister les festivals</title>
-    </head>
-    <body>
-        <%@ include file="/view/header.jsp" %>
+
+        <%@ include file="/view/header.jsp" %> <%@ include file="/view/body.jsp" %>   <%@ include file="/view/nav.jsp" %>
         <h1 style="text-align: center; margin: 2%; color: black">Consulter Festival</h1>
 <br/>
 
@@ -25,8 +18,8 @@
 %>
 
 
-<div style="margin: 0 10%;  ">
-    <table  class="table table-bordered table-striped table-condensed rounded" style="background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5); border-radius: 10px; ">
+<div class="center">
+    <table  class="center table table-bordered table-striped table-condensed rounded" style="background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5); border-radius: 10px; ">
         <thead>
         <tr>
             <th>Nom</th>
@@ -65,7 +58,7 @@
                     out.println("</td>");
                     
                     out.println("<td>");
-                    out.println("<img src='" + unFestival.getLogo()+"'>");
+                    out.println("<img class='img-thumbnail' style='width: 200px;' src='" + unFestival.getLogo()+"'>");
                     out.println("</td>");
 
 

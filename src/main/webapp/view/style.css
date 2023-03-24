@@ -1,0 +1,81 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 20 mars 2023, 16:02:01
+    Author     : arnaud.le_cozannet
+*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.custom-title {
+    font-size: 75pt;
+    font-family: SF Pro Display,SF Pro Icons,AOS Icons,Helvetica Neue,Helvetica,Arial,sans-serif;
+    color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-shadow:   0px -6px 0 #212121,
+        0px -6px 0 #212121,
+        0px  6px 0 #212121,
+        0px  6px 0 #212121,
+        -6px  0px 0 #212121,
+        6px  0px 0 #212121,
+        -6px  0px 0 #212121,
+        6px  0px 0 #212121,
+        -6px -6px 0 #212121,
+        6px -6px 0 #212121,
+        -6px  6px 0 #212121,
+        6px  6px 0 #212121,
+        -6px  18px 0 #212121,
+        0px  18px 0 #212121,
+        6px  18px 0 #212121,
+        0 19px 1px rgba(0,0,0,.1),
+        0 0 6px rgba(0,0,0,.1),
+        0 6px 3px rgba(0,0,0,.3),
+        0 12px 6px rgba(0,0,0,.2),
+        0 18px 18px rgba(0,0,0,.25),
+        0 24px 24px rgba(0,0,0,.2),
+        0 36px 36px rgba(0,0,0,.15);
+}
+
+li{
+    display: inline-block;
+    font-size: 20px;
+}
+
+.logo{
+    position: relative;
+    top: -5px;
+    font-size: 30px;
+}
+
+a{
+    text-decoration: none !important;
+}
+
+.center{
+    width: fit-content;
+    min-width: 500px;
+    margin: auto;
+}
+
+table{
+    background-color:rgba(255, 255, 255, 0.7); 
+    border: 10px solid rgba(255, 255, 255, 0.5); 
+    border-radius: 10px;
+}
+
+.table-index{
+    border: 3px solid rgba(255, 255, 255, 0.5); 
+    border-radius: 10px;
+}
+
+.table-index th {
+    transition: transform .2s;
+}
+
+.table-index th:hover {
+    transform: scale(1.1);
+}
+
+/*https://codepen.io/Oral_Seventhplanet/pen/Bazxpdq*/

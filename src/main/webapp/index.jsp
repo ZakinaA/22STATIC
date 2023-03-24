@@ -7,30 +7,20 @@
 <%@page import="model.Groupe"%>
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Accueil</title>
-        <script src="https://kit.fontawesome.com/b8b203d9d9.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-        <%@ include file="/view/header.jsp" %>
+
+        <%@ include file="/view/header.jsp" %> <%@ include file="/view/body.jsp" %>   <%@ include file="/view/nav.jsp" %>
        
         <h1 style="text-align: left; margin: 8% 2% 5% 10%; color: white; font-size: 50px">Découvrez la musique de votre région</h1>
-    </body>
-    </body>
     <%
         ArrayList<Groupe> lesGroupes = (ArrayList)request.getAttribute("pLesGroupes");
     %>
-    <img style="display: flex; position: absolute; top: 30%; right: 10%; width: 30%;" src="https://www.adobe.com/fr/express/create/cover/media_18d167bb3f9bbb450af1f75b3e98a29856b16e5b3.jpeg?width=400&format=jpeg&optimize=medium">
+    <img class="img-thumbnail" style="display: flex; position: absolute; top: 30%; right: 10%; width: 30%;" src="https://www.adobe.com/fr/express/create/cover/media_18d167bb3f9bbb450af1f75b3e98a29856b16e5b3.jpeg?width=400&format=jpeg&optimize=medium">
     <div>
         
-        <table style="margin: 5% 5% 5% 10%">
+        <table class="table-index" style="margin: 5% 5% 5% 10%">
             <tr>
                 <th style="border:10px">
-                    <a href="http://172.20.177.250:8080/STATIC/ServletGroupe/lister">
+                    <a  href="http://localhost:8080/STATIC/ServletGroupe/lister">
                     <div style="width: 175px; height: 250px; background-color: black">
                         <div style="font-size:120px; width: 100%; height: 70%"> 
                             <i style="margin:8%; color: white" class="fa-solid fa-user-group"></i>
@@ -42,7 +32,7 @@
                     </a>
                 </th>
                 <th style="border:10px">
-                    <a href="http://172.20.177.250:8080/STATIC/ServletAlbum/lister">
+                    <a href="http://localhost:8080/STATIC/ServletAlbum/lister">
                     <div style="width: 175px; height: 250px; background-color: black">
                         <div style="font-size:120px; width: 100%; height: 70%"> 
                             <i style="margin:8% 15%; color: white" class="fa-solid fa-record-vinyl"></i>
@@ -55,7 +45,7 @@
                 </th>
                 <th style="border:100px">
                     <%--<a href="../ServletFestival/lister">--%>
-                        <a href="http://172.20.177.250:8080/STATIC/ServletFestival/lister">
+                        <a href="http://localhost:8080/STATIC/ServletFestival/lister">
                     <div style="width: 175px; height: 250px; background-color: black">
                         <div style="font-size:120px; width: 100%; height: 70%"> 
                             <i style="margin:8% 12%; color: white" class="fa-solid fa-ticket"></i>
@@ -67,8 +57,8 @@
                     </a>
                 </th>
                 <th style="border:100px">
-                    <a href="http://172.20.177.250:8080/STATIC/ServletConnexion/connexion">
-                        <a href="http://172.20.177.250:8080/STATIC/ServletConnexion/connexion">
+                    <a href="http://localhost:8080/STATIC/ServletConnexion/connexion">
+                        <a href="http://localhost:8080/STATIC/ServletConnexion/connexion">
                     <div style="width: 175px; height: 250px; background-color: black">
                         <div style="font-size:120px; width: 100%; height: 70%"> 
                             <i style="margin:8% 12%; color: white" class="fa-solid fa-arrow-right-to-bracket"></i>
@@ -87,4 +77,5 @@
                 et les musiques de la région normande</p>
         </div>
     </div>
+                            
 </html>
