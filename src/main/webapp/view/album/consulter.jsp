@@ -30,33 +30,29 @@
                     } else {
                         out.println("<p><b>Titre:</b></p>");
                     }
-                    out.println("<table class='center table table-striped table-condensed rounded' style='background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5);'>");
-                    out.println("<thead>");
-                    out.println("<tr>");
-                    out.println("<th>Intitulé</th>");
-                    out.println("<th>Durée</th>");
-                    out.println("<th>Lien</th>");
-                    out.println("</tr>");
-                    out.println("</thead>");
+                    out.println("<table class='table-no-border center table table-striped table-condensed rounded' style='background-color:rgba(255, 255, 255, 0.5);'>");
                     out.println("<tbody>");
-
+                    int j = 0;
                     for (int i = 0; i < unAlbum.getLesTitres().size(); i++) {
                         Titre tit = unAlbum.getLesTitres().get(i);
-                        
-                        out.println("<tr>");
+                        j++;
+                        if (j == 0) {
+                            out.println("<tr>");
+                        }
                         out.println("<td>");
-                        out.println("<a href='" + tit.getLienURL() + "'>" + tit.getIntitule() + "</a>");
+                        out.println("<div class='col mb-4'>");
+                        out.println("<div class='card' style='width:fit-content;'>");
+                        out.println("<iframe width='426' height='240' src='" + tit.getLienURL() + "' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowfullscreen></iframe>");
+                        out.println("<div class='card-body'>");
+                        out.println("<h5 class='card-title'>" + tit.getIntitule()+ "</h5>");
+                        out.println("<p class='card-text card-title'><small class='text-muted'>" + tit.getDuree() + "</small></p>");
+                        out.println("</div>");
+                        out.println("</div>");
                         out.println("</td>");
-
-                        out.println("<td>");
-                        out.println(tit.getDuree() + "s");
-                        out.println("</td>");
-
-                        out.println("<td>");
-                        out.println("<iframe width='384' height='216' src='" + tit.getLienURL() + "' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowfullscreen></iframe>");
-                        //out.println("<a href='" + tit.getLienURL() + "'>" + tit.getLienURL() + "</a>");
-                        out.println("</td>");
-                        out.println("</tr>");
+                        if (j == 2) {
+                            out.println("</tr>");
+                            j = 0;
+                        }
                     }
                 } else {
                     out.println("L'Album n'a pas de titre");
@@ -72,4 +68,19 @@
         </div>
     </div>
 </body>
+
+<%--out.println("<div class='card mb-3' style='max-width: 540px;'>");
+  out.println("<div class='row no-gutters'>");
+    out.println("<div class='col-md-4'>");
+      out.println("<iframe width='384' height='216' src='" + tit.getLienURL() + "' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowfullscreen></iframe>");
+    out.println("</div>");
+    out.println("<div class='col-md-8'>");
+      out.println("<div class='card-body'>");
+        out.println("<h5 class='card-title'>" + tit.getIntitule() + "</h5>");
+        out.println("<p class='card-text'>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>");
+        out.println("<p class='card-text'><small class='text-muted'>" + tit.getDuree() + "</small></p>");
+      out.println("</div>");
+    out.println("</div>");
+  out.println("</div>");
+out.println("</div>");--%>
 

@@ -65,6 +65,12 @@ table{
     border-radius: 10px;
 }
 
+.table-no-border{
+    background-color:rgba(255, 255, 255, 0.7);
+    border: 0px !important;
+    border-radius: 10px;
+}
+
 .table-index{
     border: 3px solid rgba(255, 255, 255, 0.5); 
     border-radius: 10px;
