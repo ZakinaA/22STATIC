@@ -13,7 +13,7 @@
 <%
     Festival leFestival = (Festival) request.getAttribute("pFestival");
 %>
-<body style="background-image: url('<%= leFestival.getLogo()%>'); background-size:14%; min-height: 100vh; height: 100%;">
+<body style="backdrop-filter: blur(7.5px); background-image: url('<%= leFestival.getLogo()%>'); background-size:14%; min-height: 100vh; height: 100%;">
 <%@ include file="/view/nav.jsp" %>
 <h1 class="custom-title" style="text-align: center; margin: 2%; color: #FFFFFF;"><% out.println(leFestival.getNom()); %></h1>
     <br/>

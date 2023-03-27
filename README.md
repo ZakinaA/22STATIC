@@ -4,7 +4,7 @@ Projet <strong>Normanzik</strong> du Groupe STATIC<br>
 Composé de Ouael, Guillaume, Arnaud<br>
 Lien du <strong>Trello</strong> : <a href="https://trello.com/b/gDsrHJdT">ici</a><br>
 Lien du <strong>doc de spéc.</strong> : <a href="https://docs.google.com/document/d/1TKqBDYrIr0_ypZ0XyzY6gIcUFhe2GVCzsOk2oeA2D5c/edit?usp=sharing">ici</a><br>
-http://172.20.177.250:8080/STATIC/index.jsp
+http://localhost:8080/STATIC/index.jsp
 
 # Fonctionnalités :
 - En cours
