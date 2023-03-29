@@ -21,127 +21,121 @@ import test.ConnexionBdd;
  * @author sio2
  */
 public class DaoAlbum {
-     Connection connection=null;
-    static PreparedStatement requete=null;
-    static ResultSet rs=null;
 
-    public static ArrayList<Album> getLesAlbums(Connection connection){
-        ArrayList<Album> lesAlbums = new  ArrayList<Album>();
-        try
-        {
+    Connection connection = null;
+    static PreparedStatement requete = null;
+    static ResultSet rs = null;
+
+    public static ArrayList<Album> getLesAlbums(Connection connection) {
+        ArrayList<Album> lesAlbums = new ArrayList<Album>();
+        try {
             //preparation de la requete
-            requete=connection.prepareStatement("select * from album");
+            requete = connection.prepareStatement("select * from album");
             System.out.println("Requete" + requete);
 
             //executer la requete
-            rs=requete.executeQuery();
+            rs = requete.executeQuery();
 
             //On hydrate l'objet métier Album et sa relation Genre avec les résultats de la requête
-            while ( rs.next() ) {
-
+            while (rs.next()) {
 
                 Album leAlbum = new Album();
                 leAlbum.setId(rs.getInt("alb_id"));
                 leAlbum.setNom(rs.getString("nom"));
                 leAlbum.setDateCreation(rs.getString("dateCreation"));
                 leAlbum.setCheminImg(rs.getString("cheminImg"));
-                
+                leAlbum.setDescription(rs.getString("description"));
+                leAlbum.setArchiver(rs.getInt("archiver"));
+
                 ArrayList<Titre> lesTitresAlbum = DaoTitre.getLesTitresAlbum(connection, rs.getInt("alb_id"));
                 leAlbum.setLesTitres(lesTitresAlbum);
-                
+
                 lesAlbums.add(leAlbum);
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
             //out.println("Erreur lors de l’établissement de la connexion");
         }
-        return lesAlbums ;
+        return lesAlbums;
     }
-    
-    public static ArrayList<Album> getLesAlbumsByGroupe(Connection connection, int idGroupe){
-        ArrayList<Album> lesAlbums = new  ArrayList<Album>();
-        try
-        {
+
+    public static ArrayList<Album> getLesAlbumsByGroupe(Connection connection, int idGroupe) {
+        ArrayList<Album> lesAlbums = new ArrayList<Album>();
+        try {
             //preparation de la requete
-            requete=connection.prepareStatement("select * from album where idGroupe = ?");
+            requete = connection.prepareStatement("select * from album where idGroupe = ?");
             requete.setInt(1, idGroupe);
             System.out.println("Requete" + requete);
 
             //executer la requete
-            rs=requete.executeQuery();
+            rs = requete.executeQuery();
 
             //On hydrate l'objet métier Album et sa relation Genre avec les résultats de la requête
-            while ( rs.next() ) {
-
+            while (rs.next()) {
 
                 Album leAlbum = new Album();
                 leAlbum.setId(rs.getInt("alb_id"));
                 leAlbum.setNom(rs.getString("nom"));
                 leAlbum.setDateCreation(rs.getString("dateCreation"));
                 leAlbum.setCheminImg(rs.getString("cheminImg"));
-                
+                leAlbum.setDescription(rs.getString("description"));
+                leAlbum.setArchiver(rs.getInt("archiver"));
+
                 ArrayList<Titre> lesTitresAlbum = DaoTitre.getLesTitresAlbum(connection, rs.getInt("alb_id"));
                 leAlbum.setLesTitres(lesTitresAlbum);
-                
+
                 lesAlbums.add(leAlbum);
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
             //out.println("Erreur lors de l’établissement de la connexion");
         }
-        return lesAlbums ;
+        return lesAlbums;
     }
-    
-     public static Album getLeAlbum(Connection connection, int idAlbum){
+
+    public static Album getLeAlbum(Connection connection, int idAlbum) {
         Album leAlbum = new Album();
-        try
-        {
+        try {
             //preparation de la requete
-            requete=connection.prepareStatement("select * from album where alb_id=?");
+            requete = connection.prepareStatement("select * from album where alb_id=?");
             requete.setInt(1, idAlbum);
             System.out.println("Requete" + requete);
 
             //executer la requete
-            rs=requete.executeQuery();
+            rs = requete.executeQuery();
 
             //On hydrate l'objet métier Album et sa relation Genre avec les résultats de la requête
-            if ( rs.next() ) {
-                
+            if (rs.next()) {
+
                 leAlbum.setId(rs.getInt("alb_id"));
                 leAlbum.setNom(rs.getString("nom"));
                 leAlbum.setDateCreation(rs.getString("dateCreation"));
                 leAlbum.setCheminImg(rs.getString("cheminImg"));
                 leAlbum.setLienAlbum(rs.getString("lienAlbum"));
-                
+                leAlbum.setDescription(rs.getString("description"));
+                leAlbum.setArchiver(rs.getInt("archiver"));
+
                 Connection con = ConnexionBdd.ouvrirConnexion();
                 ArrayList<Titre> lesTitresAlbum = DaoTitre.getLesTitresAlbum(con, idAlbum);
                 leAlbum.setLesTitres(lesTitresAlbum);
-                
+
                 Groupe leGroupe = DaoGroupe.getLeGroupe(con, rs.getInt("idGroupe"));
                 leAlbum.setGroupe(leGroupe);
-                
+
                 ConnexionBdd.fermerConnexion(con);
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
             //out.println("Erreur lors de l’établissement de la connexion");
         }
-        return leAlbum ;
+        return leAlbum;
     }
 
-    
-    public static Album ajouterAlbum(Connection connection, Album unAlbum){
+    public static Album ajouterAlbum(Connection connection, Album unAlbum) {
         int idGenere = -1;
-        try
-        {
-            requete=connection.prepareStatement("INSERT INTO ALBUM (nom, dateCreation, cheminImg)\n" +
-                    "VALUES (?,?,?)", requete.RETURN_GENERATED_KEYS );
+        try {
+            requete = connection.prepareStatement("INSERT INTO ALBUM (nom, dateCreation, cheminImg)\n"
+                    + "VALUES (?,?,?)", requete.RETURN_GENERATED_KEYS);
             requete.setString(1, unAlbum.getNom());
             requete.setString(2, unAlbum.getDateCreation());
             requete.setString(3, unAlbum.getCheminImg());
@@ -153,24 +147,61 @@ public class DaoAlbum {
 
             // Récupération de id auto-généré par la bdd dans la table groupe
             rs = requete.getGeneratedKeys();
-            while ( rs.next() ) {
-                idGenere = rs.getInt( 1 );
+            while (rs.next()) {
+                idGenere = rs.getInt(1);
                 unAlbum.setId(idGenere);
             }
 
             // si le résultat de la requete est différent de 1, c'est que la requête a échoué.
             // Dans ce cas, on remet l'objet groupe à null
-            if (resultatRequete != 1){
-                unAlbum= null;
+            if (resultatRequete != 1) {
+                unAlbum = null;
             }
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+            //out.println("Erreur lors de l’établissement de la connexion");
+            unAlbum = null;
+        }
+        return unAlbum;
+    }
+
+    public static int desinscrireAlbum(Connection connection, int idAlbum){
+        try
+        {
+            requete = connection.prepareStatement("UPDATE album SET archiver = 1 WHERE alb_id = ?");
+            requete.setInt(1, idAlbum);
+            
+            System.out.println("requete updateDesInscriptionGroupe=" + requete);
+            
+
+            int resultatRequete = requete.executeUpdate();
+            System.out.println("resultat requete=" + resultatRequete);
         }
         catch (SQLException e)
         {
             e.printStackTrace();
-            //out.println("Erreur lors de l’établissement de la connexion");
-            unAlbum= null;
         }
-        return unAlbum ;
+        return idAlbum;
     }
+    
+    public static int inscrireAlbum(Connection connection, int idAlbum){
+        try
+        {
+            requete = connection.prepareStatement("UPDATE album SET archiver = 0 WHERE alb_id = ?");
+            requete.setInt(1, idAlbum);
+            
+            System.out.println("requete updateDesInscriptionGroupe=" + requete);
+            
+
+            int resultatRequete = requete.executeUpdate();
+            System.out.println("resultat requete=" + resultatRequete);
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return idAlbum;
+    }
+
 }

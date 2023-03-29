@@ -905,6 +905,7 @@ public class DaoAdmin {
                 leAlbum.setId(rs.getInt("alb_id"));
                 leAlbum.setNom(rs.getString("nom"));
                 leAlbum.setDateCreation(rs.getString("dateCreation"));
+                leAlbum.setArchiver(rs.getInt("archiver"));
                 lesAlbums.add(leAlbum);
             }
         }

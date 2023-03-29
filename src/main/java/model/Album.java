@@ -17,7 +17,9 @@ public class Album {
     private String dateCreation;
     private String cheminImg;
     private String lienAlbum;
+    private String description;
     private Groupe groupe;
+    private int archiver;
     private ArrayList<Titre> lesTitres ;
 
     public Album() {
@@ -63,6 +65,14 @@ public class Album {
         this.cheminImg = cheminImg;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
     public Groupe getGroupe() {
         return groupe;
     }
@@ -71,6 +81,14 @@ public class Album {
         this.groupe = groupe;
     }
 
+    public int getArchiver() {
+        return archiver;
+    }
+
+    public void setArchiver(int archiver) {
+        this.archiver = archiver;
+    }
+    
     public void setLesTitres(ArrayList<Titre> lesTitres) {
         this.lesTitres = lesTitres;
     }

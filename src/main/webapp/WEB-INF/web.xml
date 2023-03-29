@@ -122,6 +122,14 @@
         <servlet-name>ServletAlbum</servlet-name>
         <url-pattern>/ServletAlbum/ajouter</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAlbum</servlet-name>
+        <url-pattern>/ServletAlbum/archiver</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ServletAlbum</servlet-name>
+        <url-pattern>/ServletAlbum/dearchiver</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

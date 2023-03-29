@@ -60,41 +60,6 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <%out.println("<table class='center table table-striped table-condensed rounded' style='background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5);'>");
-                        out.println("<thead>");
-                        out.println("<tr>");
-                        out.println("<th>Intitulé</th>");
-                        out.println("<th>Durée</th>");
-                        out.println("<th>Lien</th>");
-                        out.println("</tr>");
-                        out.println("</thead>");
-                        out.println("<tbody>");
-                        out.println("<tr>");
-
-                            for (Titre tit : lAlbum.getLesTitres()) {
-                                out.println("<tr>");
-                                out.println("<td>");
-                                out.println("<a href='"+tit.getLienURL()+"'>" + tit.getIntitule()+"</a>");
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println(tit.getDuree()+"s");
-                                out.println("</td>");
-
-                                out.println("<td>");
-                                out.println("<a href='"+tit.getLienURL()+"'>"+tit.getLienURL()+"</a>");
-                                out.println("</td>");
-                                out.println("</tr>");
-                            }
-                        out.println("</tr>");
-                        out.println("</tbody>");
-                        out.println("</table>");%>
-                    </td>
-                </tr>   
-            </tbody>
         </table>
     <%}}else{
             out.println("Le Groupe n'a pas d'album");

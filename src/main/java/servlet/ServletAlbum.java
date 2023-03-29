@@ -101,6 +101,22 @@ public class ServletAlbum extends HttpServlet {
             request.setAttribute("pLesAlbums", lesAlbums);
             this.getServletContext().getRequestDispatcher("/view/album/ajouter.jsp" ).forward( request, response );
         }
+        
+        if(url.equals("/STATIC/ServletAlbum/archiver")){
+            int idAlbum = Integer.parseInt(request.getParameter("idAlbum"));
+            DaoAlbum.desinscrireAlbum(connection, idAlbum);
+            ArrayList<Album> lesAlbums = DaoAlbum.getLesAlbums(connection);
+            request.setAttribute("pLesAlbums", lesAlbums);
+            this.getServletContext().getRequestDispatcher("/view/album/lister.jsp" ).forward( request, response );
+        }
+        
+        if(url.equals("/STATIC/ServletAlbum/dearchiver")){
+            int idAlbum = Integer.parseInt(request.getParameter("idAlbum"));
+            DaoAlbum.inscrireAlbum(connection, idAlbum);
+            ArrayList<Album> lesAlbums = DaoAlbum.getLesAlbums(connection);
+            request.setAttribute("pLesAlbums", lesAlbums);
+            this.getServletContext().getRequestDispatcher("/view/album/lister.jsp" ).forward( request, response );
+        }
     }
 
     /**
