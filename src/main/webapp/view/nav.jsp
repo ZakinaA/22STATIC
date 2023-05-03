@@ -13,7 +13,7 @@
             <img src="https://i.ibb.co/tQRkg9M/logo.png" alt="Logo" width="60" height="60" class="d-inline-block mx-3" >
             Norman'Zik
         </a>
-        <div style="position: absolute; top: 5px; right: 0px; width: 850px ">
+        <div style="position: absolute; top: 5px; right: 0px; width: 900px ">
             <ul>
                 <% String url = request.getRequestURI();
                     String nomMembre = (String) session.getAttribute("nomMembre");
@@ -40,7 +40,7 @@
                     </div>
                 </li>
                 <li>
-                    <a class="nav-link" href="http://localhost:8080/STATIC/ServletConnexion/deconnexion">Se déconnecter</a>
+                    <a class="nav-link btn btn-danger" href="http://localhost:8080/STATIC/ServletConnexion/deconnexion">Déconnexion</a>
                 </li>
                 <%} else if (nomPartenaire != null) {
                     if (nomPartenaire.equals("admin")) {
@@ -72,9 +72,16 @@
                         <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletFestival/ajouter">Ajouter</a>
                     </div>
                 </li>
-
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Jury
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletJury/lister">Lister</a>
+                    </div>
+                </li>
                 <li>
-                    <a class="nav-link" href="http://localhost:8080/STATIC/ServletConnexion/deconnexion">Se déconnecter</a>
+                    <a class="nav-link btn btn-danger" href="http://localhost:8080/STATIC/ServletConnexion/deconnexion">Déconnexion</a>
                 </li>
                 <% } else {%>
                 out.println("<li>Vous êtes le partenaire " + nomPartenaire + "</li>");%>
@@ -87,7 +94,7 @@
                     </div>
                 </li>
                 <li>
-                    <a class="nav-link" href="http://localhost:8080/STATIC/ServletConnexion/deconnexion">Se déconnecter</a>
+                    <a class="nav-link btn btn-danger" href="http://localhost:8080/STATIC/ServletConnexion/deconnexion">Déconnexion</a>
                 </li>
 
 
@@ -111,11 +118,11 @@
                 </li>
                 <li>
                     <a class="nav-link" href="http://localhost:8080/STATIC/ServletMembre/ajouter">
-                        Créer un compte
+                        S'inscrire
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link" href="http://localhost:8080/STATIC/ServletConnexion/connexion">
+                    <a class="nav-link btn btn-success" href="http://localhost:8080/STATIC/ServletConnexion/connexion">
                         Se connecter
                     </a>
                 </li>

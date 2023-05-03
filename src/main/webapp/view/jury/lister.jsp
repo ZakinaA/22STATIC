@@ -17,7 +17,7 @@
 <body>
     <%@ include file="/view/header.jsp" %> <%@ include file="/view/body.jsp" %>   <%@ include file="/view/nav.jsp" %>
 <%if (nomPartenaire!=null){%>
-    <h1>Les Groupes</h1>
+    <h1 style="text-align: center; margin: 2%; color: black">Les Groupes</h1>
 <br/>
 
 
