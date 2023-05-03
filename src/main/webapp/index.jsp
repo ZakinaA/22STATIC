@@ -19,7 +19,7 @@
         
         <table class="table-index" style="margin: 5% 5% 5% 10%">
             <tr>
-                <th style="border:10px">
+                <th>
                     <a  href="http://localhost:8080/STATIC/ServletGroupe/lister">
                     <div style="width: 175px; height: 250px; background-color: black">
                         <div style="font-size:120px; width: 100%; height: 70%"> 
@@ -31,7 +31,7 @@
                     </div>
                     </a>
                 </th>
-                <th style="border:10px">
+                <th >
                     <a href="http://localhost:8080/STATIC/ServletAlbum/lister">
                     <div style="width: 175px; height: 250px; background-color: black">
                         <div style="font-size:120px; width: 100%; height: 70%"> 
@@ -43,7 +43,7 @@
                     </div>
                     </a>
                 </th>
-                <th style="border:100px">
+                <th>
                     <%--<a href="../ServletFestival/lister">--%>
                         <a href="http://localhost:8080/STATIC/ServletFestival/lister">
                     <div style="width: 175px; height: 250px; background-color: black">
@@ -56,7 +56,8 @@
                     </div>
                     </a>
                 </th>
-                <th style="border:100px">
+                <% if (!(nomMembre != null || nomPartenaire != null)) {%>
+                <th>
                     <a href="http://localhost:8080/STATIC/ServletConnexion/connexion">
                         <a href="http://localhost:8080/STATIC/ServletConnexion/connexion">
                     <div style="width: 175px; height: 250px; background-color: black">
@@ -69,6 +70,7 @@
                     </div>
                     </a>
                 </th>
+                <%}%>
             </tr>
         </table>
         

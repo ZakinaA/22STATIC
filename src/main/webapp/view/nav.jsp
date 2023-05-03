@@ -33,6 +33,14 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Album
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletAlbum/lister">Lister</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Festival
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -44,7 +52,7 @@
                 </li>
                 <%} else if (nomPartenaire != null) {
                     if (nomPartenaire.equals("admin")) {
-                        out.println("<li>Connecté en tant qu'" + nomPartenaire + "</li>");%>
+                        out.println("<li>" + nomPartenaire + "</li>");%>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Groupe
@@ -52,6 +60,14 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletGroupe/lister">Lister</a>
                         <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletGroupe/ajouter">Ajouter</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Album
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletAlbum/lister">Lister</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -106,6 +122,14 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletGroupe/lister">Lister</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Album
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletAlbum/lister">Lister</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
