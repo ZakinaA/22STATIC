@@ -5,6 +5,7 @@
 package servlet;
 
 import dao.DaoFestival;
+import form.FormFestival;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -17,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Festival;
 import model.Groupe;
 
@@ -81,6 +83,7 @@ public class ServletFestival extends HttpServlet {
             throws ServletException, IOException {
         // récupération de l url saisie dans le navigateur
         String url = request.getRequestURI();
+        HttpSession session = request.getSession();
         
         System.out.println("servlerfestival url="+url);
         
@@ -100,10 +103,14 @@ public class ServletFestival extends HttpServlet {
         }
         if(url.equals("/STATIC/ServletFestival/ajouter"))
         {
+            if (session.getAttribute("nomPartenaire") != null && session.getAttribute("nomPartenaire").equals("admin")) {
             System.out.println("servlerfestival LESFESTIVALS");
             ArrayList<Festival> lesFestivals = DaoFestival.getLesFestivals(connection);
             request.setAttribute("pLesFestivals", lesFestivals);
             this.getServletContext().getRequestDispatcher("/view/festival/ajouter.jsp" ).forward( request, response );
+            }else{
+                response.sendRedirect("http://localhost:8080/STATIC/index.jsp");
+            }
         }
     }
 
@@ -118,7 +125,27 @@ public class ServletFestival extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        FormFestival form = new FormFestival();
+        
+        Festival leFestival = form.ajouterFestival(request);
+        
+        request.setAttribute( "form", form );
+        request.setAttribute( "pFestival", leFestival );
+        
+        if (form.getErreurs().isEmpty()){
+            Festival unFestival = DaoFestival.ajouterFestival(connection, leFestival);
+            if (unFestival != null ){
+                Festival festival = DaoFestival.getLeFestival(connection, unFestival.getId());
+                request.setAttribute("pFestival", festival);
+                this.getServletContext().getRequestDispatcher("/view/festival/consulter.jsp" ).forward( request, response );
+            }
+            else{
+                this.getServletContext().getRequestDispatcher("/view/festival/ajouter.jsp" ).forward( request, response );
+            }
+        }
+        else{
+            this.getServletContext().getRequestDispatcher("/view/festival/ajouter.jsp" ).forward( request, response );
+        }
     }
 
     /**

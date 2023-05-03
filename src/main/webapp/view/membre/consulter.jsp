@@ -7,17 +7,20 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-    <%@ include file="/view/header.jsp" %> <%@ include file="/view/body.jsp" %>   <%@ include file="/view/nav.jsp" %>
-
+<%@ include file="/view/header.jsp" %> <%@ include file="/view/body.jsp" %>   <%@ include file="/view/nav.jsp" %>
+<% if (nomMembre != null) { %>
 <%
-    Membre unMembre = (Membre)request.getAttribute("pMembre");
+    Membre unMembre = (Membre) request.getAttribute("pMembre");
 %>
-<h1 style="text-align: center; margin: 2%; color: black">Fiche : <%out.println(unMembre.getNom() +" "+ unMembre.getPrenom());%></h1>
+<h1 style="text-align: center; margin: 2%; color: black">Fiche : <%out.println(unMembre.getNom() + " " + unMembre.getPrenom());%></h1>
 <br/>
 <div class="center" style="background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5); border-radius: 10px;">
-<p>Instrument joué : <%out.println(unMembre.getInstrument().getLibelle());%></p>
-<p>Statut : <%out.println(unMembre.getStatut().getLibelleStatut());%></p>
+    <p>Instrument joué : <%out.println(unMembre.getInstrument().getLibelle());%></p>
+    <p>Statut : <%out.println(unMembre.getStatut().getLibelleStatut());%></p>
 </div>
 
 </body>
 </html>
+<% } else {
+        response.sendRedirect("index.jsp");
+    }%>

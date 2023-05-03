@@ -43,20 +43,18 @@ public class ServletConnexion extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    Connection connection ;
-    static PreparedStatement requete=null;
-    static ResultSet rs=null;
-    
-     @Override
-    public void init()
-    {
-        
-        ServletContext servletContext=getServletContext();
-        connection=(Connection)servletContext.getAttribute("connection");
-        
+    Connection connection;
+    static PreparedStatement requete = null;
+    static ResultSet rs = null;
+
+    @Override
+    public void init() {
+
+        ServletContext servletContext = getServletContext();
+        connection = (Connection) servletContext.getAttribute("connection");
+
     }
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -65,7 +63,7 @@ public class ServletConnexion extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletConnexion</title>");            
+            out.println("<title>Servlet ServletConnexion</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ServletConnexion at " + request.getContextPath() + "</h1>");
@@ -87,17 +85,21 @@ public class ServletConnexion extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String url = request.getRequestURI();
-        
-        System.out.println("servlermembre url="+url);
-        
-        if(url.equals("/STATIC/ServletConnexion/connexion"))
-        {
-            this.getServletContext().getRequestDispatcher("/view/connexion/connexion.jsp" ).forward( request, response );
+
+        System.out.println("servlermembre url=" + url);
+        HttpSession session = request.getSession();
+
+        if (url.equals("/STATIC/ServletConnexion/connexion")) {
+            if (session.getAttribute("idMembre") != null || session.getAttribute("idPartenaire") != null) {
+                response.sendRedirect("http://localhost:8080/STATIC/index.jsp");
+            } else {
+                this.getServletContext().getRequestDispatcher("/view/connexion/connexion.jsp").forward(request, response);
+            }
+
         }
-        if(url.equals("/STATIC/ServletConnexion/deconnexion")){
-            HttpSession session=request.getSession();
+        if (url.equals("/STATIC/ServletConnexion/deconnexion")) {
             session.invalidate();
-            this.getServletContext().getRequestDispatcher("/view/connexion/connexion.jsp" ).forward( request, response );
+            this.getServletContext().getRequestDispatcher("/view/connexion/connexion.jsp").forward(request, response);
         }
     }
 
@@ -112,39 +114,45 @@ public class ServletConnexion extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         FormConnexion form = new FormConnexion();
-        
+
         HttpSession session = request.getSession();
         Utilisateur lUtilisateur = form.connexion(request);
-        
-        request.setAttribute( "form", form );
-        request.setAttribute( "pUtilisateur", lUtilisateur );
-        
-        if (form.getErreurs().isEmpty()){
+
+        request.setAttribute("form", form);
+        request.setAttribute("pUtilisateur", lUtilisateur);
+
+        if (form.getErreurs().isEmpty()) {
             Utilisateur connecter = DaoConnexion.getLeUtilisateur(connection, lUtilisateur);
-            if(connecter.getLogin() == null){
-                this.getServletContext().getRequestDispatcher("/view/connexion/connexion.jsp" ).forward( request, response );
-            }
-            else if (connecter.getMembre() != null ){
+            if (connecter.getLogin() == null) {
+                this.getServletContext().getRequestDispatcher("/view/connexion/connexion.jsp").forward(request, response);
+            } else if (connecter.getMembre() != null) {
                 session.setAttribute("idMembre", connecter.getMembre().getId());
                 session.setAttribute("nomMembre", connecter.getMembre().getNom());
                 int idMembre = connecter.getMembre().getId();
+                
                 Groupe leGroupe = DaoGroupe.getLeGroupeduMembre(connection, idMembre);
                 request.setAttribute("pGroupe", leGroupe);
                 ArrayList<Groupe> lesGroupes = DaoGroupe.getLesGroupesByMembre(connection, idMembre);
                 request.setAttribute("pLesGroupes", lesGroupes);
-                this.getServletContext().getRequestDispatcher("/view/membre/groupe.jsp" ).forward( request, response );
-            }
-            else if (connecter.getPartenaire() != null ){
+                
+                if(leGroupe.getNom() != null || lesGroupes.size()>0){
+                    this.getServletContext().getRequestDispatcher("/view/membre/groupe.jsp").forward(request, response);
+                }
+                else{
+                    Membre leMembre = DaoMembre.getLeMembre(connection, idMembre);
+                    request.setAttribute("pMembre", leMembre);
+                    this.getServletContext().getRequestDispatcher("/view/membre/consulter.jsp").forward(request, response);
+                }
+            } else if (connecter.getPartenaire() != null) {
                 session.setAttribute("nomPartenaire", connecter.getPartenaire().getNom());
                 ArrayList<Groupe> lesGroupes = DaoGroupe.getLesGroupes(connection);
                 request.setAttribute("pLesGroupes", lesGroupes);
-                this.getServletContext().getRequestDispatcher("/view/jury/lister.jsp" ).forward( request, response );
+                this.getServletContext().getRequestDispatcher("/view/jury/lister.jsp").forward(request, response);
             }
-        }
-        else{
-            this.getServletContext().getRequestDispatcher("/view/connexion/connexion.jsp" ).forward( request, response );
+        } else {
+            this.getServletContext().getRequestDispatcher("/view/connexion/connexion.jsp").forward(request, response);
         }
     }
 

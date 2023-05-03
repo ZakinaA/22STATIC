@@ -51,19 +51,18 @@ public class ServletMembre extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    Connection connection ;
-    static PreparedStatement requete=null;
-    static ResultSet rs=null;
-    
-     @Override
-    public void init()
-    {
-        
-        ServletContext servletContext=getServletContext();
-        connection=(Connection)servletContext.getAttribute("connection");
-        
+    Connection connection;
+    static PreparedStatement requete = null;
+    static ResultSet rs = null;
+
+    @Override
+    public void init() {
+
+        ServletContext servletContext = getServletContext();
+        connection = (Connection) servletContext.getAttribute("connection");
+
     }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -72,7 +71,7 @@ public class ServletMembre extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletMembre</title>");            
+            out.println("<title>Servlet ServletMembre</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ServletMembre at " + request.getContextPath() + "</h1>");
@@ -93,45 +92,42 @@ public class ServletMembre extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String url = request.getRequestURI();
-        
-        System.out.println("servlermembre url="+url);
-        
+
+        System.out.println("servlermembre url=" + url);
+
         HttpSession session = request.getSession();
-       if(url.equals("/STATIC/ServletMembre/consulter"))
-        {   
-            if(request.getParameter("idMembre")!=null){
-                int idMembre = Integer.parseInt(request.getParameter("idMembre"));
+        if (url.equals("/STATIC/ServletMembre/consulter")) {
+            if (session.getAttribute("idMembre") != null) {
+                int idMembre = (int) session.getAttribute("idMembre");
                 Membre leMembre = DaoMembre.getLeMembre(connection, idMembre);
                 request.setAttribute("pMembre", leMembre);
-                this.getServletContext().getRequestDispatcher("/view/membre/consulter.jsp" ).forward( request, response );
-            }else{
-                int idMembre = (int)session.getAttribute("idMembre");
-                Membre leMembre = DaoMembre.getLeMembre(connection, idMembre);
-                request.setAttribute("pMembre", leMembre);
-                this.getServletContext().getRequestDispatcher("/view/membre/consulter.jsp" ).forward( request, response );
+                this.getServletContext().getRequestDispatcher("/view/membre/consulter.jsp").forward(request, response);
+            } else {
+                response.sendRedirect("http://localhost:8080/STATIC/index.jsp");
             }
         }
-       
-        if(url.equals("/STATIC/ServletMembre/ajouter"))
-        {
+
+        if (url.equals("/STATIC/ServletMembre/ajouter")) {
             ArrayList<Statut> lesStatuts = DaoAdmin.getLesStatuts(connection);
             request.setAttribute("pLesStatuts", lesStatuts);
             ArrayList<Instrument> lesInstruments = DaoAdmin.getLesInstruments(connection);
             request.setAttribute("pLesInstruments", lesInstruments);
-            this.getServletContext().getRequestDispatcher("/view/membre/ajouter.jsp" ).forward( request, response );
+            this.getServletContext().getRequestDispatcher("/view/membre/ajouter.jsp").forward(request, response);
         }
-        
-        if(url.equals("/STATIC/ServletMembre/groupe")){
-            int idMembre = (int)session.getAttribute("idMembre");
+
+        if (url.equals("/STATIC/ServletMembre/groupe")) {
+            int idMembre = (int) session.getAttribute("idMembre");
             Groupe leGroupe = DaoGroupe.getLeGroupeduMembre(connection, idMembre);
             request.setAttribute("pGroupe", leGroupe);
             ArrayList<Groupe> lesGroupes = DaoGroupe.getLesGroupesByMembre(connection, idMembre);
             request.setAttribute("pLesGroupes", lesGroupes);
-            this.getServletContext().getRequestDispatcher("/view/membre/groupe.jsp" ).forward( request, response );
+            this.getServletContext().getRequestDispatcher("/view/membre/groupe.jsp").forward(request, response);
+        } else {
+            response.sendRedirect("http://localhost:8080/STATIC/index.jsp");
         }
-        
+
     }
 
     /**
@@ -145,28 +141,23 @@ public class ServletMembre extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         FormMembre form = new FormMembre();
 
         /* Appel au traitement et à la validation de la requête, et récupération de l'objet en résultant */
-        Utilisateur unUtilisateur = form.ajouterMembre(request);
+        Membre unMembre = form.ajouterMembre(request);
 
         /* Stockage du formulaire et de l'objet dans l'objet request */
-        request.setAttribute( "form", form );
-        request.setAttribute( "pMembre", unUtilisateur );
+        request.setAttribute("form", form);
+        request.setAttribute("pMembre", unMembre);
 
-        if (form.getErreurs().isEmpty()){
+        if (form.getErreurs().isEmpty()) {
             // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du membre
-            Utilisateur membreAjoute = DaoMembre.ajouterMembre(connection, unUtilisateur);
-            Utilisateur utilisateurAjoute = DaoUtilisateur.ajouterUtilisateur(connection, unUtilisateur);
-            
-            if (membreAjoute != null ){
-                Membre leMembre = DaoMembre.getLeMembre(connection, unUtilisateur.getMembre().getId());
-                request.setAttribute("pMembre", leMembre);
-                this.getServletContext().getRequestDispatcher("/view/membre/consulter.jsp" ).forward( request, response );
-            }
-            else
-            {
+
+            Membre membreAjoute = DaoMembre.ajouterMembre(connection, unMembre);
+            Utilisateur unUtilisateur = DaoUtilisateur.getLUtilisateur(connection, unMembre.getLesUtilisateurs().get(0).getLogin());
+            if (unUtilisateur.getLogin() != null) {
+                DaoMembre.supprimerMembre(connection, unMembre.getId());
                 // Cas où l'insertion en bdd a échoué
                 //On renvoie vers le formulaire
                 ArrayList<Statut> lesStatuts = DaoAdmin.getLesStatuts(connection);
@@ -174,36 +165,43 @@ public class ServletMembre extends HttpServlet {
                 ArrayList<Instrument> lesInstruments = DaoAdmin.getLesInstruments(connection);
                 request.setAttribute("pLesInstruments", lesInstruments);
                 System.out.println("le membre est null en bdd- echec en bdd");
-                this.getServletContext().getRequestDispatcher("/view/membre/ajouter.jsp" ).forward( request, response );
+                this.getServletContext().getRequestDispatcher("/view/membre/ajouter.jsp").forward(request, response);
+            } else {
+                Utilisateur utilisateurAjoute = DaoUtilisateur.ajouterUtilisateur(connection, unMembre);
+
+                if (membreAjoute != null && utilisateurAjoute != null) {
+                    this.getServletContext().getRequestDispatcher("/index.jsp").forward(request, response);
+                } else {
+                    // Cas où l'insertion en bdd a échoué
+                    //On renvoie vers le formulaire
+                    ArrayList<Statut> lesStatuts = DaoAdmin.getLesStatuts(connection);
+                    request.setAttribute("pLesStatuts", lesStatuts);
+                    ArrayList<Instrument> lesInstruments = DaoAdmin.getLesInstruments(connection);
+                    request.setAttribute("pLesInstruments", lesInstruments);
+                    System.out.println("le membre est null en bdd- echec en bdd");
+                    this.getServletContext().getRequestDispatcher("/view/membre/ajouter.jsp").forward(request, response);
+                }
             }
-        }
-        else
-        {
+        } else {
 
             // il y a des erreurs de saisie. On réaffiche le formulaire avec des messages d'erreurs
             ArrayList<Statut> lesStatuts = DaoAdmin.getLesStatuts(connection);
-                request.setAttribute("pLesStatuts", lesStatuts);
-                ArrayList<Instrument> lesInstruments = DaoAdmin.getLesInstruments(connection);
-                request.setAttribute("pLesInstruments", lesInstruments);
-            this.getServletContext().getRequestDispatcher("/view/membre/ajouter.jsp" ).forward( request, response );
+            request.setAttribute("pLesStatuts", lesStatuts);
+            ArrayList<Instrument> lesInstruments = DaoAdmin.getLesInstruments(connection);
+            request.setAttribute("pLesInstruments", lesInstruments);
+            this.getServletContext().getRequestDispatcher("/view/membre/ajouter.jsp").forward(request, response);
         }
     }
 
     //fermeture des ressources
-    public void destroy(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
-    {
-        try
-        {
+    public void destroy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
             //fermeture
             System.out.println("Connexion fermée");
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Erreur lors de l’établissement de la connexion");
-        }
-        finally
-        {
+        } finally {
             //Utilitaire.fermerConnexion(rs);
             //Utilitaire.fermerConnexion(requete);
             Utilitaire.fermerConnexion(connection);

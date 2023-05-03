@@ -39,54 +39,54 @@ public class FormConnexion {
     }
 
     //méthode de validation du champ de saisie nom
-    private void validationLogin( String login ) throws Exception {
-        if ( login == null) {
-            throw new Exception( "Le login ne peut pas être null." );
+    private void validationLogin(String login) throws Exception {
+        if (login == null) {
+            throw new Exception("Le login ne peut pas être null.");
         }
     }
 
-    private void validationMDP( String mdp) throws Exception {
-        if ( mdp == null) {
-            throw new Exception( "le mot de passe ne peut pas être null." );
+    private void validationMDP(String mdp) throws Exception {
+        if (mdp == null) {
+            throw new Exception("le mot de passe ne peut pas être null.");
         }
     }
-    
-    private void setErreur( String champ, String message ) {
-        erreurs.put(champ, message );
+
+    private void setErreur(String champ, String message) {
+        erreurs.put(champ, message);
     }
 
-    private static String getDataForm(HttpServletRequest request, String nomChamp ) {
-        String valeur = request.getParameter( nomChamp );
-        if ( valeur == null || valeur.trim().length() == 0 ) {
+    private static String getDataForm(HttpServletRequest request, String nomChamp) {
+        String valeur = request.getParameter(nomChamp);
+        if (valeur == null || valeur.trim().length() == 0) {
             return null;
         } else {
             return valeur.trim();
         }
     }
-        public Utilisateur connexion(HttpServletRequest request ) {
 
-        Utilisateur unUtilisateur  = new Utilisateur();
+    public Utilisateur connexion(HttpServletRequest request) {
+
+        Utilisateur unUtilisateur = new Utilisateur();
 
         //récupération dans des variables des données saisies dans les champs de formulaire
-        String login = getDataForm( request, "login" );
-        String mdp = getDataForm( request, "mdp");
+        String login = getDataForm(request, "login");
+        String mdp = getDataForm(request, "mdp");
 
         try {
-            validationLogin( login );
-        } catch ( Exception e ) {
-            setErreur( "login", e.getMessage() );
+            validationLogin(login);
+        } catch (Exception e) {
+            setErreur("login", e.getMessage());
         }
-         unUtilisateur.setLogin(login);
-         
+        unUtilisateur.setLogin(login);
+
         try {
-            validationMDP( mdp );
-        } catch ( Exception e ) {
-            setErreur( "mdp", e.getMessage() );
+            validationMDP(mdp);
+        } catch (Exception e) {
+            setErreur("mdp", e.getMessage());
         }
         unUtilisateur.setMdp(mdp);
-        
+
         return unUtilisateur;
-        
-        
+
     }
 }

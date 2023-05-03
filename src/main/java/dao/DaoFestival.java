@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import model.Festival;
 import model.Genre;
@@ -134,13 +135,14 @@ public class DaoFestival {
         int idGenere = -1;
         try
         {
+            //DEV faire fonctionner
             requete=connection.prepareStatement("INSERT INTO FESTIVAL (nom, annee, dateDebut, dateFin, logo)\n" +
                     "VALUES (?,?,?,?,?)", requete.RETURN_GENERATED_KEYS );
             requete.setString(1, unFestival.getNom());
             requete.setString(2, unFestival.getAnnee());
-            requete.setString(3, unFestival.getDateDebut());
-            requete.setString(4, unFestival.getDateFin());
-            requete.setString(5, unFestival.getAnnee());
+            requete.setDate(3, java.sql.Date.valueOf(unFestival.getDateDebut()));
+            requete.setDate(4, java.sql.Date.valueOf(unFestival.getDateFin()));
+            requete.setString(5, unFestival.getLogo());
 
             System.out.println("requeteInsertion=" + requete);
             /* Exécution de la requête */

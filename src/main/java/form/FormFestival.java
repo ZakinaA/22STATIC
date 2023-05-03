@@ -41,25 +41,25 @@ public class FormFestival {
     }
 
     private void validationAnnee( String annee) throws Exception {
-        if ( annee != null ) {
+        if ( annee == null ) {
             throw new Exception( "L'année est erronnée" );
         }
     }
     
     private void validationDateDebut( String dateDebut) throws Exception {
-        if ( dateDebut != null ) {
+        if ( dateDebut == null ) {
             throw new Exception( "La date de début est erronnée" );
         }
     }
     
     private void validationDateFin( String dateFin) throws Exception {
-        if ( dateFin != null ) {
+        if ( dateFin == null ) {
             throw new Exception( "La date de fin est erronnée" );
         }
     }
     
     private void validationLogo( String logo) throws Exception {
-        if ( logo != null ) {
+        if ( logo == null ) {
             throw new Exception( "Le logo est erronnée" );
         }
     }

@@ -10,29 +10,29 @@
 <%@ page import="form.FormMembre" %>
 <%@ page import="model.Genre" %>
 <%@ page import="java.util.ArrayList" %>
-    <%@ include file="/view/header.jsp" %> <%@ include file="/view/body.jsp" %>   <%@ include file="/view/nav.jsp" %>
-<%if (nomMembre!=null || nomPartenaire!=null){
-    }else{%>
+<%@ include file="/view/header.jsp" %> <%@ include file="/view/body.jsp" %>   <%@ include file="/view/nav.jsp" %>
 <h1 style="text-align: center; margin: 2%; color: black">Connexion</h1>
 <br/>
 
 
 <%
-    FormConnexion form = (FormConnexion)request.getAttribute("form");
+    FormConnexion form = (FormConnexion) request.getAttribute("form");
 %>
 
-<form action="connexion" method="POST" style="text-align: center; margin: 0 10%; background-color:rgba(255, 255, 255, 0.5); border: 10px solid rgba(255, 255, 255, 0.5); border-radius: 10px;">
+<form action="connexion" method="POST" class="form">
     <label for="login">Login : </label>
-    <input id="login" type="text" name="login"  size="70" maxlength="70">
+    <input id="login" type="text" name="login"  size="70" maxlength="70" class="form-control" placeholder="Entrer login">
     <span style="color: blue;">${form.erreurs['login']}</span>
     </br>
     <label for="mdp">Mot de passe : </label>
-    <input id="mdp"  type="password"  name="mdp" size="70" maxlength="70">
+    <input id="mdp"  type="password"  name="mdp" size="70" maxlength="70" class="form-control" placeholder="Entrer mot de passe">
     <span style="color: blue;">${form.erreurs['mdp']}</span>
     </br>
     </br>
-    <input type="submit" name="valider" id="valider" value="Valider"/>
+    <input class="btn btn-success" style="width: 100%;" type="submit" name="valider" id="valider" value="Valider"/>
+    </br>
+    </br>
+    <a href="../ServletMembre/ajouter"><input class="btn btn-outline-primary" style="width: 100%;" value="S'inscrire"/></a>
 </form>
-    <%}%>
 </body>
 </html>

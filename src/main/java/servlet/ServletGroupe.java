@@ -40,24 +40,21 @@ public class ServletGroupe extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     * 
-     *  Connection connection ;
-    static PreparedStatement requete=null;
-    static ResultSet rs=null;
-
+     *
+     * Connection connection ; static PreparedStatement requete=null; static
+     * ResultSet rs=null;
+     *
      */
-    
-    Connection connection ;
-    static PreparedStatement requete=null;
-    static ResultSet rs=null;
-    
-     @Override
-    public void init()
-    {
-        
-        ServletContext servletContext=getServletContext();
-        connection=(Connection)servletContext.getAttribute("connection");
-        
+    Connection connection;
+    static PreparedStatement requete = null;
+    static ResultSet rs = null;
+
+    @Override
+    public void init() {
+
+        ServletContext servletContext = getServletContext();
+        connection = (Connection) servletContext.getAttribute("connection");
+
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -68,7 +65,7 @@ public class ServletGroupe extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletGroupe</title>");            
+            out.println("<title>Servlet ServletGroupe</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ServletGroupe at " + request.getContextPath() + "</h1>");
@@ -89,58 +86,55 @@ public class ServletGroupe extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-         // récupération de l url saisie dans le navigateur
+
+        // récupération de l url saisie dans le navigateur
         String url = request.getRequestURI();
-        
-        System.out.println("servlergroupe url="+url);
+
+        System.out.println("servlergroupe url=" + url);
 
         //Affichage de tous les groupes (en indiquant le libellé du genre musical)
-        if(url.equals("/STATIC/ServletGroupe/lister")){
+        if (url.equals("/STATIC/ServletGroupe/lister")) {
             System.out.println("servlergroupe LISTER");
             ArrayList<Groupe> lesGroupes = DaoGroupe.getLesGroupes(connection);
             request.setAttribute("pLesGroupes", lesGroupes);
-            this.getServletContext().getRequestDispatcher("/view/groupe/lister.jsp" ).forward( request, response );
+            this.getServletContext().getRequestDispatcher("/view/groupe/lister.jsp").forward(request, response);
         }
 
         // Affichage du groupe selectionné (depuis la fonctionnalité lister)
-        if(url.equals("/STATIC/ServletGroupe/consulter")){
+        if (url.equals("/STATIC/ServletGroupe/consulter")) {
 
             int idGroupe = Integer.parseInt(request.getParameter("idGroupe"));
             Groupe leGroupe = DaoGroupe.getLeGroupe(connection, idGroupe);
             request.setAttribute("pGroupe", leGroupe);
-            this.getServletContext().getRequestDispatcher("/view/groupe/consulter.jsp" ).forward( request, response );
+            this.getServletContext().getRequestDispatcher("/view/groupe/consulter.jsp").forward(request, response);
         }
 
-        if(url.equals("/STATIC/ServletGroupe/ajouter"))
-        {   
+        if (url.equals("/STATIC/ServletGroupe/ajouter")) {
             ArrayList<Membre> lesMembres = DaoAdmin.getLesMembres(connection);
             request.setAttribute("pLesMembres", lesMembres);
             ArrayList<Dispositif> lesDispositifs = DaoAdmin.getLesDispositifs(connection);
             request.setAttribute("pLesDispositifs", lesDispositifs);
             ArrayList<Genre> lesGenres = DaoAdmin.getLesGenres(connection);
             request.setAttribute("pLesGenres", lesGenres);
-            this.getServletContext().getRequestDispatcher("/view/groupe/ajouter.jsp" ).forward( request, response );
+            this.getServletContext().getRequestDispatcher("/view/groupe/ajouter.jsp").forward(request, response);
         }
-        
-        if(url.equals("/STATIC/ServletGroupe/ajouterMembre"))
-        {   
+
+        if (url.equals("/STATIC/ServletGroupe/ajouterMembre")) {
             int idGroupe = Integer.parseInt(request.getParameter("idGroupe"));
             Groupe leGroupe = DaoGroupe.getLeGroupe(connection, idGroupe);
             request.setAttribute("pGroupe", leGroupe);
             ArrayList<Membre> lesMembres = DaoAdmin.getLesMembresAjoutable(connection);
             request.setAttribute("pLesMembres", lesMembres);
-            this.getServletContext().getRequestDispatcher("/view/groupe/ajouterMembre.jsp" ).forward( request, response );
+            this.getServletContext().getRequestDispatcher("/view/groupe/ajouterMembre.jsp").forward(request, response);
         }
-        
-        if(url.equals("/STATIC/ServletGroupe/supprimerMembre"))
-        { 
+
+        if (url.equals("/STATIC/ServletGroupe/supprimerMembre")) {
             int idGroupe = Integer.parseInt(request.getParameter("idGroupe"));
             int idMembre = Integer.parseInt(request.getParameter("idMembre"));
             int supprimer = DaoGroupe.supprimerMembreDunGroupe(connection, idGroupe, idMembre);
             Groupe leGroupe = DaoGroupe.getLeGroupe(connection, idGroupe);
             request.setAttribute("pGroupe", leGroupe);
-            this.getServletContext().getRequestDispatcher("/view/groupe/consulter.jsp" ).forward( request, response );
+            this.getServletContext().getRequestDispatcher("/view/groupe/consulter.jsp").forward(request, response);
         }
     }
 
@@ -155,27 +149,25 @@ public class ServletGroupe extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
         FormGroupe form = new FormGroupe();
 
         /* Appel au traitement et à la validation de la requête, et récupération de l'objet en résultant */
         Groupe leGroupeSaisi = form.ajouterGroupe(request);
 
         /* Stockage du formulaire et de l'objet dans l'objet request */
-        request.setAttribute( "form", form );
-        request.setAttribute( "pGroupe", leGroupeSaisi );
+        request.setAttribute("form", form);
+        request.setAttribute("pGroupe", leGroupeSaisi);
 
-        if (form.getErreurs().isEmpty()){
+        if (form.getErreurs().isEmpty()) {
             // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du groupe
             Groupe groupeAjoute = DaoGroupe.ajouterGroupe(connection, leGroupeSaisi);
 
-            if (groupeAjoute != null ){
+            if (groupeAjoute != null) {
                 Groupe leGroupe = DaoGroupe.getLeGroupe(connection, leGroupeSaisi.getId());
                 request.setAttribute("pGroupe", leGroupe);
-                this.getServletContext().getRequestDispatcher("/view/groupe/consulter.jsp" ).forward( request, response );
-            }
-            else
-            {
+                this.getServletContext().getRequestDispatcher("/view/groupe/consulter.jsp").forward(request, response);
+            } else {
                 // Cas où l'insertion en bdd a échoué
                 //On renvoie vers le formulaire
                 ArrayList<Membre> lesMembres = DaoAdmin.getLesMembres(connection);
@@ -185,11 +177,9 @@ public class ServletGroupe extends HttpServlet {
                 ArrayList<Genre> lesGenres = DaoAdmin.getLesGenres(connection);
                 request.setAttribute("pLesGenres", lesGenres);
                 System.out.println("le groupe est null en bdd- echec en bdd");
-                this.getServletContext().getRequestDispatcher("/view/groupe/ajouter.jsp" ).forward( request, response );
+                this.getServletContext().getRequestDispatcher("/view/groupe/ajouter.jsp").forward(request, response);
             }
-        }
-        else
-        {
+        } else {
 
             // il y a des erreurs de saisie. On réaffiche le formulaire avec des messages d'erreurs
             ArrayList<Membre> lesMembres = DaoAdmin.getLesMembres(connection);
@@ -198,7 +188,7 @@ public class ServletGroupe extends HttpServlet {
             request.setAttribute("pLesDispositifs", lesDispositifs);
             ArrayList<Genre> lesGenres = DaoAdmin.getLesGenres(connection);
             request.setAttribute("pLesGenres", lesGenres);
-            this.getServletContext().getRequestDispatcher("/view/groupe/ajouter.jsp" ).forward( request, response );
+            this.getServletContext().getRequestDispatcher("/view/groupe/ajouter.jsp").forward(request, response);
         }
         //
         FormGroupe formAjouterMembre = new FormGroupe();
@@ -207,32 +197,28 @@ public class ServletGroupe extends HttpServlet {
         Membre leMembreSaisis = formAjouterMembre.ajouterMembre(request);
 
         /* Stockage du formulaire et de l'objet dans l'objet request */
-        request.setAttribute( "form", formAjouterMembre );
-        request.setAttribute( "pGroupe", leMembreSaisis );
+        request.setAttribute("form", formAjouterMembre);
+        request.setAttribute("pGroupe", leMembreSaisis);
 
-        if (form.getErreurs().isEmpty()){
+        if (form.getErreurs().isEmpty()) {
             // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du groupe
             Membre leMembreAjouter = DaoGroupe.ajouterMembre(connection, leMembreSaisis);
 
-            if (leMembreAjouter != null ){
+            if (leMembreAjouter != null) {
                 Groupe leGroupe = DaoGroupe.getLeGroupe(connection, leMembreSaisis.getId());
                 request.setAttribute("pGroupe", leGroupe);
-                this.getServletContext().getRequestDispatcher("/view/groupe/consulter.jsp" ).forward( request, response );
-            }
-            else
-            {
+                this.getServletContext().getRequestDispatcher("/view/groupe/consulter.jsp").forward(request, response);
+            } else {
                 // Cas où l'insertion en bdd a échoué
                 //On renvoie vers le formulaire
-            int idGroupe = Integer.parseInt(request.getParameter("idGroupe"));
-            Groupe leGroupe = DaoGroupe.getLeGroupe(connection, idGroupe);
-            request.setAttribute("pGroupe", leGroupe);
-            ArrayList<Membre> lesMembres = DaoAdmin.getLesMembresAjoutable(connection);
-            request.setAttribute("pLesMembres", lesMembres);
-            this.getServletContext().getRequestDispatcher("/view/groupe/ajouterMembre.jsp" ).forward( request, response );
+                int idGroupe = Integer.parseInt(request.getParameter("idGroupe"));
+                Groupe leGroupe = DaoGroupe.getLeGroupe(connection, idGroupe);
+                request.setAttribute("pGroupe", leGroupe);
+                ArrayList<Membre> lesMembres = DaoAdmin.getLesMembresAjoutable(connection);
+                request.setAttribute("pLesMembres", lesMembres);
+                this.getServletContext().getRequestDispatcher("/view/groupe/ajouterMembre.jsp").forward(request, response);
             }
-        }
-        else
-        {
+        } else {
 
             // il y a des erreurs de saisie. On réaffiche le formulaire avec des messages d'erreurs
             int idGroupe = Integer.parseInt(request.getParameter("idGroupe"));
@@ -240,30 +226,26 @@ public class ServletGroupe extends HttpServlet {
             request.setAttribute("pGroupe", leGroupe);
             ArrayList<Membre> lesMembres = DaoAdmin.getLesMembresAjoutable(connection);
             request.setAttribute("pLesMembres", lesMembres);
-            this.getServletContext().getRequestDispatcher("/view/groupe/ajouterMembre.jsp" ).forward( request, response );
+            this.getServletContext().getRequestDispatcher("/view/groupe/ajouterMembre.jsp").forward(request, response);
         }
         //
     }
+
     //fermeture des ressources
-    public void destroy(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
-    {
-        try
-        {
+    public void destroy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
             //fermeture
             System.out.println("Connexion fermée");
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Erreur lors de l’établissement de la connexion");
-        }
-        finally
-        {
+        } finally {
             //Utilitaire.fermerConnexion(rs);
             //Utilitaire.fermerConnexion(requete);
             Utilitaire.fermerConnexion(connection);
         }
     }
+
     /**
      * Returns a short description of the servlet.
      *

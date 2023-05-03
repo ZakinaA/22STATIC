@@ -20,6 +20,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.Dispositif;
 import model.Membre;
 
@@ -38,19 +39,18 @@ public class ServletDispositif extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-    Connection connection ;
-    static PreparedStatement requete=null;
-    static ResultSet rs=null;
-    
-     @Override
-    public void init()
-    {
-        
-        ServletContext servletContext=getServletContext();
-        connection=(Connection)servletContext.getAttribute("connection");
-        
+    Connection connection;
+    static PreparedStatement requete = null;
+    static ResultSet rs = null;
+
+    @Override
+    public void init() {
+
+        ServletContext servletContext = getServletContext();
+        connection = (Connection) servletContext.getAttribute("connection");
+
     }
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -59,7 +59,7 @@ public class ServletDispositif extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ServletDispositif</title>");            
+            out.println("<title>Servlet ServletDispositif</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ServletDispositif at " + request.getContextPath() + "</h1>");
@@ -80,31 +80,34 @@ public class ServletDispositif extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                String url = request.getRequestURI();
-        
-       System.out.println("servlerdispositif url="+url);
-        
-        if(url.equals("/STATIC/ServletDispositif/lister")){
+        String url = request.getRequestURI();
+
+        System.out.println("servlerdispositif url=" + url);
+        HttpSession session = request.getSession();
+
+        if (url.equals("/STATIC/ServletDispositif/lister")) {
             System.out.println("servlerdispositif LESDISPOSITIFS");
             ArrayList<Dispositif> lesDispositifs = DaoDispositif.getLesDispositifs(connection);
             request.setAttribute("pLesDispositifs", lesDispositifs);
-            this.getServletContext().getRequestDispatcher("/view/dispositif/lister.jsp" ).forward( request, response );
+            this.getServletContext().getRequestDispatcher("/view/dispositif/lister.jsp").forward(request, response);
         }
-        
-        if(url.equals("/STATIC/ServletDispositif/consulter"))
-        {
+
+        if (url.equals("/STATIC/ServletDispositif/consulter")) {
             int idDispositif = Integer.parseInt(request.getParameter("idDispositif"));
             Dispositif leDispositif = DaoDispositif.getLeDispositif(connection, idDispositif);
             request.setAttribute("pDispositif", leDispositif);
-            this.getServletContext().getRequestDispatcher("/view/dispositif/consulter.jsp" ).forward( request, response );
+            this.getServletContext().getRequestDispatcher("/view/dispositif/consulter.jsp").forward(request, response);
         }
-        
-        if(url.equals("/STATIC/ServletDispositif/ajouter"))
-        {
-            System.out.println("servlerdispositif LESDISPOSITIFS");
-            ArrayList<Dispositif> lesDispositifs = DaoDispositif.getLesDispositifs(connection);
-            request.setAttribute("pLesDispositifs", lesDispositifs);
-            this.getServletContext().getRequestDispatcher("/view/dispositif/ajouter.jsp" ).forward( request, response );
+
+        if (url.equals("/STATIC/ServletDispositif/ajouter")) {
+            if (session.getAttribute("nomPartenaire") != null && session.getAttribute("nomPartenaire").equals("admin")) {
+                System.out.println("servlerdispositif LESDISPOSITIFS");
+                ArrayList<Dispositif> lesDispositifs = DaoDispositif.getLesDispositifs(connection);
+                request.setAttribute("pLesDispositifs", lesDispositifs);
+                this.getServletContext().getRequestDispatcher("/view/dispositif/ajouter.jsp").forward(request, response);
+            }else{
+                response.sendRedirect("http://localhost:8080/STATIC/index.jsp");
+            }
         }
     }
 
@@ -126,52 +129,41 @@ public class ServletDispositif extends HttpServlet {
         Dispositif leDispositifSaisi = form.ajouterDispositif(request);
 
         /* Stockage du formulaire et de l'objet dans l'objet request */
-        request.setAttribute( "form", form );
-        request.setAttribute( "pDispositif", leDispositifSaisi );
+        request.setAttribute("form", form);
+        request.setAttribute("pDispositif", leDispositifSaisi);
 
-        if (form.getErreurs().isEmpty()){
+        if (form.getErreurs().isEmpty()) {
             // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du groupe
             Dispositif dispositifAjoute = DaoDispositif.ajouterDispositif(connection, leDispositifSaisi);
 
-            if (dispositifAjoute != null ){
+            if (dispositifAjoute != null) {
                 Dispositif leDispositif = DaoDispositif.getLeDispositif(connection, leDispositifSaisi.getId());
                 request.setAttribute("pDispositif", leDispositif);
-                this.getServletContext().getRequestDispatcher("/view/dispositif/consulter.jsp" ).forward( request, response );
-            }
-            else
-            {
+                this.getServletContext().getRequestDispatcher("/view/dispositif/consulter.jsp").forward(request, response);
+            } else {
                 // Cas où l'insertion en bdd a échoué
                 //On renvoie vers le formulaire
-                this.getServletContext().getRequestDispatcher("/view/dispositif/ajouter.jsp" ).forward( request, response );
+                this.getServletContext().getRequestDispatcher("/view/dispositif/ajouter.jsp").forward(request, response);
             }
-        }
-        else
-        {
-            this.getServletContext().getRequestDispatcher("/view/dispositif/ajouter.jsp" ).forward( request, response );
+        } else {
+            this.getServletContext().getRequestDispatcher("/view/dispositif/ajouter.jsp").forward(request, response);
         }
     }
 
     //fermeture des ressources
-    public void destroy(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException
-    {
-        try
-        {
+    public void destroy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
             //fermeture
             System.out.println("Connexion fermée");
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Erreur lors de l’établissement de la connexion");
-        }
-        finally
-        {
+        } finally {
             //Utilitaire.fermerConnexion(rs);
             //Utilitaire.fermerConnexion(requete);
             Utilitaire.fermerConnexion(connection);
         }
     }
-    
 
     /**
      * Returns a short description of the servlet.

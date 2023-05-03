@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 import model.Dispositif;
 import model.Instrument;
-import static model.MD5.getMd5;
 import model.Membre;
 import model.Statut;
 import model.Utilisateur;
@@ -17,7 +16,7 @@ import model.Utilisateur;
 public class FormMembre {
 
     private String resultat;
-    private Map<String, String> erreurs      = new HashMap<String, String>();
+    private Map<String, String> erreurs = new HashMap<String, String>();
 
     public String getResultat() {
         return resultat;
@@ -36,36 +35,37 @@ public class FormMembre {
     }
 
     //méthode de validation du champ de saisie nom
-    private void validationNom( String nom ) throws Exception {
-        if ( nom == null) {
-            throw new Exception( "Le nom ne peut pas être null." );
+    private void validationNom(String nom) throws Exception {
+        if (nom == null) {
+            throw new Exception("Le nom ne peut pas être null.");
         }
     }
 
-    private void validationPrenom( String prenom) throws Exception {
-        if ( prenom == null) {
-            throw new Exception( "le prenom ne peut pas être null." );
+    private void validationPrenom(String prenom) throws Exception {
+        if (prenom == null) {
+            throw new Exception("le prenom ne peut pas être null.");
         }
     }
     
-    private void validationLogin( String login) throws Exception {
-        if ( login == null) {
-            throw new Exception( "le login ne peut pas être null." );
+    private void validationLogin(String login) throws Exception {
+        if (login == null) {
+            throw new Exception("Le login ne peut pas être null.");
         }
-    }
-    
-    private void validationMdp( String mdp) throws Exception {
-        if ( mdp == null) {
-            throw new Exception( "le mdp ne peut pas être null." );
-        }
-    }
-    private void setErreur( String champ, String message ) {
-        erreurs.put(champ, message );
     }
 
-    private static String getDataForm(HttpServletRequest request, String nomChamp ) {
-        String valeur = request.getParameter( nomChamp );
-        if ( valeur == null || valeur.trim().length() == 0 ) {
+    private void validationMdp(String mdp) throws Exception {
+        if (mdp == null) {
+            throw new Exception("le mot de passe ne peut pas être null.");
+        }
+    }
+
+    private void setErreur(String champ, String message) {
+        erreurs.put(champ, message);
+    }
+
+    private static String getDataForm(HttpServletRequest request, String nomChamp) {
+        String valeur = request.getParameter(nomChamp);
+        if (valeur == null || valeur.trim().length() == 0) {
             return null;
         } else {
             return valeur.trim();
@@ -73,68 +73,68 @@ public class FormMembre {
     }
 
     // creation d'un objet groupe (et son genre) à partir des données saisies dans le formulaire
-    public Utilisateur ajouterMembre(HttpServletRequest request ) {
+    public Membre ajouterMembre(HttpServletRequest request) {
 
-        Membre unMembre  = new Membre();
+        Membre unMembre = new Membre();
 
         //récupération dans des variables des données saisies dans les champs de formulaire
-        String nom = getDataForm( request, "nom" );
-        String prenom = getDataForm( request, "prenom");
-        int idInstrument = Integer.parseInt(getDataForm( request, "idInstrument" ));
-        int idStatut = Integer.parseInt(getDataForm( request, "idStatut" ));
+        String nom = getDataForm(request, "nom");
+        String prenom = getDataForm(request, "prenom");
+        int idInstrument = Integer.parseInt(getDataForm(request, "idInstrument"));
+        int idStatut = Integer.parseInt(getDataForm(request, "idStatut"));
 
         try {
-            validationNom( nom );
-        } catch ( Exception e ) {
-            setErreur( "nom", e.getMessage() );
+            validationNom(nom);
+        } catch (Exception e) {
+            setErreur("nom", e.getMessage());
         }
-         unMembre.setNom(nom);
-         
+        unMembre.setNom(nom);
+
         try {
-            validationPrenom( prenom );
-        } catch ( Exception e ) {
-            setErreur( "prenom", e.getMessage() );
+            validationPrenom(prenom);
+        } catch (Exception e) {
+            setErreur("prenom", e.getMessage());
         }
         unMembre.setPrenom(prenom);
-        
-     
+
         Statut leStatut = new Statut();
         leStatut.setId(idStatut);
         unMembre.setStatut(leStatut);
-        
+
         Instrument leInstrument = new Instrument();
         leInstrument.setId(idInstrument);
         unMembre.setInstrument(leInstrument);
-        
+
+        ArrayList<Utilisateur> utis = new ArrayList<Utilisateur>();
         Utilisateur unUtilisateur = new Utilisateur();
-        String login = getDataForm( request, "login" );
-        String mdp = getMd5(getDataForm( request, "mdp"));
-        unUtilisateur.setMembre(unMembre);        
-        
+        String login = getDataForm(request, "login");
+        String mdp = getDataForm(request, "mdp");
+
         try {
-            validationLogin( login );
-        } catch ( Exception e ) {
-            setErreur( "login", e.getMessage() );
+            validationLogin(login);
+        } catch (Exception e) {
+            setErreur("login", e.getMessage());
         }
         unUtilisateur.setLogin(login);
-        
+
         try {
-            validationMdp( mdp );
-        } catch ( Exception e ) {
-            setErreur( "mdp", e.getMessage() );
+            validationMdp(mdp);
+        } catch (Exception e) {
+            setErreur("mdp", e.getMessage());
         }
         unUtilisateur.setMdp(mdp);
-        
-        
-        if ( erreurs.isEmpty() ) {
+
+        utis.add(unUtilisateur);
+        unMembre.setLesUtilisateurs(utis);
+
+        if (erreurs.isEmpty()) {
             resultat = "Succès de l'ajout.";
         } else {
             resultat = "Échec de l'ajout.";
         }
-        System.out.println("resultat erreurs="+resultat);
-        
-        return unUtilisateur;
-        
-        
+        System.out.println("resultat erreurs=" + resultat);
+
+        return unMembre;
+
     }
 }

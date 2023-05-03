@@ -1027,7 +1027,7 @@ public class DaoAdmin {
         ArrayList<Genre> lesGenres = new  ArrayList<Genre>();
         try
         {
-            requete=connection.prepareStatement("select * from  GENRE");
+            requete=connection.prepareStatement("select * from  genre");
             rs=requete.executeQuery();
             while ( rs.next() ) {
 
