@@ -4,7 +4,9 @@
  */
 package servlet;
 
+import dao.DaoAdmin;
 import dao.DaoAlbum;
+import form.FormAlbum;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -18,6 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Album;
+import model.Groupe;
 import model.Titre;
 
 /**
@@ -82,6 +85,8 @@ public class ServletAlbum extends HttpServlet {
         System.out.println("servleralbum url="+url);
         
         if(url.equals("/STATIC/ServletAlbum/lister")){
+            ArrayList<Groupe> lesGroupes = DaoAdmin.getLesGroupes(connection);
+            request.setAttribute("pLesGroupes", lesGroupes);
             ArrayList<Album> lesAlbums = DaoAlbum.getLesAlbums(connection);
             request.setAttribute("pLesAlbums", lesAlbums);
             this.getServletContext().getRequestDispatcher("/view/album/lister.jsp" ).forward( request, response );
@@ -94,8 +99,12 @@ public class ServletAlbum extends HttpServlet {
             request.setAttribute("pLesTitresAlbum", lesTitresAlbum);
             this.getServletContext().getRequestDispatcher("/view/album/consulter.jsp" ).forward( request, response );
         }
+        
+        //DEV - Supprimer la page ajouter et l'enlever du web.xml vu qu'elle est déja dans la page lister
         if(url.equals("/STATIC/ServletAlbum/ajouter"))
         {
+            ArrayList<Groupe> lesGroupes = DaoAdmin.getLesGroupes(connection);
+            request.setAttribute("pLesGroupes", lesGroupes);
             System.out.println("servlerfestival LESFESTIVALS");
             ArrayList<Album> lesAlbums = DaoAlbum.getLesAlbums(connection);
             request.setAttribute("pLesAlbums", lesAlbums);
@@ -103,6 +112,8 @@ public class ServletAlbum extends HttpServlet {
         }
         
         if(url.equals("/STATIC/ServletAlbum/archiver")){
+            ArrayList<Groupe> lesGroupes = DaoAdmin.getLesGroupes(connection);
+            request.setAttribute("pLesGroupes", lesGroupes);
             int idAlbum = Integer.parseInt(request.getParameter("idAlbum"));
             DaoAlbum.desinscrireAlbum(connection, idAlbum);
             ArrayList<Album> lesAlbums = DaoAlbum.getLesAlbums(connection);
@@ -111,6 +122,8 @@ public class ServletAlbum extends HttpServlet {
         }
         
         if(url.equals("/STATIC/ServletAlbum/dearchiver")){
+            ArrayList<Groupe> lesGroupes = DaoAdmin.getLesGroupes(connection);
+            request.setAttribute("pLesGroupes", lesGroupes);
             int idAlbum = Integer.parseInt(request.getParameter("idAlbum"));
             DaoAlbum.inscrireAlbum(connection, idAlbum);
             ArrayList<Album> lesAlbums = DaoAlbum.getLesAlbums(connection);
@@ -131,6 +144,41 @@ public class ServletAlbum extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        FormAlbum form = new FormAlbum();
+        
+        Album leAlbumSaisi = form.ajouterAlbum(request);
+        
+        request.setAttribute("form", form);
+        request.setAttribute("pAlbum", leAlbumSaisi);
+        
+        if (form.getErreurs().isEmpty()){
+            // Il n'y a pas eu d'erreurs de saisie, donc on renvoie la vue affichant les infos du groupe
+            Album albumAjoute = DaoAlbum.ajouterAlbum(connection, leAlbumSaisi);
+
+            if (albumAjoute != null ){
+                ArrayList<Groupe> lesGroupes = DaoAdmin.getLesGroupes(connection);
+                request.setAttribute("pLesGroupes", lesGroupes);
+                ArrayList<Album> lesAlbums = DaoAlbum.getLesAlbums(connection);
+                request.setAttribute("pLesAlbums", lesAlbums);
+                this.getServletContext().getRequestDispatcher("/view/album/lister.jsp" ).forward( request, response );
+            } else {
+                // Cas où l'insertion en bdd a échoué
+                //On renvoie vers le formulaire
+                ArrayList<Groupe> lesGroupes = DaoAdmin.getLesGroupes(connection);
+                request.setAttribute("pLesGroupes", lesGroupes);
+                ArrayList<Album> lesAlbums = DaoAlbum.getLesAlbums(connection);
+                request.setAttribute("pLesAlbums", lesAlbums);
+                this.getServletContext().getRequestDispatcher("/view/album/lister.jsp" ).forward( request, response );
+            }
+        } else
+        {
+            ArrayList<Groupe> lesGroupes = DaoAdmin.getLesGroupes(connection);
+            request.setAttribute("pLesGroupes", lesGroupes);
+            ArrayList<Album> lesAlbums = DaoAlbum.getLesAlbums(connection);
+            request.setAttribute("pLesAlbums", lesAlbums);
+            this.getServletContext().getRequestDispatcher("/view/album/lister.jsp" ).forward( request, response );
+        }
     }
 
     /**

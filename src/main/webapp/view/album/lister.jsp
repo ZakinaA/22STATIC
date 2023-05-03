@@ -4,6 +4,8 @@
     Author     : sio2
 --%>
 
+<%@page import="model.Groupe"%>
+<%@page import="form.FormAlbum"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.ArrayList"%>
@@ -13,6 +15,7 @@
 <%@ include file="/view/header.jsp" %> <%@ include file="/view/body.jsp" %>   <%@ include file="/view/nav.jsp" %>
 <%
     ArrayList<Album> lesAlbums = (ArrayList) request.getAttribute("pLesAlbums");
+    ArrayList<Groupe> lesGroupes = (ArrayList) request.getAttribute("pLesGroupes");
 %>
 <h1 style="text-align: center; margin: 2%; color: black">Les albums</h1>
 <body>
@@ -40,7 +43,7 @@
                             out.println("<img src='" + unAlbum.getCheminImg() + "' class='card-img-top'>");
                             out.println("<div class='card-body'>");
                             out.println("<h5 class='card-title font-weight-bold'>" + unAlbum.getNom() + "</h5>");
-                            out.println("<p class='card-text'>" + unAlbum.getDescription()+ "</p>");
+                            out.println("<p class='card-text'>" + unAlbum.getDescription() + "</p>");
                             out.println("<p class='card-text card-title'><small class='text-muted'>" + dateFormatted + "</small></p>");
                             out.println("<div class='d-flex'>");
                             out.println("<a href='../ServletAlbum/consulter?idAlbum=" + unAlbum.getId() + "' class='btn btn-primary'>Consulter l'album</a>");
@@ -65,18 +68,68 @@
                             out.println("<tr>");
                         }
                         out.println("<td>");
+                        
+                        //DEV - Formulaire d'ajout
+                        FormAlbum form = (FormAlbum) request.getAttribute("form");
+                
+                            out.println("<div class='card border-success' style='width: 18rem; height: 31.574rem;'>");
+                            out.println("<img src='https://cdn-icons-png.flaticon.com/512/49/49750.png' class='card-img-top'>");
+                            out.println("<div class='card-body border-top'>");
+                            out.println("<h5 class='card-title font-weight-bold'>Ajouter un album !</h5>");
+                            out.println("<p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>");
+                            out.println("<p class='card-text card-title'><small class='text-muted'>ADMIN</small></p>");
+                            out.println("<div class='d-flex'>");
+                            out.println("<button type='button' class='btn btn-success' data-toggle='modal' data-target='#ajouterAlbumModal'>Ajouter un album</button>");
+                            out.println("</div>");
+                            out.println("</div>");
+                            out.println("</div>");
 
-                        out.println("<div class='card border-success' style='width: 18rem; height: 31.574rem;'>");
-                        out.println("<img src='https://cdn-icons-png.flaticon.com/512/49/49750.png' class='card-img-top'>");
-                        out.println("<div class='card-body border-top'>");
-                        out.println("<h5 class='card-title font-weight-bold'>Ajouter un album !</h5>");
-                        out.println("<p class='card-text'>Some quick example text to build on the card title and make up the bulk of the card's content.</p>");
-                        out.println("<p class='card-text card-title'><small class='text-muted'>ADMIN</small></p>");
-                        out.println("<div class='d-flex'>");
-                        out.println("<a href='#' class='btn btn-success'>Ajouter un album</a>");
-                        out.println("</div>");
-                        out.println("</div>");
-                        out.println("</div>");
+                            out.println("<div class='modal fade' id='ajouterAlbumModal' tabindex='-1' role='dialog' aria-labelledby='ajouterAlbumModalLabel' aria-hidden='true'>");
+                            out.println("<div class='modal-dialog modal-dialog-centered' role='document'>");
+                            out.println("<div class='modal-content'>");
+                            out.println("<div class='modal-header'>");
+                            out.println("<h5 class='modal-title' id='ajouterAlbumModalLabel'>Ajouter un album</h5>");
+                            out.println("<button type='button' class='close' data-dismiss='modal' aria-label='Close'>");
+                            out.println("<span aria-hidden='true'>&times;</span>");
+                            out.println("</button>");
+                            out.println("</div>");
+                            out.println("<div class='modal-body'>");
+                            out.println("<form action='ajouterAlbum' method='post'>");
+                            out.println("<div class='form-group'>");
+                            out.println("<label for='nom'>Nom :</label>");
+                            out.println("<input type='text' class='form-control' id='nom' name='nom' required>");
+                            out.println("</div>");
+                            out.println("<div class='form-group'>");
+                                out.println("<label for='groupeId'>Groupe :</label>");
+                                out.println("<select class='form-control' id='groupeId' name='groupeId'>");
+                                out.println("<option value=''>Sélectionnez un groupe</option>");
+                                for (Groupe groupe : lesGroupes) {
+                                    out.println("<option value='" + groupe.getId() + "'>" + groupe.getNom() + "</option>");
+                                }
+                                out.println("</select>");
+                                out.println("</div>");
+                            out.println("<div class='form-group'>");
+                            out.println("<label for='description'>Description :</label>");
+                            out.println("<textarea class='form-control' id='description' name='description' rows='3' required></textarea>");
+                            out.println("</div>");
+                            out.println("<div class='form-group'>");
+                            out.println("<label for='date'>Date :</label>");
+                            out.println("<input type='date' class='form-control' id='date' name='date' required>");
+                            out.println("</div>");
+                            out.println("<div class='form-group'>");
+                            out.println("<label for='imageUpload'>Image :</label>");
+                            out.println("<input type='text' class='form-control' id='image' name='image' required>");
+                            out.println("</div>");
+                            out.println("</div>");
+                            out.println("<div class='modal-footer'>");
+                            out.println("<button type='button' class='btn btn-secondary' data-dismiss='modal'>Fermer</button>");
+                            out.println("<button type='submit' class='btn btn-success'>Ajouter un album</button>");
+                            out.println("</div>");
+                            out.println("</form>");
+                            out.println("</div>");
+                            out.println("</div>");
+                            out.println("</div>");
+                        
                         out.println("</td>");
                         if (i == 4) {
                             out.println("</tr>");
@@ -89,7 +142,7 @@
                             Date date = format.parse(dateStr);
                             format.applyPattern("dd/MM/yyyy");
                             String dateFormatted = format.format(date);
-                            
+
                             if (unAlbum.getArchiver() == 1) {
                                 i++;
                                 // Affiche tout les albums
@@ -98,15 +151,14 @@
                                 }
                                 out.println("<td>");
 
-                                out.println("<div class='card border-danger' style='width: 18rem;'>");
+                                out.println("<div class='card text-white bg-danger' style='width: 18rem; height: 31.574rem;'>");
                                 out.println("<img src='" + unAlbum.getCheminImg() + "' class='card-img-top'>");
                                 out.println("<div class='card-body'>");
                                 out.println("<h5 class='card-title font-weight-bold'>" + unAlbum.getNom() + "</h5>");
-                                out.println("<p class='card-text'>" + unAlbum.getDescription()+ "</p>");
+                                out.println("<p class='card-text'>" + unAlbum.getDescription() + "</p>");
                                 out.println("<p class='card-text card-title'><small class='text-muted'>" + dateFormatted + "</small></p>");
                                 out.println("<div class='d-flex'>");
                                 out.println("<a href='../ServletAlbum/consulter?idAlbum=" + unAlbum.getId() + "' class='btn btn-primary'>Consulter l'album</a>");
-                                //DEV Condition a rajouter
                                 out.println("<a href='../ServletAlbum/dearchiver?idAlbum=" + unAlbum.getId() + "' class='btn btn-success'>Ajouter</a>");
                                 out.println("</div>");
                                 out.println("</div>");

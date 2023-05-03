@@ -4,10 +4,13 @@
  */
 package form;
 
+import dao.DaoGroupe;
 import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import model.Album;
+import model.Groupe;
+import static test.ConnexionBdd.connection;
 
 /**
  *
@@ -45,10 +48,16 @@ public class FormAlbum {
             throw new Exception( "la date de création est erronnée" );
         }
     }
-    
-    private void validationCheminImg( String cheminImg) throws Exception {
-        if ( cheminImg != null && cheminImg.length() < 4  ) {
-            throw new Exception( "L'image est erronnée" );
+
+    private void validationDescription(String description) throws Exception {
+        if (description != null && description.length() < 10) {
+            throw new Exception("La description de l'album est incorrecte.");
+        }
+    }
+
+    private void validationCheminImg(String cheminImg) throws Exception {
+        if (cheminImg == null || cheminImg.equals("")) {
+            throw new Exception("Le chemin de l'image de l'album est obligatoire.");
         }
     }
     
@@ -71,15 +80,51 @@ public class FormAlbum {
         Album unAlbum  = new Album();
 
         //récupération dans des variables des données saisies dans les champs de formulaire
-        String nom = getDataForm( request, "nom" );
-        String dateCreation = getDataForm( request, "dateCreation");
-        String cheminImg = getDataForm( request, "cheminImg");
+        String nom = getDataForm(request, "nom");
+        String description = getDataForm(request, "description");
+        String date = getDataForm(request, "date");
+        String image = getDataForm(request, "image");
+        int idGroupe = Integer.valueOf(getDataForm(request, "groupeId")); //Cast un string vers int
         
-        System.out.println("resultat erreurs="+resultat);
+        Groupe leGroupe = new Groupe();
+        leGroupe.setId(idGroupe);
         
-        unAlbum.setCheminImg(cheminImg);
-        unAlbum.setDateCreation(dateCreation);
         unAlbum.setNom(nom);
+        unAlbum.setDescription(description);
+        unAlbum.setDateCreation(date);
+        unAlbum.setCheminImg(image);
+        unAlbum.setGroupe(leGroupe);
+        
+        try {
+            validationNom(nom);
+        } catch (Exception e) {
+            setErreur("nom", e.getMessage());
+        }
+
+        try {
+            validationDescription(description);
+        } catch (Exception e) {
+            setErreur("description", e.getMessage());
+        }
+
+        /*try {
+            validationDate(date);
+        } catch (Exception e) {
+            setErreur("date", e.getMessage());
+        }*/
+
+        /*try {
+            validationImage(image);
+        } catch (Exception e) {
+            setErreur("image", e.getMessage());
+        }*/
+
+        if (erreurs.isEmpty()) {
+            resultat = "Succès de l'ajout de l'album.";
+        } else {
+            resultat = "Échec de l'ajout de l'album.";
+        }
+        
         return unAlbum;      
     }
 }
