@@ -33,31 +33,31 @@ public class FormGroupe {
 
     //méthode de validation du champ de saisie nom
     private void validationNom( String nom ) throws Exception {
-        if ( nom != null && nom.length() < 3 ) {
+        if ( nom == null && nom.length() < 3 ) {
             throw new Exception( "Le nom de groupe doit contenir au moins 3 caractères." );
         }
     }
 
     private void validationDateCreation( String dateCreation) throws Exception {
-        if ( dateCreation != null && dateCreation.length() <10  ) {
+        if ( dateCreation == null && dateCreation.length() <10  ) {
             throw new Exception( "la date de création est erronnée" );
         }
     }
     
     private void validationTelephone( String telephone) throws Exception {
-        if ( telephone != null && telephone.length() <10  ) {
+        if ( telephone == null && telephone.length() <10  ) {
             throw new Exception( "le numéro de téléphone est erronnée" );
         }
     }
     
     private void validationMelSiteWeb( String melSiteWeb) throws Exception {
-        if ( melSiteWeb != null) {
+        if ( melSiteWeb == null || melSiteWeb.isEmpty()) {
             throw new Exception( "le mail est erronnée" );
         }
     }
     
     private void validationLieuRepetition( String lieuRepetition) throws Exception {
-        if ( lieuRepetition != null  ) {
+        if ( lieuRepetition == null || lieuRepetition.isEmpty()  ) {
             throw new Exception( "le lieu repetition est erronnée" );
         }
     }

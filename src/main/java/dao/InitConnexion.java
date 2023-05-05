@@ -46,7 +46,7 @@ public class InitConnexion implements ServletContextListener {
         try
         {
             //obtention de la connexion
-            connection = DriverManager.getConnection ("jdbc:mariadb://172.20.177.250/STATIC","ADM_STATIC","mpStatic");
+            connection = DriverManager.getConnection("jdbc:mariadb://172.20.177.250/STATIC","ADM_STATIC","mpStatic");
             //connection = DriverManager.getConnection ("jdbc:mariadb://localhost:3307/static","root","");
             //sauvegarder la connexion dans le context
             servletContext.setAttribute("connection",connection);

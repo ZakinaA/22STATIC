@@ -5,13 +5,10 @@
 package servlet;
 
 import dao.DaoAdmin;
-import dao.DaoDispositif;
 import dao.DaoGroupe;
 import dao.DaoMembre;
-import dao.DaoPartenaire;
 import dao.DaoUtilisateur;
 import dao.Utilitaire;
-import form.FormGroupe;
 import form.FormMembre;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,18 +18,13 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import static jdk.vm.ci.meta.JavaKind.Int;
-import model.Dispositif;
-import model.Genre;
 import model.Groupe;
 import model.Instrument;
 import model.Membre;
-import model.Partenaire;
 import model.Statut;
 import model.Utilisateur;
 

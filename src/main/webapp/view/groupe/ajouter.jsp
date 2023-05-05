@@ -23,7 +23,7 @@
     </br>
     </br>
     <label for="dateCreation">Date de création : </label>
-    <input id="dateCreation"  type="text" size="70" maxlength="10" name="dateCreation" class="form-control" placeholder="Entrer date de création">
+    <input id="dateCreation"  type="date" size="70" maxlength="10" name="dateCreation" class="form-control" placeholder="Entrer date de création">
     <span style="color: blue;">${form.erreurs['dateCreation']}</span>
     </br>
     <label for="telephone">Téléphone : </label>

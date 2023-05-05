@@ -288,7 +288,7 @@ public class DaoGroupe {
             // gpe_id (clé primaire de la table groupe) est en auto_increment,donc on ne renseigne pas cette valeur
             // le paramètre RETURN_GENERATED_KEYS est ajouté à la requête afin de pouvoir récupérer l'id généré par la bdd (voir ci-dessous)
             // supprimer ce paramètre en cas de requête sans auto_increment.
-            requete=connection.prepareStatement("INSERT INTO GROUPE ( nom, dateCreation, telephone, melSiteWeb, lieuRepetition, estSelectionne, idDispositif, idMembre, idGenre)\n" +
+            requete=connection.prepareStatement("INSERT INTO groupe ( nom, dateCreation, telephone, melSiteWeb, lieuRepetition, estSelectionne, idDispositif, idMembre, idGenre)\n" +
                     "VALUES (?,?,?,?,?,?,?,?,?)", requete.RETURN_GENERATED_KEYS );
             requete.setString(1, unGroupe.getNom());
             requete.setString(2, unGroupe.getDateCreation());

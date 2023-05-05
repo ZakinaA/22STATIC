@@ -136,7 +136,7 @@ public class DaoFestival {
         try
         {
             //DEV faire fonctionner
-            requete=connection.prepareStatement("INSERT INTO FESTIVAL (nom, annee, dateDebut, dateFin, logo)\n" +
+            requete=connection.prepareStatement("INSERT INTO festival (nom, annee, dateDebut, dateFin, logo)\n" +
                     "VALUES (?,?,?,?,?)", requete.RETURN_GENERATED_KEYS );
             requete.setString(1, unFestival.getNom());
             requete.setString(2, unFestival.getAnnee());

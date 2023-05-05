@@ -134,7 +134,7 @@ public class DaoAlbum {
     public static Album ajouterAlbum(Connection connection, Album unAlbum) {
         int idGenere = -1;
         try {
-            requete = connection.prepareStatement("INSERT INTO ALBUM (nom, dateCreation, cheminImg, idGroupe, description)\n"
+            requete = connection.prepareStatement("INSERT INTO album (nom, dateCreation, cheminImg, idGroupe, description)\n"
                     + "VALUES (?,?,?,?,?)", requete.RETURN_GENERATED_KEYS);
             requete.setString(1, unAlbum.getNom());
             requete.setString(2, unAlbum.getDateCreation());

@@ -79,8 +79,9 @@ public class FormAlbum {
 
         Album unAlbum  = new Album();
 
-        //récupération dans des variables des données saisies dans les champs de formulaire
+        // récupération dans des variables des données saisies dans les champs de formulaire
         String nom = getDataForm(request, "nom");
+        String lienPlaylist = getDataForm(request, "lienPlaylist");
         String description = getDataForm(request, "description");
         String date = getDataForm(request, "date");
         String image = getDataForm(request, "image");
@@ -90,6 +91,7 @@ public class FormAlbum {
         leGroupe.setId(idGroupe);
         
         unAlbum.setNom(nom);
+        unAlbum.setLienAlbum(lienPlaylist);
         unAlbum.setDescription(description);
         unAlbum.setDateCreation(date);
         unAlbum.setCheminImg(image);
