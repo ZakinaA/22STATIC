@@ -117,7 +117,7 @@ public class ServletMembre extends HttpServlet {
             request.setAttribute("pLesGroupes", lesGroupes);
             this.getServletContext().getRequestDispatcher("/view/membre/groupe.jsp").forward(request, response);
         } else {
-            response.sendRedirect("http://localhost:8080/STATIC/index.jsp");
+            response.sendRedirect("http://172.20.177.250:8080/STATIC/index.jsp");
         }
 
     }

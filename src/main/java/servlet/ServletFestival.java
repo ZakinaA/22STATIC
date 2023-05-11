@@ -109,7 +109,7 @@ public class ServletFestival extends HttpServlet {
             request.setAttribute("pLesFestivals", lesFestivals);
             this.getServletContext().getRequestDispatcher("/view/festival/ajouter.jsp" ).forward( request, response );
             }else{
-                response.sendRedirect("http://localhost:8080/STATIC/index.jsp");
+                response.sendRedirect("http://172.20.177.250:8080/STATIC/index.jsp");
             }
         }
     }

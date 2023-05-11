@@ -91,7 +91,7 @@ public class ServletConnexion extends HttpServlet {
 
         if (url.equals("/STATIC/ServletConnexion/connexion")) {
             if (session.getAttribute("idMembre") != null || session.getAttribute("idPartenaire") != null) {
-                response.sendRedirect("http://localhost:8080/STATIC/index.jsp");
+                response.sendRedirect("http://172.20.177.250:8080/STATIC/index.jsp");
             } else {
                 this.getServletContext().getRequestDispatcher("/view/connexion/connexion.jsp").forward(request, response);
             }

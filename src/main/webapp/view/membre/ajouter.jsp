@@ -20,7 +20,7 @@
 <%@ include file="/view/header.jsp" %> <%@ include file="/view/body.jsp" %>   <%@ include file="/view/nav.jsp" %>
 
 <%if (nomMembre != null) {
-        response.sendRedirect("localhost:8080/STATIC/ServletMembre/groupe");
+        response.sendRedirect("172.20.177.250:8080/STATIC/ServletMembre/groupe");
     } else {
 
 %>

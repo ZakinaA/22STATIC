@@ -9,7 +9,7 @@
     <nav class="navbar navbar-expand-sm bg-light py-5 px-5" style="opacity: 0.8; height: 13%; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
     </nav>
     <div class="container-fluid" style="position: absolute; top: 22px; ">
-        <a class="logo" href="http://localhost:8080/STATIC/index.jsp">
+        <a class="logo" href="http://172.20.177.250:8080/STATIC/index.jsp">
             <img src="https://i.ibb.co/tQRkg9M/logo.png" alt="Logo" width="60" height="60" class="d-inline-block mx-3" >
             Norman'Zik
         </a>
@@ -20,15 +20,15 @@
                     String nomPartenaire = (String) session.getAttribute("nomPartenaire");
 
                     if (nomMembre != null) {
-                        out.println("<li>connecté en tant que <a href='http://localhost:8080/STATIC/ServletMembre/consulter'>" + nomMembre + "</a></li>");%>
+                        out.println("<li>connecté en tant que <a href='http://172.20.177.250:8080/STATIC/ServletMembre/consulter'>" + nomMembre + "</a></li>");%>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Groupe
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletMembre/groupe">Mes groupes</a>
-                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletGroupe/lister">Lister</a>
-                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletGroupe/ajouter">Créer</a>
+                        <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletMembre/groupe">Mes groupes</a>
+                        <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletGroupe/lister">Lister</a>
+                        <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletGroupe/ajouter">Créer</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -36,7 +36,7 @@
                         Album
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletAlbum/lister">Lister</a>
+                        <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletAlbum/lister">Lister</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -44,11 +44,11 @@
                         Festival
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletFestival/lister">Lister</a>
+                        <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletFestival/lister">Lister</a>
                     </div>
                 </li>
                 <li>
-                    <a class="nav-link btn btn-danger" href="http://localhost:8080/STATIC/ServletConnexion/deconnexion">Déconnexion</a>
+                    <a class="nav-link btn btn-danger" href="http://172.20.177.250:8080/STATIC/ServletConnexion/deconnexion">Déconnexion</a>
                 </li>
                 <%} else if (nomPartenaire != null) {
                     if (nomPartenaire.equals("admin")) {
@@ -58,8 +58,8 @@
                         Groupe
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletGroupe/lister">Lister</a>
-                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletGroupe/ajouter">Ajouter</a>
+                        <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletGroupe/lister">Lister</a>
+                        <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletGroupe/ajouter">Ajouter</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -67,7 +67,7 @@
                         Album
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletAlbum/lister">Lister</a>
+                        <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletAlbum/lister">Lister</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -75,8 +75,8 @@
                         Dispositif
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletDispositif/lister">Lister</a>
-                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletDispositif/ajouter">Ajouter</a>
+                        <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletDispositif/lister">Lister</a>
+                        <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletDispositif/ajouter">Ajouter</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -84,8 +84,8 @@
                         Festival
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletFestival/lister">Lister</a>
-                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletFestival/ajouter">Ajouter</a>
+                        <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletFestival/lister">Lister</a>
+                        <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletFestival/ajouter">Ajouter</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -93,11 +93,11 @@
                         Jury
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletJury/lister">Lister</a>
+                        <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletJury/lister">Lister</a>
                     </div>
                 </li>
                 <li>
-                    <a class="nav-link btn btn-danger" href="http://localhost:8080/STATIC/ServletConnexion/deconnexion">Déconnexion</a>
+                    <a class="nav-link btn btn-danger" href="http://172.20.177.250:8080/STATIC/ServletConnexion/deconnexion">Déconnexion</a>
                 </li>
                 <% } else {
                 out.println("<li>Vous êtes le partenaire " + nomPartenaire + "</li>");%>
@@ -106,11 +106,11 @@
                         Jury
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletJury/lister">Lister</a>
+                        <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletJury/lister">Lister</a>
                     </div>
                 </li>
                 <li>
-                    <a class="nav-link btn btn-danger" href="http://localhost:8080/STATIC/ServletConnexion/deconnexion">Déconnexion</a>
+                    <a class="nav-link btn btn-danger" href="http://172.20.177.250:8080/STATIC/ServletConnexion/deconnexion">Déconnexion</a>
                 </li>
 
 
@@ -121,7 +121,7 @@
                         Groupe
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletGroupe/lister">Lister</a>
+                        <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletGroupe/lister">Lister</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -129,7 +129,7 @@
                         Album
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletAlbum/lister">Lister</a>
+                        <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletAlbum/lister">Lister</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -137,16 +137,16 @@
                         Festival
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="http://localhost:8080/STATIC/ServletFestival/lister">Lister</a>
+                        <a class="dropdown-item" href="http://172.20.177.250:8080/STATIC/ServletFestival/lister">Lister</a>
                     </div>
                 </li>
                 <li>
-                    <a class="nav-link" href="http://localhost:8080/STATIC/ServletMembre/ajouter">
+                    <a class="nav-link" href="http://172.20.177.250:8080/STATIC/ServletMembre/ajouter">
                         S'inscrire
                     </a>
                 </li>
                 <li>
-                    <a class="nav-link btn btn-success" href="http://localhost:8080/STATIC/ServletConnexion/connexion">
+                    <a class="nav-link btn btn-success" href="http://172.20.177.250:8080/STATIC/ServletConnexion/connexion">
                         Se connecter
                     </a>
                 </li>

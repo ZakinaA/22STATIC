@@ -106,7 +106,7 @@ public class ServletDispositif extends HttpServlet {
                 request.setAttribute("pLesDispositifs", lesDispositifs);
                 this.getServletContext().getRequestDispatcher("/view/dispositif/ajouter.jsp").forward(request, response);
             }else{
-                response.sendRedirect("http://localhost:8080/STATIC/index.jsp");
+                response.sendRedirect("http://172.20.177.250:8080/STATIC/index.jsp");
             }
         }
     }
