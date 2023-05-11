@@ -86,17 +86,22 @@ public class DaoAdmin {
         ArrayList<Groupe> lesGroupes = new  ArrayList<Groupe>();
         try
         {
-            requete=connection.prepareStatement("select * from  groupe ");
+            requete=connection.prepareStatement("select * from  groupe, membre where groupe.idMembre = mem_id");
             rs=requete.executeQuery();
             while ( rs.next() ) {
 
                 Groupe leGroupe = new Groupe();
                 leGroupe.setId(rs.getInt("gro_id"));
-                leGroupe.setNom(rs.getString("nom"));
+                leGroupe.setNom(rs.getString("groupe.nom"));
                 leGroupe.setDateCreation(rs.getString("dateCreation"));
                 leGroupe.setTelephone(rs.getString("telephone"));
                 leGroupe.setMelSiteWeb(rs.getString("melSiteWeb"));
                 leGroupe.setLieuRepetition(rs.getString("lieuRepetition"));
+                
+                Membre leMembre = new Membre();
+                leMembre.setNom(rs.getString("membre.nom"));
+                
+                leGroupe.setMembre(leMembre);
                 lesGroupes.add(leGroupe);
             }
         }
@@ -258,7 +263,7 @@ public class DaoAdmin {
         ArrayList<Membre> lesMembres = new  ArrayList<Membre>();
         try
         {
-            requete=connection.prepareStatement("SELECT mem_id, membre.nom FROM membre EXCEPT SELECT mem_id, membre.nom FROM membre, groupe, groupemembre WHERE membre.mem_id = groupe.idMembre EXCEPT SELECT mem_id, membre.nom FROM membre, groupemembre WHERE membre.mem_id = groupemembre.idMembre");
+            requete=connection.prepareStatement("SELECT mem_id, membre.nom FROM membre EXCEPT(SELECT mem_id, membre.nom FROM membre, groupe, groupemembre WHERE membre.mem_id = groupe.idMembre EXCEPT( SELECT mem_id, membre.nom FROM membre, groupemembre WHERE membre.mem_id = groupemembre.idMembre)); ");
             rs=requete.executeQuery();
             while ( rs.next() ) {
 

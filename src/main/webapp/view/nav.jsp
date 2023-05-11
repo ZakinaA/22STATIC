@@ -99,7 +99,7 @@
                 <li>
                     <a class="nav-link btn btn-danger" href="http://localhost:8080/STATIC/ServletConnexion/deconnexion">Déconnexion</a>
                 </li>
-                <% } else {%>
+                <% } else {
                 out.println("<li>Vous êtes le partenaire " + nomPartenaire + "</li>");%>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

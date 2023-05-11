@@ -63,13 +63,12 @@
                     } // Boucle for unAlbum : lesAlbums
 
                     // Card ajouter un album
-                    if (nomPartenaire != null && nomPartenaire.equals("admin")) {
+                    if (nomPartenaire != null && nomPartenaire.equals("admin") || nomMembre != null) {
                         i++;
                         if (i == 0) {
                             out.println("<tr>");
                         }
                         out.println("<td>");
-
                         //DEV - Formulaire d'ajout
                         out.println("<div class='card border-success' style='width: 18rem; height: 31.574rem;'>");
                         out.println("<img src='https://cdn-icons-png.flaticon.com/512/49/49750.png' class='card-img-top'>");
@@ -82,7 +81,6 @@
                         out.println("</div>");
                         out.println("</div>");
                         out.println("</div>");
-
                         out.println("<div class='modal fade' id='ajouterAlbumModal' tabindex='-1' role='dialog' aria-labelledby='ajouterAlbumModalLabel' aria-hidden='true'>");
                         out.println("<div class='modal-dialog modal-dialog-centered'>");
                         out.println("<div class='modal-content'>");
@@ -105,9 +103,14 @@
                         out.println("<div class='form-group'>");
                         out.println("<label for='groupeId'>Groupe :</label>");
                         out.println("<select class='form-control' id='groupeId' name='groupeId'>");
-                        out.println("<option value=''>Sélectionnez un groupe</option>");
                         for (Groupe groupe : lesGroupes) {
-                            out.println("<option value='" + groupe.getId() + "'>" + groupe.getNom() + "</option>");
+                            if (nomMembre != null) {
+                                if (nomMembre.equals(groupe.getMembre().getNom())) {
+                                    out.println("<option value='" + groupe.getId() + "'>" + groupe.getNom() + "</option>");
+                                }
+                            } else {
+                                out.println("<option value='" + groupe.getId() + "'>" + groupe.getNom() + " oui</option>");
+                            }
                         }
                         out.println("</select>");
                         out.println("</div>");

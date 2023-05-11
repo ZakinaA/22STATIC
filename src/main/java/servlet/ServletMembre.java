@@ -97,7 +97,7 @@ public class ServletMembre extends HttpServlet {
                 request.setAttribute("pMembre", leMembre);
                 this.getServletContext().getRequestDispatcher("/view/membre/consulter.jsp").forward(request, response);
             } else {
-                response.sendRedirect("http://localhost:8080/STATIC/index.jsp");
+                this.getServletContext().getRequestDispatcher("/view/membre/consulter.jsp");
             }
         }
 
